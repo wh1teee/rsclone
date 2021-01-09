@@ -14,7 +14,7 @@ export default function createMainDOM() {
         <section class='main-choice'>
             <div class='main-choice__inner'>
                 <h3 class='main-choice__inner-title'></h3>
-                <input class='main-choice__inner-input'></input>
+                <input class='main-choice__inner-input'>
                 <p class='main-choice__inner-text'></p>
             </div>
         </section>

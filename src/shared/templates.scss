@@ -1,0 +1,11 @@
+%vertical_flex_alignment {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+%flex_column {
+  display: flex;
+  flex-direction: column;
+}

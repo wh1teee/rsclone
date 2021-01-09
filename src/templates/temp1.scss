@@ -1,0 +1,405 @@
+@import "variables/temp1_variables";
+@import "../shared/templates";
+
+.template1__wrapper {
+  display: flex;
+  height: 100%;
+
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  color: $wrapper_text_color;
+  background-color: $wrapper_background_color;
+
+  /*Left section
+======*/
+
+  .left__section {
+    @extend %vertical_flex_alignment;
+    padding: 70px 15px;
+    width: 20%;
+    background-color: $left_background_color;
+    color: $left_text_color
+  }
+
+  .photo {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: url(../img/temp1_photo.jpg) no-repeat;
+    background-size: auto 340px;
+  }
+
+  .left__article {
+    margin-bottom: 20px;
+  }
+
+  .article__title {
+    font-size: .95rem;
+    text-transform: uppercase;
+    color: $left_article_title_color;
+  }
+
+  .article__block {
+    margin: 12px 0;
+    width: 90%;
+    font-size: 13px;
+
+    p, a, li {
+      margin-bottom: 3px;
+      color: $left_text_color;
+      list-style-type: none;
+    }
+
+    a {
+      text-decoration: none;
+      display: block;
+      transition: color .25s linear;
+    }
+
+    & a:hover {
+      color: $left_text_color_hover;
+      cursor: pointer;
+    }
+  }
+
+  .additional__information {
+    width: 100%;
+  }
+  /*Main section
+  ========*/
+  .main__section {
+    width: 80%;
+  }
+
+  /*Main section
+  ======*/
+  .container {
+    padding: 0 20px 0 80px;
+    width: 100%;
+  }
+
+  .header {
+    @extend %flex_column;
+    justify-content: center;
+    margin-top: 30px;
+    height: 200px;
+
+    font-family: Georgia, sans-serif;
+    background-color: $header_background_color;
+    color: $header_title_color;
+  }
+
+  .name {
+    font-size: 34px;
+    letter-spacing: .2rem;
+    margin-bottom: 8px;
+  }
+
+  .profession {
+    font-size: 17px;
+    letter-spacing: .2rem;
+  }
+
+  .main {
+    @extend %flex_column;
+    margin-top: 25px;
+  }
+
+  .person__information {
+    @extend %flex_column;
+  }
+
+  .person__information:first-child {
+    margin-bottom: 60px;
+  }
+
+  .information__title {
+    margin-bottom: 20px;
+    font-family: Georgia, sans-serif;
+    font-size: 22px;
+    color: $information_title_color;
+    font-weight: bold;
+  }
+
+  .working__place {
+    color: $working_place_color;
+    margin-bottom: 20px;
+  }
+
+  .working__place:first-child {
+  }
+
+  .working__place__title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .place__name {
+    margin: 10px 0;
+    font-size: 15px;
+    font-style: italic;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+  .description ul {
+    padding: 0 0 0 20px;
+  }
+
+  .description ul li {
+    margin-bottom: 3px;
+  }
+
+  .description ul li:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 1100px) {
+    .left__section {
+      padding: 60px 10px;
+      width: 30%;
+    }
+
+    .article__title {
+      font-size: 13px;
+    }
+
+    .article__block {
+      font-size: 12px;
+    }
+
+  }
+
+  @media (max-width: 700px) {
+
+    .left__section {
+      padding: 35px 10px;
+      width: 30%;
+    }
+
+    .photo {
+      width: 130px;
+      height: 130px;
+      background: url(../img/temp1_photo.jpg) no-repeat -10px -10px;
+      background-size: auto 340px;
+      margin-bottom: 20px;
+    }
+
+    .article__title {
+      font-size: 13px;
+    }
+
+    .article__block {
+      font-size: 12px;
+    }
+
+    .container {
+      padding: 0 20px 0 45px;
+    }
+
+    .header {
+      margin-top: 20px;
+      height: 150px;
+    }
+
+    .name {
+      font-size: 28px;
+    }
+
+    .profession {
+      font-size: 15px;
+    }
+
+    .information__title {
+      font-size: 18px;
+    }
+
+    .working__place__title {
+      font-size: 14px;
+    }
+
+    .place__name {
+      font-size: 14px;
+    }
+
+    .description {
+      font-size: 12px;
+    }
+
+  }
+
+  @media (max-width: 550px) {
+
+    .left__section {
+      padding: 35px 10px;
+      width: 35%;
+    }
+
+    .photo {
+      width: 120px;
+      height: 120px;
+      background: url(../img/temp1_photo.jpg) no-repeat -10px -10px;
+      background-size: auto 340px;
+      margin-bottom: 20px;
+    }
+
+    .article__title {
+      font-size: 12px;
+    }
+
+    .article__block {
+      font-size: 11px;
+    }
+
+    .container {
+      padding: 0 10px 0 15px;
+    }
+
+    .header {
+      margin-top: 20px;
+      height: 150px;
+    }
+
+    .name {
+      font-size: 24px;
+    }
+
+    .profession {
+      font-size: 12px;
+    }
+
+    .information__title {
+      font-size: 16px;
+    }
+
+    .working__place__title {
+      font-size: 13px;
+    }
+
+    .place__name {
+      font-size: 13px;
+    }
+
+    .description {
+      font-size: 12px;
+    }
+
+  }
+
+  @media (max-width: 445px) {
+
+    .left__section {
+      padding: 35px 10px;
+      width: 35%;
+    }
+
+    .photo {
+      width: 110px;
+      height: 110px;
+      background: url(../img/temp1_photo.jpg) no-repeat -15px -15px;
+      background-size: auto 340px;
+      margin-bottom: 20px;
+    }
+
+    .article__title {
+      font-size: 11px;
+    }
+
+    .article__block {
+      font-size: 10px;
+    }
+
+    .container {
+      padding: 0 10px 0 15px;
+    }
+
+    .header {
+      margin-top: 20px;
+      height: 150px;
+    }
+
+    .name {
+      font-size: 21px;
+    }
+
+    .profession {
+      font-size: 11px;
+    }
+
+    .information__title {
+      font-size: 15px;
+    }
+
+    .working__place__title {
+      font-size: 12px;
+    }
+
+    .place__name {
+      font-size: 12px;
+    }
+
+    .description {
+      font-size: 11px;
+    }
+
+  }
+
+  @media (max-width: 360px) {
+
+    .left__section {
+      padding: 25px 5px 15px 5px;
+      width: 35%;
+    }
+
+    .photo {
+      width: 100px;
+      height: 100px;
+      background: url(../img/temp1_photo.jpg) no-repeat -20px -15px;
+      background-size: auto 340px;
+      margin-bottom: 10px;
+    }
+
+    .article__title {
+      font-size: 10px;
+    }
+
+    .article__block {
+      font-size: 9px;
+    }
+
+    .container {
+      padding: 0 10px 0 10px;
+    }
+
+    .header {
+      margin-top: 15px;
+      height: 120px;
+    }
+
+    .name {
+      font-size: 17px;
+    }
+
+    .profession {
+      font-size: 9px;
+    }
+
+    .information__title {
+      font-size: 12px;
+    }
+
+    .working__place__title {
+      font-size: 10px;
+    }
+
+    .place__name {
+      font-size: 10px;
+    }
+
+    .description {
+      font-size: 10px;
+    }
+  }
+}

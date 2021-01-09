@@ -1,0 +1,244 @@
+@import "variables/temp2_variables";
+@import "../shared/templates";
+@import "../shared/mixins";
+
+.template2__wrapper {
+  display: flex;
+  min-height: 100vh;
+  height: 100%;
+
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  color: $wrapper_text_color;
+  background-color: $wrapper_background_color;
+
+  .container {
+    @include flexible-centered(column, space-between);
+
+    padding: 30px 15px;
+  }
+
+  .left__section {
+    & .container {
+      height: 100%;
+    }
+
+    background-color: $left_background_color;
+    color: $left_text_color;
+  }
+
+  .header {
+    margin-top: 50px;
+    transform: rotate(-90deg);
+    text-align: right;
+  }
+
+  .contacts {
+    & a {
+      display: block;
+      text-decoration: none;
+      color: $left_text_color;
+      transition: color .25s linear;
+    };
+    & a:hover {
+      color: $left_text_color_hover;
+      cursor: pointer;
+    }
+  }
+
+  /*Main section
+  ========*/
+
+  .person__information {
+    margin-bottom: $title_indent;
+  }
+
+  .about__me {
+    margin-bottom: 50px;
+    font-size: 1.7rem;
+  }
+
+  .information__title {
+    margin-bottom: $title_indent;
+    font-size: 1.4rem;
+  }
+
+  .information__subtitle {
+    font-size: 1.1rem;
+  }
+
+  .education {
+
+  }
+
+  .education__title {
+    margin-bottom: $title_indent;
+    font-size: 1.7rem;
+  }
+
+  .education__place:first-of-type {
+    margin-bottom: 20px;
+  }
+
+  .place__name {
+    margin-bottom: 8px;
+  }
+
+  .experience__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .year {
+    font-weight: bold;
+  }
+  .information__title {
+    font-size: 1.7rem;
+  }
+
+  .working__place {
+    display: flex;
+  }
+
+  .description {
+    margin-left: 20px;
+    h4 {
+      margin-bottom: 3px;
+    }
+    ul {
+      margin-left: 17px;
+      margin-bottom: 10px;
+
+      li{
+        margin-bottom: 2px;
+      }
+    }
+  }
+
+  .position {
+    margin-bottom: 8px;
+  }
+  /*Skills
+  ======*/
+
+  .skills {
+    margin-top: 15px;
+  }
+
+  .skills__title {
+    margin-bottom: $title_indent;
+    font-size: 1.7rem;
+  }
+
+  .skills__block {
+    display: flex;
+  }
+
+  .skills__names {
+    p {
+      margin-bottom: 3px;
+    }
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .skills__progressions {
+    margin-left: 15px;
+    width: 35vw;
+  }
+
+  .bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    padding: 0;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);
+
+    span {
+      display: block;
+      height: 11px;
+      background-color: #131313;
+      margin-bottom: 8px;
+    }
+  }
+
+  .bar1 {
+    margin-top: 4px;
+    width: 100%;
+  }
+  .bar2 {
+    width: 80%;
+  }
+  .bar3 {
+    width: 100%;
+  }
+  .bar4 {
+    width: 40%;
+  }
+  .bar5 {
+    width: 80%;
+  }
+  .bar6 {
+    width: 40%;
+  }
+
+  @media (max-width: 550px) {
+
+    .contacts__title {
+      font-size: 1.2rem;
+    }
+    .about__me {
+      margin-bottom: 25px;
+    }
+    .education__title {
+      font-size: 1.2rem;
+    }
+    .information__title {
+      font-size: 1.2rem;
+    }
+    .skills__title {
+      font-size: 1.2rem;
+    }
+    .skills__progressions {
+      margin-left: 10px;
+      max-width: 30vw;
+      width: 100%;
+    }
+
+  }
+
+  @media (max-width: 500px)  {
+    .container {
+      padding: 25px 8px;
+    }
+    .left__section {
+      width: 30%;
+    }
+    .header {
+      margin-top: 30px;
+    }
+    .name {
+      font-size: 20px;
+    }
+    .profession {
+      font-size: 12px;
+    }
+    .contacts__title {
+      font-size: 1.1rem;
+    }
+    .contact__block {
+      font-size: .9rem;
+      a {
+        font-size: .7rem;
+        word-wrap: break-word;
+      }
+    }
+    .skills__progressions {
+      margin-left: 10px;
+      max-width: 30vw;
+      width: 100%;
+    }
+  }
+}

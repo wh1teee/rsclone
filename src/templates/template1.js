@@ -1,6 +1,6 @@
 import './temp1.scss';
 
-const template1 = `<div class="template1__wrapper">
+const template1 = `<div class="template1__wrapper template__wrapper">
     <aside class="left__section">
         <div class="photo"></div>
         <div class="main__information">
@@ -45,11 +45,11 @@ const template1 = `<div class="template1__wrapper">
             </article>
         </div>
     </aside>
-    <main class="main__section">
+    <article class="main__section">
         <section class="header">
             <div class="container">
-                <h1 class="name">BENJAMIN SHAH</h1>
-                <h3 class="profession">ELEMENTARY TEACHER</h3>
+                <h1 class="name text">BENJAMIN SHAH</h1>
+                <h3 class="profession text">ELEMENTARY TEACHER</h3>
             </div>
         </section>
         <section class="main">
@@ -111,7 +111,7 @@ const template1 = `<div class="template1__wrapper">
                 </div>
             </div>
         </section>
-    </main>
+    </article>
 </div>`;
 
 export default template1;

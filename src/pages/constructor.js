@@ -2,8 +2,8 @@ export default function createConstructorDOM() {
 
     document.body.innerHTML = `
     <header>
-        <menu>
-            <ul></ul>            
+        <menu class='menu-controls'>
+            <ul class='menu-controls-list'></ul>            
         </menu>
         <div id='header-controls'></div>
     </header>
@@ -11,10 +11,10 @@ export default function createConstructorDOM() {
     <main class='constructor-page'>
         <section class='controls'>
             <div class='controls__icons'>
-                <ul></ul>
+                <ul class='controls__icons-list'></ul>
             </div>            
             <div class='controls__elements'>
-                <ul></ul>
+                <ul class='controls__elements-list'></ul>
             </div>
         </section>
         <section class='workspace'>

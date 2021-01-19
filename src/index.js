@@ -6,17 +6,47 @@ import WorkSpace from './js/WorkSpace';
 import controls from './js/ControlsIcons';
 import ControlsElements from './js/ControlsElements';
 import editor from './js/Editor';
+import slider from './js/Slider';
 
 
 import {template1, template2} from './templates';
 
+import './styles/main.scss';
+//import './styles/constructor.scss';
+//import './styles/editor.scss';
 import './style.scss';
-
 
 const dom = DOM.getHTMLElements(); 
 
+
+createMainDOM();
+header.createMainHeader();
+
+
+const getCurrentQuantity = () => {
+    let quantity = 1;
+    if (document.body.clientWidth >= 1280) { 
+        quantity = 7;
+        } else if (document.body.clientWidth >= 768) {
+            quantity = 5;
+        } else if (document.body.clientWidth >= 520) {
+            quantity = 3;
+            };
+    return quantity;
+
+
+}
+
+slider.generateCards('left', slider.getCurrentQuantity());
+
+
+
+/*
+// для вывода страницы конструктор раскомментируй эти строки и закомментируй начиная со стр.22
 createConstructorDOM();
+
 header.createHeader();
+
 
 controls.createControlPanel();
 
@@ -38,13 +68,20 @@ document.querySelector('.controls__elements-list').addEventListener('click', (ev
         
         workSpace.showTemplateOnScreen(elementStyle);
 });
-/*
-if (document.querySelector('.template1__wrapper'))
-document.querySelector('.left__section').addEventListener('click', (event) => editor.createContainer(event));
+
 */
 
 
+document.getElementById('next').addEventListener('click', (event) => {
+    slider.addListenerForSlider('right');
+    console.log('right');
+});
 
+document.getElementById('prev').addEventListener('click', (event) => {
+    slider.addListenerForSlider('left');
+    console.log('left');
+});
 
-
-/*document.body.innerHTML = `${template1}`;*/
+window.addEventListener('resize', (event) => {
+        slider.changeSlider(event);
+    });    

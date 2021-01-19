@@ -6,7 +6,7 @@ import '../styles/editor.scss';
 let selectedElement;
 let dragObj;
 let count=0;
-
+// это нерабочий вариант!!!!!!!!!
 
 
 class Editor {

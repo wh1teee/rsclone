@@ -22,11 +22,23 @@ header {
 
     li {
         list-style-type: none;
-        margin-right: 3rem;
+        margin-right: 1rem;
 
         button {
             @extend %button_layout;
+
+            .material-icons {
+                vertical-align: middle;
+                font-size: 1.4rem;
+            }
         }
+
+        &:first-child {
+            .material-icons {
+                display: none;
+            }
+        }
+       
     }
 }
 

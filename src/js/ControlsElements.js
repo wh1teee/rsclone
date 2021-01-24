@@ -16,7 +16,7 @@ class ControlsElements {
 
         for (let i = 1; i <= templateElementsNumber[number]; i += 1) {
             const listItem = document.createElement('li');
-            listItem.innerHTML = `<img src='../images/${this.template}/${this.template.toLowerCase()}${i}.webp' class='element-${this.template}' id='element-${this.template.toLowerCase()}${i}'>`;
+            listItem.innerHTML = `<img src='../images/${this.template}/${this.template.toLowerCase()}${i}.webp' class='element-${this.template}' id='element-${this.template.toLowerCase().replace('s','')}${i}'>`;
             dom.controlsElementsList.append(listItem);       
 
         }

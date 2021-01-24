@@ -1,6 +1,6 @@
 import DOM from './DOMLinks';
 import editor from './Editor';
-import {template1, template2} from '../templates';
+import * as templates from '../templates';
 /* import templates from './templates';*/
 
 class WorkSpace {
@@ -46,9 +46,9 @@ class WorkSpace {
     }
 
     
-    showTemplateOnScreen(){
+    showTemplateOnScreen(elementStyle){
         const dom = DOM.getHTMLElements(); 
-        dom.sheetContainer.innerHTML = `${template1}`;
+        dom.sheetContainer.innerHTML = templates[elementStyle];
        // dom.sheetContainer.addEventListener('click', (event) => editor.createContainer(event));
 
         dom.sheetContainer.addEventListener('mousedown',(event) => editor.mDouwn(event), false);

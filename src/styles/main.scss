@@ -32,7 +32,6 @@ header.main-header {
         padding-right: 1rem;
         
         button {
-            @extend %button_layout;
     
             &#download-button {
                 margin: 0 3rem;

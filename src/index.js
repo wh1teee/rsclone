@@ -7,6 +7,7 @@ import controls from './js/ControlsIcons';
 import ControlsElements from './js/ControlsElements';
 import editor from './js/Editor';
 import slider from './js/Slider';
+import auth from './js/FirebaseAuth';
 
 
 import {template1, template2} from './templates';
@@ -21,7 +22,7 @@ const dom = DOM.getHTMLElements();
 
 createMainDOM();
 header.createMainHeader();
-
+auth.createAuthPanelMain();
 
 const getCurrentQuantity = () => {
     let quantity = 1;

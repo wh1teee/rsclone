@@ -4,8 +4,6 @@ class Authentication {
     
     createAuthPanelMain() {
         const mainLoginPanel = document.querySelector('#auth-info');
-        console.log(mainLoginPanel);
-        // const mainLoginPanel = document.createElement('span');
         mainLoginPanel.innerHTML = `
             <!-- NAVBAR -->
             <nav class="z-depth-0 grey lighten-4">
@@ -16,6 +14,9 @@ class Authentication {
                         </li>
                         <li class="logged-out">
                             <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-signup">Sign up</a>
+                        </li>
+                        <li class="logged-in">
+                            <a href="#" class="grey-text flow-text" id="logout">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -86,6 +87,9 @@ class Authentication {
         const dbRef = firebase.firestore();
 
         const signupForm = document.querySelector('#signup-form');
+        const logout = document.querySelector('#logout');
+        const loginForm = document.querySelector('#login-form');
+
         signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
@@ -93,15 +97,40 @@ class Authentication {
             const email = signupForm['signup-email'].value;
             const password = signupForm['signup-password'].value;
 
-            //sign ip user
+            //sign up user
             authRef.createUserWithEmailAndPassword(email, password).then(userCred => {
-                console.log(userCred.user);
                 const modal = document.querySelector('#modal-signup');
                 M.Modal.getInstance(modal).close();
                 signupForm.reset();
             });
-
         });
+
+        logout.addEventListener('click', (e) => {
+            e.preventDefault();
+            authRef.signOut();
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = loginForm['login-email'].value;
+            const password = loginForm['login-password'].value;
+
+            authRef.signInWithEmailAndPassword(email, password).then((cred) => {
+                const modal = document.querySelector('#modal-login');
+                M.Modal.getInstance(modal).close();
+                loginForm.reset();
+            });
+        });
+        //listen for authentification status change
+        authRef.onAuthStateChanged(user => {
+            if (user) {
+                console.log('User login');
+            } else {
+                console.log('User logout');
+            }
+        });
+    
     }
 
     createAuth() {

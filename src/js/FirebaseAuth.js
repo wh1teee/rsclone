@@ -7,15 +7,21 @@ class Authentication {
         mainLoginPanel.innerHTML = `
             <!-- NAVBAR -->
             <nav class="z-depth-0 grey lighten-4">
-                <div class="nav-wrapper container">
+                <div class="nav-wrapper">
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li class="logged-out">
+                        <li class="logged-in" style="display:none">
+                            <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-account">Account</a>
+                        </li>    
+                        <li class="logged-in" style="display:none">
+                            <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-create">Create template</a>
+                        </li>
+                        <li class="logged-out" style="display:none">
                             <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-login">Login</a>
                         </li>
-                        <li class="logged-out">
+                        <li class="logged-out" style="display:none">
                             <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-signup">Sign up</a>
                         </li>
-                        <li class="logged-in">
+                        <li class="logged-in" style="display:none">
                             <a href="#" class="grey-text flow-text" id="logout">Logout</a>
                         </li>
                     </ul>
@@ -54,6 +60,14 @@ class Authentication {
                     <button class="btn yellow darken-2 z-depth-0">Login</button>
                 </form>
                 </div>
+            </div>
+            <!-- ACCOUNT MODAL -->
+            <div id="modal-account" class="modal">
+              <div class="modal-content center-align">
+                <h4>Account details</h4><br />
+                <div class="account-details"></div>
+                <div class="account-extras"></div>
+              </div>
             </div>
         `; 
         this.materializeSetup();
@@ -124,13 +138,31 @@ class Authentication {
         });
         //listen for authentification status change
         authRef.onAuthStateChanged(user => {
+            this.uiControlVision(user);
             if (user) {
-                console.log('User login');
+                
             } else {
-                console.log('User logout');
+                
             }
         });
     
+    }
+
+    uiControlVision(user) {
+        const loggedOutLinks = document.querySelectorAll('.logged-out');
+        const loggedInLinks = document.querySelectorAll('.logged-in');
+        const accountInfo = document.querySelector('.account-details');
+
+        if (user) {
+            const html = `<div class="flow-text"> Logged in as ${user.email}</div>`;
+            accountInfo.innerHTML = html;
+            loggedInLinks.forEach(item => item.style.display = 'block');
+            loggedOutLinks.forEach(item => item.style.display = 'none');
+        } else {
+            accountInfo.innerHTML = '';
+            loggedInLinks.forEach(item => item.style.display = 'none');
+            loggedOutLinks.forEach(item => item.style.display = 'block');
+        }
     }
 
     createAuth() {

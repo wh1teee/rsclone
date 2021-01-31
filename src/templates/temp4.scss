@@ -7,6 +7,7 @@
 
 
     .img-men {
+        position: absolute;
         height: 300px;
         width: 311px;
         border: 20px solid cornflowerblue;
@@ -22,7 +23,7 @@ h4 {
     color: cornflowerblue;
 }
 .contact_person {
-    position: absolute;
+    top: 900px;
 }
 .profession {
     color: black;
@@ -33,10 +34,12 @@ h4 {
     margin-top: 5px;
 }
 div {
+    position: absolute;
     padding-top: 50px;
 }
 .header {
     padding-top: 0px;
+    top: 347px;
 }
 ul {
     font-size: 13px;
@@ -64,6 +67,9 @@ a {
 .history_person_list{
     font-style: oblique;
 }
+.history_person{
+    right: 42px;
+}
 .career_person_history_list{
     font-style: oblique;
 }
@@ -75,5 +81,19 @@ a {
 }
 .achievements_list {
     padding-top: 40px;
+}
+.achievements_person {
+    right: 180px;
+    top: 847px;
+}
+.interests_person {
+    top: 650px;
+}
+.career_person {
+    top: 420px;
+}
+.career_person_history {
+    right: 18px;
+    top: 421px;
 }
 }

@@ -241,8 +241,9 @@ class ControlsElements {
         const panelButton = document.createElement('div');
         panelButton.setAttribute('class', 'controls__elements-panel-div_button');       
         panelButton.innerHTML = 'Clear drawings';
-        panelButton.addEventListener('click', (() => workSpace.clear()));
+        panelButton.addEventListener('click', (() => workSpace.clearAllDrawing()));
         panel.prepend(panelButton);
+
 
 
         for (let r = 0, max = 5; r <= max; r += 1) {

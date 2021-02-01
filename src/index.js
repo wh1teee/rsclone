@@ -3,6 +3,7 @@ import createMainDOM from './pages/main';
 import createConstructorDOM from './pages/constructor';
 import header from './js/Header';
 import WorkSpace from './js/WorkSpace';
+import workSpaceHeader from './js/WorkSpaceHeader';
 import controls from './js/ControlsIcons';
 import ControlsElements from './js/ControlsElements';
 import editor from './js/Editor';
@@ -19,7 +20,9 @@ import './style.scss';
 
 const dom = DOM.getHTMLElements(); 
 
+M.AutoInit();
 
+/*
 createMainDOM();
 header.createMainHeader();
 auth.createAuthPanelMain();
@@ -40,9 +43,9 @@ const getCurrentQuantity = () => {
 
 slider.generateCards('left', slider.getCurrentQuantity());
 
+*/
 
 
-/*
 // для вывода страницы конструктор раскомментируй эти строки и закомментируй начиная со стр.22
 createConstructorDOM();
 
@@ -56,6 +59,7 @@ controlsElements.createControlElementsPanel();
 
 const workSpace = new WorkSpace('resume');
 workSpace.createWorkSpace();
+workSpaceHeader.createWorkSpaceHeaderRight();
 
 window.addEventListener('resize', (event) => workSpace.calculateScale(event));
 
@@ -63,14 +67,25 @@ window.addEventListener('resize', (event) => workSpace.calculateScale(event));
 document.querySelector('.controls__elements-list').addEventListener('click', (event) => {
         console.log(event);
         console.log(event.target);
-        console.log(event.target.getAttribute('id'));
-        console.log(event.target.getAttribute('id').match(/([^\-]+$)/gm).toString());
-        const elementStyle = event.target.getAttribute('id').match(/([^\-]+$)/gm).toString();
+    //    console.log(event.target.getAttribute('id'));
+    //    console.log(event.target.getAttribute('class'));
+    //    console.log(event.target.getAttribute('id').match(/([^\-]+$)/gm).toString());
+    //    const element = event.target.getAttribute('id').match(/([^\-]+$)/gm).toString();
         
-        workSpace.showTemplateOnScreen(elementStyle);
+        workSpace.showTemplateOnScreen(event.target);
 });
 
-*/
+/*if (document.querySelector('.controls__elements-text-div'))
+
+document.querySelector('.controls__elements-text-div').addEventListener('click', (event) => {
+    console.log('888888');
+    console.log(event.target);
+    workSpace.showTemplateOnScreen(event.target);
+});*/
+
+// document.getElementById('input-upload').addEventListener('change', ControlsElements.handleFiles(this.files)); 
+
+/*
 
 
 document.getElementById('next').addEventListener('click', (event) => {
@@ -86,3 +101,4 @@ document.getElementById('prev').addEventListener('click', (event) => {
 window.addEventListener('resize', (event) => {
         slider.changeSlider(event);
     });    
+*/

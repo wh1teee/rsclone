@@ -13,9 +13,16 @@ class DOM {
             controlsIconsList: document.querySelector('.controls__icons-list'),
             controlsElements: document.querySelector('.controls__elements'),
             controlsElementsList: document.querySelector('.controls__elements-list'),
+            controlsElementsUploadDiv: document.querySelector('.controls__elements-upload-div'),
+            controlsElementsTextDiv: document.querySelector('.controls__elements-text-div'),
+            controlsElementsPanelDiv: document.querySelector('.controls__elements-panel-div'),
+            controlsElementsBackgroundDiv: document.querySelector('.controls__elements-background-div'),
             authInfo: document.getElementById('auth-info'),
+            workSpaceHeader: document.querySelector('.workspace__header'),
+            workSpaceHeaderLeft: document.querySelector('.workspace__header-left'),
+            workSpaceHeaderRight: document.querySelector('.workspace__header-right'),
             workSpaceField: document.querySelector('.workspace__field'),
-
+           
 
             sheetContainer: document.querySelector('.sheet__container'),
             templateWrapper: document.querySelector('.template__wrapper'),
@@ -26,24 +33,12 @@ class DOM {
             track: document.querySelector('.create-design__inner-slider__cards-track'),
             cardTitle: document.querySelector('.slider__card-title-h4'),
             cardImage: document.querySelector('.slider__card-header-img'),
-
-
-
-            burgerMenu: document.querySelector('.navigation__toggle'),
-            blackout: document.getElementById('blackout'),
+            uploadButton: document.getElementById('upload-button'),
+            inputUpload: document.getElementById('input-upload'),
+            controlsElementsUploadDiv: document.querySelector('.controls__elements-upload-div'),
             
 
 
-            menuList: document.querySelector('.menu__list'),
-            mainPage: document.getElementById('main__page'),
-            statisticPage: document.getElementById("statistic-page"),
-            mainContent: document.getElementById('main__content'),
-            input: document.querySelector('input'),
-           
-            
-           
-            switchTrain: document.querySelector('.switch__train'),
-            switchPlay: document.querySelector('.switch__play'),
         };
     }
 }

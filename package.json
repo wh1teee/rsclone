@@ -43,6 +43,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "normalize.css": "^8.0.1"
+    "moveable": "^0.22.3",
+    "normalize.css": "^8.0.1",
+    "selecto": "^1.10.2"
   }
 }

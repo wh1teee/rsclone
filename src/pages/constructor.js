@@ -18,7 +18,10 @@ export default function createConstructorDOM() {
             </div>
         </section>
         <section class='workspace'>
-            <div class='workspace__header'></div>
+            <div class='workspace__header'>
+                <div class='workspace__header-left'></div>
+                <div class='workspace__header-right'></div>
+            </div>
             <div class='workspace__field'></div>
         </section>
     </main>`;

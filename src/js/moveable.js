@@ -1,8 +1,7 @@
 import Moveable from 'moveable';
 import Selecto from 'selecto';
 
-export function dragRotateScale () {
-
+export function startMovable () {
   const container = document.querySelector('.sheet__container');
   const frameMap = new Map();
   let targets = [];
@@ -39,6 +38,7 @@ export function dragRotateScale () {
           transformOrigin: '50% 50%',
         });
       }
+
       const frame = frameMap.get(target);
       dragStart && dragStart.set(frame.translate);
     })
@@ -58,9 +58,9 @@ export function dragRotateScale () {
           transformOrigin: '50% 50%',
         });
       }
+
       const frame = frameMap.get(target);
       e.set(frame.translate, frame.scale, frame.rotate);
-
     })
     .on('drag', e => {
       const target = e.target;
@@ -105,6 +105,7 @@ export function dragRotateScale () {
             transformOrigin: '50% 50%',
           });
         }
+
         const frame = frameMap.get(target);
         ev.set(frame.translate, frame.scale, frame.rotate);
       });
@@ -123,6 +124,7 @@ export function dragRotateScale () {
     .on('scaleGroupStart', ({ events }) => {
       events.forEach(ev => {
         const target = ev.target;
+
         if (!frameMap.has(target)) {
           frameMap.set(target, {
             translate: [0, 0],
@@ -131,11 +133,13 @@ export function dragRotateScale () {
             transformOrigin: '50% 50%',
           });
         }
+
         const frame = frameMap.get(target);
         ev.set(frame.scale, frame.rotate, frame.translate);
         ev.dragStart && ev.dragStart.set(frame.translate);
       });
-    }).on('scaleGroup', ({ events }) => {
+    })
+    .on('scaleGroup', ({ events }) => {
       events.forEach(ev => {
         const target = ev.target;
         const frame = frameMap.get(target);
@@ -151,6 +155,7 @@ export function dragRotateScale () {
     .on('rotateGroupStart', ({ events }) => {
       events.forEach(ev => {
         const target = ev.target;
+
         if (!frameMap.has(target)) {
           frameMap.set(target, {
             translate: [0, 0],
@@ -159,11 +164,13 @@ export function dragRotateScale () {
             transformOrigin: '50% 50%',
           });
         }
+
         const frame = frameMap.get(target);
         ev.set(frame.rotate, frame.scale, frame.translate);
         ev.dragStart && ev.dragStart.set(frame.translate);
       });
-    }).on('rotateGroup', ({ events }) => {
+    })
+    .on('rotateGroup', ({ events }) => {
       events.forEach(ev => {
         const target = ev.target;
         const frame = frameMap.get(target);
@@ -176,7 +183,6 @@ export function dragRotateScale () {
           + `scale(${frame.scale[0]}, ${frame.scale[1]})`;
       });
     });
-
 
   selecto.on('dragStart', e => {
     const target = e.inputEvent.target;

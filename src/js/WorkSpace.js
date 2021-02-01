@@ -194,7 +194,10 @@ class WorkSpace {
         context.closePath(); 
         context.fill(); 
         context.globalCompositeOperation = 'source-over';
+    }
 
+    clearAllDrawing() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
     }
 
 

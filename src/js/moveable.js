@@ -22,6 +22,8 @@ export function dragRotateScale () {
     draggable: true,
     originDraggable: true,
     originRelative: true,
+    rotatable: true,
+    scalable: true,
     zoom: 1,
     origin: true,
   })
@@ -64,6 +66,32 @@ export function dragRotateScale () {
       const target = e.target;
       const frame = frameMap.get(target);
       frame.translate = e.beforeTranslate;
+    })
+    .on('rotateStart', ({ set, target }) => {
+      const frame = frameMap.get(target);
+      set(frame.rotate, frame.translate);
+    })
+    .on('rotate', ({ beforeRotate, target }) => {
+      const frame = frameMap.get(target);
+      frame.rotate = beforeRotate;
+    })
+    .on('scaleStart', ({ set, dragStart, target }) => {
+      const frame = frameMap.get(target);
+      set(frame.scale);
+      dragStart && dragStart.set(frame.translate);
+    })
+    .on('scale', ({ target, scale, drag }) => {
+      const frame = frameMap.get(target);
+      frame.scale = scale;
+      frame.translate = drag.beforeTranslate;
+    })
+    .on('render', ({ target }) => {
+      const frame = frameMap.get(target);
+      const { translate, rotate, transformOrigin, scale } = frame;
+      target.style.transformOrigin = transformOrigin;
+      target.style.transform = `translate(${translate[0]}px, ${translate[1]}px)`
+        + ` rotate(${rotate}deg)`
+        + `scale(${scale[0]}, ${scale[1]})`;
     })
     .on('dragGroupStart', e => {
       e.events.forEach(ev => {

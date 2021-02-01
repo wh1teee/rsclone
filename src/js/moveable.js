@@ -120,6 +120,62 @@ export function dragRotateScale () {
           + `scale(${frame.scale[0]}, ${frame.scale[1]})`;
       });
     })
+    .on('scaleGroupStart', ({ events }) => {
+      events.forEach(ev => {
+        const target = ev.target;
+        if (!frameMap.has(target)) {
+          frameMap.set(target, {
+            translate: [0, 0],
+            rotate: 0,
+            scale: [1, 1],
+            transformOrigin: '50% 50%',
+          });
+        }
+        const frame = frameMap.get(target);
+        ev.set(frame.scale, frame.rotate, frame.translate);
+        ev.dragStart && ev.dragStart.set(frame.translate);
+      });
+    }).on('scaleGroup', ({ events }) => {
+      events.forEach(ev => {
+        const target = ev.target;
+        const frame = frameMap.get(target);
+        frame.translate = ev.drag.beforeTranslate;
+        frame.scale = ev.scale;
+
+        ev.target.style.transform
+          = `translate(${ev.drag.beforeTranslate[0]}px, ${ev.drag.beforeTranslate[1]}px)`
+          + `rotate(${frame.rotate}deg)`
+          + `scale(${ev.scale[0]}, ${ev.scale[1]})`;
+      });
+    })
+    .on('rotateGroupStart', ({ events }) => {
+      events.forEach(ev => {
+        const target = ev.target;
+        if (!frameMap.has(target)) {
+          frameMap.set(target, {
+            translate: [0, 0],
+            rotate: 0,
+            scale: [1, 1],
+            transformOrigin: '50% 50%',
+          });
+        }
+        const frame = frameMap.get(target);
+        ev.set(frame.rotate, frame.scale, frame.translate);
+        ev.dragStart && ev.dragStart.set(frame.translate);
+      });
+    }).on('rotateGroup', ({ events }) => {
+      events.forEach(ev => {
+        const target = ev.target;
+        const frame = frameMap.get(target);
+        frame.translate = ev.drag.beforeTranslate;
+        frame.rotate = ev.rotate;
+
+        ev.target.style.transform
+          = `translate(${ev.drag.beforeTranslate[0]}px, ${ev.drag.beforeTranslate[1]}px)`
+          + ` rotate(${ev.rotate}deg)`
+          + `scale(${frame.scale[0]}, ${frame.scale[1]})`;
+      });
+    });
 
 
   selecto.on('dragStart', e => {

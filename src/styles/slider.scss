@@ -2,6 +2,7 @@
 
 .create-design__inner-slider {
     @extend %flex_center;
+    justify-content: center;
 }
 
 .create-design__inner-slider__arrow {

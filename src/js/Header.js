@@ -91,7 +91,8 @@ class Header {
                 console.log('555');
                 createMainDOM();
                 this.createMainHeader();
-                auth.createAuthPanelMain();
+              //  auth.createAuthPanelMain();
+                auth.createAuth();
 
                 const getCurrentQuantity = () => {
                     let quantity = 1;

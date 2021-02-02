@@ -48,38 +48,6 @@ export default function createMainDOM() {
         </section>
     </main>
 
-    <main class='main-with-auth'>
-        <section class='aside-left'>
-            <div class='aside-left__inner'>
-                <ul></ul>
-            </div>
-        </section>
-
-        <section class='main-center'>
-            <div class='main-center__inner'>
-                <div class='main-center__inner-image'>
-                    <h4></h4>
-                    <p></p>
-                </div>
-                <div class='main-center__inner-examples'>
-                    <ul></ul>
-                    <div class='main-center__inner-examples-slider'></div>
-                </div>
-                <div class='main-center__inner-personal'>
-                    <ul></ul>
-                    <div class='main-center__inner-personals-slider'></div>
-                </div>
-            </div>
-        </section>
-
-        <section class='examples'>
-            <div class='examples__inner'>
-                <h4 class='examples__inner-title'></h4>
-                <div class='examples__inner-slider'></div>
-            </div>
-        </section>
-    </main>
-
     <footer>
         <img src="../images/rs_school_js.svg">
         <a href="https://rs.school/js/">JavaScript</a>

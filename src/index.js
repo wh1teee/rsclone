@@ -110,9 +110,9 @@ document.getElementById('create-design').addEventListener('click', (event) => {
         //    console.log(event.target.getAttribute('class'));
         //    console.log(event.target.getAttribute('id').match(/([^\-]+$)/gm).toString());
         //    const element = event.target.getAttribute('id').match(/([^\-]+$)/gm).toString();
-        workSpace.showTemplateOnScreen(event.target);
+       workSpace.showTemplateOnScreen(event.target);
     });
-
+/*
     if (document.querySelector('.constructor'))
     document.querySelector('.constructor').addEventListener('click', (event) => {
         console.log(event.target.textContent);
@@ -135,7 +135,7 @@ document.getElementById('create-design').addEventListener('click', (event) => {
             }
             slider.generateCards('left', slider.getCurrentQuantity());
         }
-});
+});*/
 });   
 
 

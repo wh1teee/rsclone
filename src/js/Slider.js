@@ -44,7 +44,6 @@ const examples = [
 class Slider {
     constructor() {
         this.quantity = 4;
-
     }
 
     getCurrentQuantity() {
@@ -143,6 +142,7 @@ class Slider {
             <h4 class='slider__card-title-h4'>${examples[index].type}<h4>
         </div>
         `;
+        
         dom.track.append(card);
 
     /*    card.addEventListener('click', (event) => {
@@ -152,6 +152,7 @@ class Slider {
         return card;
     }
 
+  
     generateCards(side, quantity = 4) {
     
         let cardsIndex = [0, 1, 2, 3, 4, 5, 6, 7];

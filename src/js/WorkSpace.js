@@ -101,10 +101,10 @@ class WorkSpace {
             }
         } else if (element.classList.contains('element-element')) {
                 let svgInner = element.src.match(/<svg([^']*)svg>/gm).toString();
-                dom.sheetContainer.insertAdjacentHTML('beforeend', `<div class='svg-element'>${svgInner}</div>`);
+                dom.sheetContainer.insertAdjacentHTML('beforeend', `<div class='svg-element moveable'>${svgInner}</div>`);
                 workSpaceHeader.createWorkSpaceHeaderLeft();
             } else if (element.parentNode.classList.contains('controls__elements-text-div') || element.classList.contains('controls__elements-text-div')) {
-                dom.sheetContainer.insertAdjacentHTML('beforeend', `<span class='text-inner ${element.id}'>${element.textContent}</span>`);
+                dom.sheetContainer.insertAdjacentHTML('beforeend', `<div class='text-inner moveable ${element.id}'>${element.textContent}</div>`);
             } else if (element.classList.contains('element-background')) {
                 let innerID = element.getAttribute('id').match(/([^\-]+$)/gm).toString();
                 dom.sheetContainer.style.backgroundImage = `url('../images/Background/${innerID}.jpg')`;
@@ -112,6 +112,7 @@ class WorkSpace {
             } else {
                 const imageUpload = document.createElement('img');
                 imageUpload.classList.add('uploaded-image');
+                imageUpload.classList.add('moveable');
                 imageUpload.src = element.src;
                 dom.sheetContainer.append(imageUpload);
             }

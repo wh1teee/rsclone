@@ -2,15 +2,11 @@
 
 .create-design__inner-slider {
     @extend %flex_center;
-
-
 }
 
 .create-design__inner-slider__arrow {
     @extend %slider_button;
     margin-right: 0.5rem;
-
-
 }
 
 .create-design__inner-slider__arrow#next {
@@ -57,7 +53,6 @@
 
         &:hover {
             border: solid 1px rgb(25, 185, 177);
-           
         }
 
     }

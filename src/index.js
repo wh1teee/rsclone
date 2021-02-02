@@ -23,7 +23,7 @@ const dom = DOM.getHTMLElements();
 let moveableItems;
 M.AutoInit();
 
-/*
+
 createMainDOM();
 header.createMainHeader();
 auth.createAuthPanelMain();
@@ -38,15 +38,13 @@ const getCurrentQuantity = () => {
             quantity = 3;
             };
     return quantity;
-
-
 }
 
 slider.generateCards('left', slider.getCurrentQuantity());
 
-*/
 
 
+/*
 // для вывода страницы конструктор раскомментируй эти строки и закомментируй начиная со стр.22
 createConstructorDOM();
 
@@ -78,18 +76,7 @@ document.querySelector('.controls__elements-list').addEventListener('click', (ev
         moveableItems = startMovable()  //start moveable
 });
 
-/*if (document.querySelector('.controls__elements-text-div'))
-
-document.querySelector('.controls__elements-text-div').addEventListener('click', (event) => {
-    console.log('888888');
-    console.log(event.target);
-    workSpace.showTemplateOnScreen(event.target);
-});*/
-
-// document.getElementById('input-upload').addEventListener('change', ControlsElements.handleFiles(this.files));
-
-/*
-
+*/
 
 document.getElementById('next').addEventListener('click', (event) => {
     slider.addListenerForSlider('right');
@@ -102,6 +89,56 @@ document.getElementById('prev').addEventListener('click', (event) => {
 });
 
 window.addEventListener('resize', (event) => {
-        slider.changeSlider(event);
+
+    slider.changeSlider(event);
+});    
+
+document.getElementById('create-design').addEventListener('click', (event) => {
+    createConstructorDOM();
+    header.createHeader();
+
+    controls.createControlPanel();
+
+    const controlsElements = new ControlsElements('Templates');
+    controlsElements.createControlElementsPanel();
+
+    const workSpace = new WorkSpace('resume');
+    workSpace.createWorkSpace();
+    workSpaceHeader.createWorkSpaceHeaderRight();
+
+    window.addEventListener('resize', (event) => workSpace.calculateScale(event));
+
+    document.querySelector('.controls__elements-list').addEventListener('click', (event) => {
+        console.log(event);
+        console.log(event.target);
+        //    console.log(event.target.getAttribute('id'));
+        //    console.log(event.target.getAttribute('class'));
+        //    console.log(event.target.getAttribute('id').match(/([^\-]+$)/gm).toString());
+        //    const element = event.target.getAttribute('id').match(/([^\-]+$)/gm).toString();
+        workSpace.showTemplateOnScreen(event.target);
     });
-*/
+
+    if (document.querySelector('.constructor'))
+    document.querySelector('.constructor').addEventListener('click', (event) => {
+        console.log(event.target.textContent);
+        if (event.target.textContent == '< Main') {
+            console.log('555');
+            createMainDOM();
+            header.createMainHeader();
+            auth.createAuthPanelMain();
+
+            const getCurrentQuantity = () => {
+                let quantity = 1;
+                if (document.body.clientWidth >= 1280) { 
+                    quantity = 7;
+                    } else if (document.body.clientWidth >= 768) {
+                        quantity = 5;
+                    } else if (document.body.clientWidth >= 520) {
+                        quantity = 3;
+                        };
+                return quantity;
+            }
+            slider.generateCards('left', slider.getCurrentQuantity());
+        }
+});
+});   

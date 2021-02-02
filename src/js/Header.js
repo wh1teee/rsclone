@@ -1,4 +1,7 @@
 import createMainDOM from '../pages/main';
+import html2canvas from 'html2canvas';
+import Canvas2Image from 'wd-canvas2image';
+import html2PDF from 'jspdf-html2canvas';
 import auth from './FirebaseAuth';
 import slider from './Slider';
 
@@ -36,6 +39,51 @@ class Header {
             dom.menuControlsList.append(listItem);        
         })
 
+        
+
+
+     /*   dom.menuControlsList.addEventListener('click', (event) => {
+            console.log(event.target.textContent);
+            if (event.target.textContent == '< Main') {
+                console.log(event.target.textContent); //!!!
+            }
+        });*/
+        
+        dom.headerControls.innerHTML = `
+            
+            <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button1'>Save as img</a></li>
+            <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button2'>Save as pdf</a></li>
+        `;  
+               
+       
+        document.getElementById('download-button1').addEventListener('click', function() {
+            html2canvas(document.querySelector('.sheet__container')).then(function(canvas) {
+                                   // document.body.appendChild(canvas);
+                  console.log('001');
+                  Canvas2Image.saveAsJPEG(canvas);
+            });
+        });
+
+        document.getElementById('download-button2').addEventListener('click', function() {
+            html2canvas(document.querySelector('.sheet__container')).then(function() {
+                                   // document.body.appendChild(canvas);
+                  console.log('001');
+                  return html2PDF(document.querySelector('.sheet__container'), {
+                    jsPDF: {
+                        format: 'a4',
+                      },
+                    html2canvas: {
+                        scrollX: -window.scrollX,
+                        scrollY: -window.scrollY,
+                    },
+                    imageType: 'image/jpeg',
+                    output: './pdf/generate.pdf'
+                  });
+            });
+        });
+
+
+
         if (document.querySelector('.constructor'))
         document.querySelector('.constructor').addEventListener('click', (event) => {
             console.log(event.target.textContent);
@@ -58,23 +106,24 @@ class Header {
                 }
                 slider.generateCards('left', slider.getCurrentQuantity());
             }
-});
-
-
-     /*   dom.menuControlsList.addEventListener('click', (event) => {
-            console.log(event.target.textContent);
-            if (event.target.textContent == '< Main') {
-                console.log(event.target.textContent); //!!!
-            }
-        });*/
+        });
         
-        dom.headerControls.innerHTML = `
-            <input type='text' size='20'>
-            <li><a class="waves-effect waves-light btn white teal-text text-lighten-2" id='download-button'>Download</a></li>
-            <li><a class="waves-effect waves-light btn white teal-text text-lighten-2">...</a></li>
-        `;     
 
+    }    
+    
+    
+        
+   
+    
+    saveToLocalStorage(img) {
+        let showImg = JSON.parse(localStorage.getItem('showImg') || "[]");
+        let newImg = {
+          image: img
+        };
+        showImg.push(newImg);
+        localStorage.setItem('showImg', JSON.stringify(showImg));
     }
+
 }
 
 const header = new Header();

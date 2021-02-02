@@ -6,23 +6,23 @@ class Authentication {
         const mainLoginPanel = document.querySelector('#auth-info');
         mainLoginPanel.innerHTML = `
             <!-- NAVBAR -->
-            <nav class="z-depth-0 grey lighten-4">
+            <nav class="z-depth-0">
                 <div class="nav-wrapper">
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li class="logged-in" style="display:none">
-                            <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-account">Account</a>
+                            <a href="#modal-account" class="white-text modal-trigger flow-text waves-effect waves-light btn">Account</a>
                         </li>    
                         <li class="logged-in" style="display:none">
-                            <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-create">Create template</a>
+                            <a href="#" class="white-text flow-text waves-effect waves-light btn" id='create-design'>Create a design</a>
                         </li>
                         <li class="logged-out" style="display:none">
-                            <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-login">Login</a>
+                            <a href="#modal-login" class="white-text modal-trigger flow-text waves-effect waves-light btn">Log in</a>
                         </li>
                         <li class="logged-out" style="display:none">
-                            <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-signup">Sign up</a>
+                            <a href="#modal-signup" class="white-text modal-trigger flow-text waves-effect waves-light btn orange lighten-2">Sign up</a>
                         </li>
                         <li class="logged-in" style="display:none">
-                            <a href="#" class="grey-text flow-text" id="logout">Logout</a>
+                            <a href="#" class="white-text flow-text waves-effect waves-light btn" id="logout" >Log out</a>
                         </li>
                     </ul>
                 </div>
@@ -33,14 +33,14 @@ class Authentication {
                 <h4>Sign up</h4><br />
                 <form id="signup-form">
                     <div class="input-field">
-                    <input type="email" id="signup-email" required />
-                    <label for="signup-email">Email address</label>
+                        <input type="email" id="signup-email" required />
+                        <label for="signup-email">Email address</label>
                     </div>
                     <div class="input-field">
-                    <input type="password" id="signup-password" required />
-                    <label for="signup-password">Choose password</label>
+                        <input type="password" id="signup-password" required />
+                        <label for="signup-password">Choose password</label>
                     </div>
-                    <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+                    <button class="white-text flow-text waves-effect waves-light btn orange lighten-2 z-depth-0">Sign up</button>
                 </form>
                 </div>
             </div>
@@ -50,14 +50,14 @@ class Authentication {
                 <h4>Login</h4><br />
                 <form id="login-form">
                     <div class="input-field">
-                    <input type="email" id="login-email" required />
-                    <label for="login-email">Email address</label>
+                        <input type="email" id="login-email" required />
+                        <label for="login-email">Email address</label>
                     </div>
                     <div class="input-field">
-                    <input type="password" id="login-password" required />
-                    <label for="login-password">Your password</label>
+                        <input type="password" id="login-password" required />
+                        <label for="login-password">Your password</label>
                     </div>
-                    <button class="btn yellow darken-2 z-depth-0">Login</button>
+                    <button class="white-text flow-text waves-effect waves-light btn orange lighten-2 z-depth-0">Log in</button>
                 </form>
                 </div>
             </div>
@@ -70,23 +70,22 @@ class Authentication {
               </div>
             </div>
         `; 
+        // <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-create">Create template</a>
         this.materializeSetup();
-        this.firebaseSetup();
+        this.firebaseSetup();        
     }
 
     materializeSetup() {
         // setup materialize components
         document.addEventListener('DOMContentLoaded', function() {
-
-        var modals = document.querySelectorAll('.modal');
-        M.Modal.init(modals);
-
+            let modals = document.querySelectorAll('.modal');
+            M.Modal.init(modals);
         });
     }
 
     firebaseSetup() {
         // Your web app's Firebase configuration
-        var firebaseConfig = {
+        let firebaseConfig = {
             apiKey: "AIzaSyBL689M3ZGwGQcBdor8l6ke3pzuB9fKq7Q",
             authDomain: "fir-firestore-16cf7.firebaseapp.com",
             projectId: "fir-firestore-16cf7",

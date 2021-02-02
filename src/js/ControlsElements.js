@@ -140,7 +140,7 @@ class ControlsElements {
        //  dom.controlsElementsList.innerHTML = '';
 
          if (!files.length) {
-            dom.controlsElementsList.innerHTML = "<p>No files selected!</p>";
+            dom.controlsElementsList.innerHTML = '<p>No files selected!</p>';
           } else {
 
          for (let i = 0; i < files.length; i++) {

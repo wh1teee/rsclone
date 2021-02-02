@@ -3,6 +3,8 @@ class DOM {
     static getHTMLElements() {
         return {
             main: document.querySelector('main'),
+            mainMainPage: document.querySelector('main.main'),
+            mainConstructorPage: document.querySelector('main.constructor-page'),
             header: document.querySelector('header'),
             
             menuControls: document.querySelector('.menu-controls'),

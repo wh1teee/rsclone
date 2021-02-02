@@ -1,217 +1,105 @@
 import './temp3.scss'
-import image1 from '../images/Images/templates3/working-girl.png'
-const template3 = ` <!-- MENU BAR -->
-<nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <i class="fa fa-line-chart"></i>
-          Digital Trend
-        </a>
+import image1 from '../images/Images/temp3.jpg'
+const template3 = `<footer class="container_temp3">
+                         <section class="left_section">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+                              <div class="moveable photo">
+                                   <img src=${image1} class="moveable img_men"></img>
+                              </div>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="#about" class="nav-link smoothScroll">Studio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#project" class="nav-link smoothScroll">Our Works</a>
-                </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="contact.html" class="nav-link contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+                              <div class="moveable profile_person">
+                                   <h3 class="moveable">PERSONAL PROFILE</h3>
+                                   <p class="moveable profile_text">
+                                        A software engineer with hands-on<br>
+                                        experience in all levels of testing,<br>
+                                        including performance, functional,<br>
+                                        integration, system, and user<br>
+                                        acceptance.
+                                   </p>
+                              </div>
 
+                              <div class="moveable know_person">
+                                   <h3 class="moveable know_person_title">AREAS OF EXPERTISE</h3>
+                              <ul class="know_person_list">
+                                        <li class="moveable">Hands-on SQL experience</li>
+                                        <li class="moveable">Java, Ruby, PHP and Python<br>
+                                            experience</li>
+                                        <li class="moveable">Microsoft ASP.NET MVC, Web<br>
+                                            API experience</li>
+                                        <li class="moveable">Working knowledge of C, C++,<br>
+                                            and C#</li>
+                              </ul>
+                              </div>
 
- <!-- HERO -->
- <section class="hero hero-bg d-flex justify-content-center align-items-center">
-           <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-6 col-md-10 col-12 d-flex flex-column justify-content-center align-items-center">
-                          <div class="hero-text">
-
-                               <h1 class="text-white" data-aos="fade-up">We are ready for your digital marketing</h1>
-
-                               <a href="contact.html" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Let us discuss together!</a>
-
-                               <strong class="d-block py-3 pl-5 text-white" data-aos="fade-up" data-aos-delay="200"><i class="fa fa-phone mr-2"></i> +99 080 070 4224</strong>
-                          </div>
-                    </div>
-
-                    <div class="col-lg-6 col-12">
-                      <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
-
-                        <img src=${image1} class="img-fluid" alt="working girl">
-                      </div>
-                    </div>
-
-                </div>
-           </div>
- </section>
+                              <div class="moveable skills_person">
+                                   <h3 class="moveable skills_person_title">OTHER SKILLS</h3>
+                              <ul class="skills_person_list">
+                                   <li class="moveable">The ability to analyze complex<br>
+                                       technical information</li>
+                                   <li class="moveable">Can analyze, design and<br>
+                                       implement database structures</li>
+                                   <li class="moveable">Detail oriented</li>
+                                   <li class="moveable">Excellent problem solver</li>
+                              </ul>
+                              </div>
+                         </section>
 
 
- <!-- ABOUT -->
- <section class="about section-padding pb-0" id="about">
-      <div class="container">
-           <div class="row">
+                          <section class="right_section">
+                              <div class="moveable header">
+                                   <h3 class="moveable profession_person">SOFTWARE ENGINEER</h3>
+                                   <h2 class="moveable name_person">CHAD<br>
+                                                           GIBBONS</h2>
+                              </div>
 
-                <div class="col-lg-7 mx-auto col-md-10 col-12">
-                     <div class="about-info">
+                              <div class="moveable contact_person">
+                              <h3 class="moveable contact_person_title">GET IN CONTACT</h3>
+                            <a class="moveable left__link1" href="tel:+1 234 56 78 90">Number: 123-456-7890</a><br>
+                            <a class="moveable left__link2" href="mailto: hello@reallygreatsite.com">Email: hello@reallygreatsite.com</a><br>
+                            <a class="moveable left__link3" href="https://www.reallygreatsite.com/" target="_blank">Website: www.reallygreatsite.com</a><br>
+                            <a class="moveable left__link4">Address: 123 Anywhere St., Any City, State, Country 12345</a>
+                              </div>
 
-                          <h2 class="mb-4" data-aos="fade-up">the best <strong>Digital Marketing agency</strong> in Rio de Janeiro</h2>
+                              <div class="moveable work_person">
+                                   <h3 class="moveable work_person_title">WORK EXPERIENCE</h3>
+                                   <p class="moveable profession_name">SOFTWARE ENGINEER</p>
+                                   <p class="moveable work_person_list">Healthmade Solutions | 2015 - Present</p>
+                              <ul>
+                                   <li class="moveable">Directs software design and development</li>
+                                   <li class="moveable">Evaluates interface between hardware and software</li>
+                                   <li class="moveable">Advises customers regarding maintenance of software system</li>
+                              </ul>  
+                                   <p class="moveable profession_name">JUNIOR ENGINEER</p> 
+                                   <p class="moveable work_person_list">RealPro Software Inc. | 2014 – 2015</p> 
+                              <ul>
+                                   <li class="moveable">Stored, retrieved, and manipulated data</li>
+                                   <li class="moveable">Modified existing software to correct errors and optimize efficiency</li>
+                                   <li class="moveable">Prepared detailed reports</li>
+                              </ul>     
+                              </div>
 
-                          <p class="mb-0" data-aos="fade-up">Total 5 HTML pages are included in this template from TemplateMo website. Please check 2 <a href="blog.html">blog</a> pages, <a href="project-detail.html">project</a> page, and <a href="contact.html">contact</a> page. 
-                          <br><br>You are <strong>allowed</strong> to use this template for commercial or non-commercial purpose. You are NOT allowed to redistribute the template ZIP file on template collection websites.</p>
-                     </div>
-
-                     <div class="about-image" data-aos="fade-up" data-aos-delay="200">
-
-                      <img src="images/office.png" class="img-fluid" alt="office">
-                    </div>
-                </div>
-
-           </div>
-      </div>
- </section>
-
-
- <!-- PROJECT -->
- <section class="project section-padding" id="project">
-      <div class="container-fluid">
-           <div class="row">
-
-                <div class="col-lg-12 col-12">
-
-                    <h2 class="mb-5 text-center" data-aos="fade-up">
-                        Please take a look through our
-                        <strong>featured Digital Trends</strong>
-                    </h2>
-
-                     <div class="owl-carousel owl-theme" id="project-slide">
-                          <div class="item project-wrapper" data-aos="fade-up" data-aos-delay="100">
-                               <img src="images/project/project-image01.jpg" class="img-fluid" alt="project image">
-
-                               <div class="project-info">
-                                    <small>Marketing</small>
-
-                                    <h3>
-                                         <a href="project-detail.html">
-                                              <span>Sweet Go Agency</span>
-                                              <i class="fa fa-angle-right project-icon"></i>
-                                         </a>
-                                    </h3>
-                               </div>
-                          </div>
-
-                          <div class="item project-wrapper" data-aos="fade-up">
-                               <img src="images/project/project-image02.jpg" class="img-fluid" alt="project image">
-
-                               <div class="project-info">
-                                    <small>Website</small>
-
-                                    <h3>
-                                         <a href="project-detail.html">
-                                              <span>Smart Ladies</span>
-                                              <i class="fa fa-angle-right project-icon"></i>
-                                         </a>
-                                    </h3>
-                               </div>
-                          </div>
-
-                          <div class="item project-wrapper" data-aos="fade-up">
-                               <img src="images/project/project-image03.jpg" class="img-fluid" alt="project image">
-
-                               <div class="project-info">
-                                    <small>Branding</small>
-
-                                    <h3>
-                                         <a href="project-detail.html">
-                                              <span>Shoes factory</span>
-                                              <i class="fa fa-angle-right project-icon"></i>
-                                         </a>
-                                    </h3>
-                               </div>
-                          </div>
-
-                          <div class="item project-wrapper" data-aos="fade-up">
-                               <img src="images/project/project-image04.jpg" class="img-fluid" alt="project image">
-
-                               <div class="project-info">
-                                    <small>Social Media</small>
-
-                                    <h3>
-                                         <a href="project-detail.html">
-                                              <span>Race Bicycle</span>
-                                              <i class="fa fa-angle-right project-icon"></i>
-                                         </a>
-                                    </h3>
-                               </div>
-                          </div>
-
-                          <div class="item project-wrapper" data-aos="fade-up">
-                               <img src="images/project/project-image05.jpg" class="img-fluid" alt="project image">
-
-                               <div class="project-info">
-                                    <small>Video</small>
-
-                                    <h3>
-                                         <a href="project-detail.html">
-                                              <span>Ultimate HealthCare</span>
-                                              <i class="fa fa-angle-right project-icon"></i>
-                                         </a>
-                                    </h3>
-                               </div>
-                          </div>
-                     </div>
-                </div>
-
-           </div>
-      </div>
- </section>
-
-
- <!-- TESTIMONIAL -->
- <section class="testimonial section-padding">
-      <div class="container">
-           <div class="row">
-
-                <div class="col-lg-6 col-md-5 col-12">
-                    <div class="contact-image" data-aos="fade-up">
-
-                      <img src="images/female-avatar.png" class="img-fluid" alt="website">
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-7 col-12">
-                  <h4 class="my-5 pt-3" data-aos="fade-up" data-aos-delay="100">Client Testimonials</h4>
-
-                  <div class="quote" data-aos="fade-up" data-aos-delay="200"></div>
-
-                  <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo.</h2>
-
-                  <p data-aos="fade-up" data-aos-delay="400">
-                    <strong>Mary Zoe</strong>
-
-                    <span class="mx-1">/</span>
-
-                    <small>Digital Agency (CEO)</small>
-                  </p>
-                </div>
-
-           </div>
-      </div>
- </section>`
+                              <div class="moveable history_person">
+                                   <h3 class="moveable history_person_title">EDUCATION HISTORY</h3>
+                                   <p class="moveable place__name">UNIVERSITY OF EL DORADO</p>
+                                   <p class="moveable history_person_list">Bachelor of Software Engineering, 2014</p>
+                              <ul>
+                                   <li class="moveable">President, Computer and Technology Organization</li>
+                                   <li class="moveable">Vice President, Programming Club</li>
+                                   <li class="moveable">Member, Video Game Society</li>
+                                   <li class="moveable">Member, Student IT Helpdesk</li>
+                              </ul>
+                                   <p class="moveable place__name">BEECHTOWN ACADEMY</p>
+                                   <p class="moveable history_person_list">Graduated Class of 2010. Honor Roll</p>
+                              <ul>
+                                   <li class="moveable">President and Founder, Computer Club</li>
+                                   <li class="moveable">Student Council President</li>
+                                   <li class="moveable">Debate Team Vice President</li>
+                                   <li class="moveable">Member of the Math Team</li>
+                                   <li class="moveable">Member of the Chess Team</li>
+                              </ul>
+                              </div>
+                         </section>
+                    </footer>`;
 
 
 

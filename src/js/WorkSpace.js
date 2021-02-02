@@ -150,8 +150,6 @@ class WorkSpace {
       }
     });
 
- startMovable(); //start moveable
-
     }
 
 

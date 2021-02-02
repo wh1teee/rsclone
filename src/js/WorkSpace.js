@@ -2,7 +2,6 @@ import DOM from './DOMLinks';
 import editor from './Editor';
 import workSpaceHeader from './WorkSpaceHeader';
 import {template1, template2} from '../templates';
-import { startMovable } from './moveable';
 
 /* import templates from './templates';*/
 
@@ -29,7 +28,7 @@ class WorkSpace {
                 </div>    
             </div>
 
-        `;      
+        `;
     }
 
   calculateScale (event) {
@@ -50,14 +49,14 @@ class WorkSpace {
         document.querySelector('.sheet').style.width = newScale + 'rem';
         document.querySelector('.sheet').style.height = newScale + 'rem';
         const newScale = document.querySelector('.sheet').clientWidth / document.querySelector('.sheet__container').clientWidth;
-        document.querySelector('.sheet__container').style.transform = `translateX(-50%) translateY(-50%) scale(${newScale})`;     
+        document.querySelector('.sheet__container').style.transform = `translateX(-50%) translateY(-50%) scale(${newScale})`;
     }
-    
+
     showTemplateOnScreen(element){
-        const dom = DOM.getHTMLElements(); 
+        const dom = DOM.getHTMLElements();
         console.log(element);
-        
-        canvas.setAttribute('style', 'pointer-events: none;  position:relative;'); 
+
+        canvas.setAttribute('style', 'pointer-events: none;  position:relative;');
 
         if (element.classList.contains('element-template')) {
             inner = element.getAttribute('id').match(/([^\-]+$)/gm).toString();
@@ -116,10 +115,10 @@ class WorkSpace {
                 dom.sheetContainer.append(imageUpload);
             }
 
-           
+
   //  dom.sheetContainer.append(imageUpload);
-     //   }            
-       
+     //   }
+
 /*
 
         dom.sheetContainer.addEventListener('mousedown',(event) => {
@@ -152,7 +151,7 @@ class WorkSpace {
     });
 
  startMovable(); //start moveable
-  
+
     }
 
 
@@ -171,9 +170,9 @@ class WorkSpace {
     }
 
     deactivateCanvas() {
-        canvas.setAttribute('style', 'pointer-events: none;  position:relative;'); 
+        canvas.setAttribute('style', 'pointer-events: none;  position:relative;');
     }
-    
+
 
     draw(event){
         console.log('draw');
@@ -186,12 +185,12 @@ class WorkSpace {
 
         canvas.onmousemove = function drawIfPressed(event) {                                  // На любое движение мыши по canvas будет выполнятся эта функция
             const x = event.offsetX;                                                                                    // в "e"  попадает экземпляр MouseEvent
-            const y = event.offsetY; 
+            const y = event.offsetY;
             const dx = event.movementX;
             const dy = event.movementY;
-   
+
            // console.log('x='+x+'y='+y+'dx=' + dx+'dy=' + dy);
-        
+
             if (event.buttons > 0) {                                                                                     // Проверяем зажата ли какая-нибудь кнопка мыши (если да - то рисуем)
                 context.beginPath();
                 context.moveTo(x, y);
@@ -206,16 +205,16 @@ class WorkSpace {
     clear() {
         context.globalCompositeOperation = 'destination-out'; // изменяем параметр, чтобы стиралось
         context.fillStyle = 'rgba(255, 255, 255, 1)'; // зададим белый цвет, чтобы проверить, что не закрашивается
-        context.beginPath(); 
-        context.arc(120, 80, 70, 0, Math.PI*2, FALSE); 
-        context.closePath(); 
-        context.fill(); 
+        context.beginPath();
+        context.arc(120, 80, 70, 0, Math.PI*2, FALSE);
+        context.closePath();
+        context.fill();
         context.globalCompositeOperation = 'source-over';
     }
 
     clearAllDrawing() {
         context.clearRect(0, 0, canvas.width, canvas.height);
-    }   
+    }
 
 }
 

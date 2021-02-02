@@ -204,4 +204,6 @@ export function startMovable () {
       });
     }
   });
+
+  return [moveable, selecto]
 }

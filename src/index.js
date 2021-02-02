@@ -17,9 +17,10 @@ import './styles/main.scss';
 //import './styles/constructor.scss';
 //import './styles/editor.scss';
 import './style.scss';
+import { startMovable } from './js/moveable';
 
-const dom = DOM.getHTMLElements(); 
-
+const dom = DOM.getHTMLElements();
+let moveableItems;
 M.AutoInit();
 
 
@@ -29,7 +30,7 @@ auth.createAuthPanelMain();
 
 const getCurrentQuantity = () => {
     let quantity = 1;
-    if (document.body.clientWidth >= 1280) { 
+    if (document.body.clientWidth >= 1280) {
         quantity = 7;
         } else if (document.body.clientWidth >= 768) {
             quantity = 5;
@@ -69,9 +70,12 @@ document.querySelector('.controls__elements-list').addEventListener('click', (ev
     //    console.log(event.target.getAttribute('class'));
     //    console.log(event.target.getAttribute('id').match(/([^\-]+$)/gm).toString());
     //    const element = event.target.getAttribute('id').match(/([^\-]+$)/gm).toString();
-        
+        if (moveableItems) moveableItems[1].destroy()
+
         workSpace.showTemplateOnScreen(event.target);
+        moveableItems = startMovable()  //start moveable
 });
+
 */
 
 document.getElementById('next').addEventListener('click', (event) => {
@@ -85,6 +89,7 @@ document.getElementById('prev').addEventListener('click', (event) => {
 });
 
 window.addEventListener('resize', (event) => {
+
     slider.changeSlider(event);
 });    
 
@@ -137,5 +142,3 @@ document.getElementById('create-design').addEventListener('click', (event) => {
         }
 });
 });   
-
-

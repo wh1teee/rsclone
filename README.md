@@ -1,6 +1,6 @@
 #RS clone
 
 How to build:
-git clone
-npm i
-npm start
+git clone<br>
+npm i<br>
+npm start<br>

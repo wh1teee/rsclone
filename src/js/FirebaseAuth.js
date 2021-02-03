@@ -11,9 +11,8 @@ class Authentication {
         const mainLoginPanel = document.querySelector('#auth-info');
         mainLoginPanel.innerHTML = `
             <!-- NAVBAR -->
-            <nav class="z-depth-0">
-                <div class="nav-wrapper">
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+           
+                    <ul id="nav-mobile" class="right ">
                         <li class="logged-in" style="display:none">
                             <a href="#modal-account" class="white-text modal-trigger flow-text waves-effect waves-light btn">Account</a>
                         </li>    
@@ -30,8 +29,7 @@ class Authentication {
                             <a href="#" class="white-text flow-text waves-effect waves-light btn" id="logout" >Log out</a>
                         </li>
                     </ul>
-                </div>
-            </nav>
+
              <!-- SIGN UP MODAL -->
              <div id="modal-signup" class="modal">
                 <div class="modal-content">
@@ -256,6 +254,78 @@ class Authentication {
         then((snapshot) => {
             });
         });
+    }
+
+    createAuthPanelMain2(user) {
+        const mainLoginPanel = document.querySelector('#auth-info');
+        mainLoginPanel.innerHTML = `
+            <!-- NAVBAR -->
+           
+                    <ul id="nav-mobile" class="right ">
+                        <li class="logged-in" style="display:block">
+                            <a href="#modal-account2" class="white-text modal-trigger flow-text waves-effect waves-light btn">Account</a>
+                        </li>    
+                        <li class="logged-in" style="display:block">
+                            <a href="#" class="white-text flow-text waves-effect waves-light btn" id='create-design'>Create a design</a>
+                        </li>
+                        <li class="logged-out" style="display:none">
+                            <a href="#modal-login2" class="white-text modal-trigger flow-text waves-effect waves-light btn">Log in</a>
+                        </li>
+                        <li class="logged-out" style="display:none">
+                            <a href="#modal-signup2" class="white-text modal-trigger flow-text waves-effect waves-light btn orange lighten-2">Sign up</a>
+                        </li>
+                        <li class="logged-in" style="display:block">
+                            <a href="#" class="white-text flow-text waves-effect waves-light btn" id="logout" >Log out</a>
+                        </li>
+                    </ul>
+         
+             <!-- SIGN UP MODAL -->
+             <div id="modal-signup2" class="modal">
+                <div class="modal-content">
+                <h4>Sign up</h4><br />
+                <form id="signup-form">
+                    <div class="input-field">
+                        <input type="email" id="signup-email" required />
+                        <label for="signup-email">Email address</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="signup-password" required />
+                        <label for="signup-password">Choose password</label>
+                    </div>
+                    <button class="white-text flow-text waves-effect waves-light btn orange lighten-2 z-depth-0">Sign up</button>
+                </form>
+                </div>
+            </div>
+            <!-- LOGIN MODAL -->
+            <div id="modal-login2" class="modal">
+                <div class="modal-content">
+                <h4>Login</h4><br />
+                <form id="login-form">
+                    <div class="input-field">
+                        <input type="email" id="login-email" required />
+                        <label for="login-email">Email address</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="login-password" required />
+                        <label for="login-password">Your password</label>
+                    </div>
+                    <button class="white-text flow-text waves-effect waves-light btn orange lighten-2 z-depth-0">Log in</button>
+                </form>
+                </div>
+            </div>
+            <!-- ACCOUNT MODAL -->
+            <div id="modal-account2" class="modal">
+              <div class="modal-content center-align">
+                <h4>Account details</h4><br />
+                
+                <div class="account-details"><div class="flow-text"> Logged in as ${user.email}</div></div>
+                <div class="account-extras"></div>
+              </div>
+            </div>
+        `; 
+        // <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-create">Create template</a>
+        this.materializeSetup();
+        this.firebaseSetup();        
     }
 }
 

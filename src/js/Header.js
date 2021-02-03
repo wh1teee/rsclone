@@ -10,7 +10,7 @@ import '../styles/constructor.scss';
 import DOM from './DOMLinks';
 
 const menuElements = ['< Main', 'File'];
-const mainMenuElements = ['Home', 'Templates', 'Features', 'Learn', 'Plans'];
+const mainMenuElements = ['Home', 'Features', 'Learning'];
 
 
 class Header {
@@ -133,8 +133,10 @@ class Header {
                 console.log('555');
                 createMainDOM();
                 this.createMainHeader();
-              //  auth.createAuthPanelMain();
-                auth.createAuth();
+                auth.createAuthPanelMain2(JSON.parse(localStorage.getItem('user')));
+                
+                auth. uiControlVision(JSON.parse(localStorage.getItem('user')));
+               
 
                 const getCurrentQuantity = () => {
                     let quantity = 1;

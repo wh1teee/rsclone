@@ -42,17 +42,17 @@ class ControlsElements {
 
         for (let i = 1; i <= templateElementsNumber[number]; i += 1) {
             const listItem = document.createElement('li');
-           
+
             if (this.template === 'Elements') {
-                listItem.innerHTML = `<img src='data:image/svg+xml,${elements[1][i - 1].src}' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;                       
+                listItem.innerHTML = `<img src='data:image/svg+xml,${elements[1][i - 1].src}' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
             } else if (this.template === 'Text') {
-                listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.png' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;                       
+                listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.png' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
             } else {
                 listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.jpg' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
             }
-                        
-            dom.controlsElementsList.append(listItem);       
-        } 
+
+            dom.controlsElementsList.append(listItem);
+        }
     }
 
     createUploadPanel() {
@@ -90,9 +90,9 @@ class ControlsElements {
             }
         }, false);*/
 
-        document.getElementById('input-upload').addEventListener('change', (event) => this.handleFiles(event)); 
+        document.getElementById('input-upload').addEventListener('change', (event) => this.handleFiles(event));
 /*
-      
+
         document.getElementById('upload-button').addEventListener('click', function (event) {
             if (document.getElementById('upload-button')) {
                 document.getElementById('upload-button').click();
@@ -101,14 +101,14 @@ class ControlsElements {
             event.preventDefault();
         }, false);
 
-        document.getElementById('input-upload').addEventListener('change', function handleFiles(files) {                        
+        document.getElementById('input-upload').addEventListener('change', function handleFiles(files) {
            // const files = this.files;
             console.log('02');
             dom.controlsElementsList.innerHTML = '';
             for (let i = 0; i < files.length; i += 1) {
                 let file = files[i];
 
-                if (file.type.startsWith('image/')){ 
+                if (file.type.startsWith('image/')){
                     let uploadImage = document.createElement('img');
                     uploadImage.classList.add('upload-image');
                     uploadImage.setAttribute('id', 'upload-image'+ countFiles);
@@ -118,11 +118,11 @@ class ControlsElements {
                     reader.onload = (function(aImg) {  return function(e) { aImg.src = e.target.result; }; })(uploadImage);
                     reader.readAsDataURL(file);
 
-                    const listItem = document.createElement('li');  
+                    const listItem = document.createElement('li');
                     listItem.innerHTML = uploadImage;
-                    listItem.append(uploadImage);     
-                    dom.controlsElementsList.append(listItem);         
-                    
+                    listItem.append(uploadImage);
+                    dom.controlsElementsList.append(listItem);
+
                 }
                 countFiles += 1;
             }
@@ -132,55 +132,29 @@ class ControlsElements {
     }
     }
 
-    handleFiles(event) {   
-        const dom = DOM.getHTMLElements();                     
-        // const files = this.files;
-        let files = event.target.files;
-         console.log('02');
-       //  dom.controlsElementsList.innerHTML = '';
+  handleFiles (event) {
+    const dom = DOM.getHTMLElements();
+    let files = event.target.files;
+    const fileLinks = [];
+    if (!files.length) {
+      dom.controlsElementsList.innerHTML = '<p>No files selected!</p>';
+    } else {
 
-         if (!files.length) {
-            dom.controlsElementsList.innerHTML = '<p>No files selected!</p>';
-          } else {
+      for (let i = 0; i < files.length; i++) {
+        let uploadImage = document.createElement('img');
+        const src = window.URL.createObjectURL(files[i]);
+        uploadImage.src = src;
+        fileLinks.push(src);
+          if (!fileLinks.includes(src)) fileLinks.push(src);
+        uploadImage.onload = function () {
+        };
 
-         for (let i = 0; i < files.length; i++) {
-
-       //  let file = document.querySelector('input[type=file]').files[0];
-        
-        //     if (file.type.startsWith('image/')){ 
-                 let uploadImage = document.createElement('img');
-                 uploadImage.src = window.URL.createObjectURL(files[i]);
-              //   uploadImage.style.maxHeight = '100px';
-                 uploadImage.onload = function() {
-                 //   window.URL.revokeObjectURL(this.src);
-                 }
-                              
-/*
-                 let reader = new FileReader();
-                // reader.onloadend = function() {  
-                //     uploadImage.src = reader.result; 
-                 //   };
-                    reader.onloadend = (function(aImg) { 
-                        return function(e) { 
-                            console.log('03');
-                            console.log(e.target.result);
-                            
-                            aImg.src = reader.result; 
-                        };
-                       })(uploadImage);
-                 if (file)
-                        reader.readAsDataURL(file);
-                    else
-                        uploadImage.src = "";
-*/
-                uploadImage.classList.add('upload-image');
-                uploadImage.setAttribute('id', 'upload-image'+ countFiles);
-                dom.controlsElementsList.append(uploadImage);         
-                countFiles += 1;
-
-       //  }
-                   
-        }
+        uploadImage.classList.add('upload-image');
+        uploadImage.setAttribute('id', 'upload-image' + countFiles);
+        dom.controlsElementsList.append(uploadImage);
+        countFiles += 1;
+      }
+      localStorage.setItem('filesLinks', JSON.stringify(fileLinks));
     }
     }
 
@@ -199,24 +173,24 @@ class ControlsElements {
         dom.workSpaceHeaderLeft.innerHTML = '';
 
         if (! document.querySelector('.controls__elements-text-div')) {
-            
+
             const divText = document.createElement('div');
             divText.setAttribute('class', 'controls__elements-text-div');
-            
+
             divText.innerHTML = `
             <div class='controls__elements-text-div__inner' id='heading'>Add a heading</div>
             <div class='controls__elements-text-div__inner' id='subheading'>Add a subheading</div>
             <div class='controls__elements-text-div__inner' id='body-text'>Add a little bit of body text</div>
             `;
-            dom.controlsElements.prepend(divText);    
+            dom.controlsElements.prepend(divText);
             document.querySelector('.controls__elements-text-div').addEventListener('click', (event) => {
                 if (event.target.classList.contains('controls__elements-text-div__inner')) {
                 console.log('888888');
                 console.log(event.target);
-                workSpace.showTemplateOnScreen(event.target); 
+                workSpace.showTemplateOnScreen(event.target);
                 }
             });
-        }    
+        }
     }
 
     createDrawingPanel(){
@@ -233,13 +207,13 @@ class ControlsElements {
 
 
         dom.workSpaceHeaderLeft.innerHTML = '';
-       
+
         const panel = document.createElement('div');
         panel.setAttribute('class', 'controls__elements-panel-div');
         dom.controlsElements.prepend(panel);
 
         const panelButton = document.createElement('div');
-        panelButton.setAttribute('class', 'controls__elements-panel-div_button');       
+        panelButton.setAttribute('class', 'controls__elements-panel-div_button');
         panelButton.innerHTML = 'Clear drawings';
         panelButton.addEventListener('click', (() => workSpace.clearAllDrawing()));
         panel.prepend(panelButton);
@@ -252,18 +226,18 @@ class ControlsElements {
                 let paletteBlock = document.createElement('div');
                 paletteBlock.className = 'button-draw';
                 paletteBlock.addEventListener('click', ((event) => workSpace.draw(event)));
-     
+
                 paletteBlock.style.backgroundColor = (
                   'rgb(' + Math.round(r * 255 / max) + ", "
                   + Math.round(g * 255 / max) + ", "
                   + Math.round(b * 255 / max) + ")"
                 );
-     
+
                 panel.appendChild(paletteBlock);
               }
             }
-        }        
-        dom.controlsElements.prepend(panel);    
+        }
+        dom.controlsElements.prepend(panel);
     }
 
     createBackgroundPanel() {
@@ -278,25 +252,25 @@ class ControlsElements {
         dom.workSpaceHeaderLeft.innerHTML = '';
 
         if (! document.querySelector('.controls__elements-background-div')) {
-            
+
             const divBackground = document.createElement('div');
             divBackground.setAttribute('class', 'controls__elements-background-div');
-            
+
             divBackground.innerHTML = `
             <input type='color' id='background-color' name='background-color' value='#e66465'>
             <label for='background-color'>Background</label>
             `;
-            dom.controlsElements.prepend(divBackground);    
+            dom.controlsElements.prepend(divBackground);
             document.querySelector('.controls__elements-background-div').addEventListener('input', (event) => {
               //  if (event.target.classList.contains('controls__elements-text-div__inner')) {
               //  console.log('888888');
               //  console.log(event.target);
                 dom.sheetContainer.style.backgroundColor = event.target.value;
                 dom.sheetContainer.style.backgroundImage = 'none';
-                // workSpace.showTemplateOnScreen(event.target); 
+                // workSpace.showTemplateOnScreen(event.target);
             // }
             });
-        }    
+        }
     }
 }
 

@@ -128,8 +128,10 @@ class Authentication {
         });
 
         logout.addEventListener('click', (e) => {
+            const dom = DOM.getHTMLElements();
             e.preventDefault();
             authRef.signOut();
+            dom.exampleImages.innerHTML = '';
         });
 
         loginForm.addEventListener('submit', (e) => {
@@ -147,11 +149,14 @@ class Authentication {
         //listen for authentification status change
         authRef.onAuthStateChanged(user => {
             this.uiControlVision(user);
-            this.userID = user.uid;
             if (user) {
+                this.userID = user.uid;
                 this.getExamplesFromCloud(user);
             } else {
-                
+                const dom = DOM.getHTMLElements();
+                const needToLogin = document.createElement('h4');
+                needToLogin.innerHTML = 'Log in to get max experience of Canva';
+                dom.exampleImages.append(needToLogin);
             }
         });
     
@@ -170,7 +175,7 @@ class Authentication {
                             card.className = 'slider__card';
                             card.innerHTML = `
                             <div class='slider__card-header'>
-                                <img class='slider__card-header-img' src='${url}'>
+                                <img class='slider__card-header-img' src='${url}' style="width:100%">
                             </div>
                             <div class='slider__card-title'>
                                 <h4 class='slider__card-title-h4'>${imgName}<h4>

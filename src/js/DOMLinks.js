@@ -39,7 +39,7 @@ class DOM {
             inputUpload: document.getElementById('input-upload'),
             controlsElementsUploadDiv: document.querySelector('.controls__elements-upload-div'),
             
-            exampleImages: document.querySelector('.examples__inner-slider'),
+            exampleImages: document.querySelector('#examples'),
 
         };
     }

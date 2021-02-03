@@ -1,5 +1,6 @@
 import Moveable from 'moveable';
 import Selecto from 'selecto';
+import { moveableItems } from '../index';
 
 export function startMovable () {
   const container = document.querySelector('.sheet__container');
@@ -186,6 +187,11 @@ export function startMovable () {
 
   selecto.on('dragStart', e => {
     const target = e.inputEvent.target;
+    const leftPanel = document.querySelector('.workspace__header-left');
+
+    if(!target.classList.contains('moveable') && target.tagName !== 'path') {
+      leftPanel.innerHTML = ''
+   }
     if (
       moveable.isMoveableElement(target)
       || targets.some(t => t === target || t.contains(target))
@@ -195,6 +201,25 @@ export function startMovable () {
   }).on('select', e => {
     targets = e.selected;
     moveable.target = targets;
+    targets.forEach( el => {
+      const leftPanel = document.querySelector('.workspace__header-left');
+      if (el.className.includes('text')) {
+        leftPanel.innerHTML = `
+<!--        <input id="font__style" type="text">-->
+        <input class="text__size" type="number" value="${parseInt(window.getComputedStyle(el).fontSize)}">
+        <input type='color' id='head' name='head' value='#e66465'>
+        <label for='head'>Color</label>
+        `;
+        document.querySelector('.text__size').addEventListener('input', (e) => {
+          el.style.fontSize = `${e.target.value}px`
+        })
+        document.querySelector('#head').addEventListener("input", (e) => {
+          moveableItems[0].target.forEach( el => {
+            el.style.color = `${e.target.value}`;
+          })
+        })
+      }
+    })
   }).on('selectEnd', e => {
     if (e.isDragStart) {
       e.inputEvent.preventDefault();

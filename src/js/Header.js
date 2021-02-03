@@ -51,17 +51,48 @@ class Header {
         
         dom.headerControls.innerHTML = `
             
-            <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button0'>Save to cloud</a></li>
+            <li><a href="#modal-saveToCloud" class='waves-effect waves-light btn white teal-text text-lighten-2 modal-trigger' id='download-button0'>Save to cloud</a></li>
             <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button1'>Save as img</a></li>
             <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button2'>Save as pdf</a></li>
+            
+            <!-- SIGN UP MODAL -->
+             <div id="modal-saveToCloud" class="modal">
+                <div class="modal-content">
+                <h4>Input image name</h4><br />
+                <form id="save-form">
+                    <div class="input-field">
+                        <input type="text" id="save-name" required />
+                        <label for="save-name">Image name</label>
+                    </div>
+                    <button class="white-text flow-text waves-effect waves-light btn orange lighten-2 z-depth-0">Submit</button>
+                </form>
+                </div>
+            </div>
         `;  
                
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     let modals = document.querySelectorAll('.modal');
+        //     M.Modal.init(modals);
+        // });
+
         document.getElementById('download-button0').addEventListener('click', function() {
-            html2canvas(document.querySelector('.sheet__container')).then(function(canvas) {
-                                   // document.body.appendChild(canvas);
-                console.log('000');
-                auth.saveImgToCloud(canvas);
+            const saveModal = document.querySelector('#modal-saveToCloud');
+            M.Modal.init(saveModal);
+
+            const saveForm = document.querySelector('#save-form');
+            saveForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const imgName = saveForm['save-name'].value;
+                
+                html2canvas(document.querySelector('.sheet__container')).then(function(canvas) {
+                    // document.body.appendChild(canvas);
+                    // const modal = document.querySelector('#modal-saveToCloud');
+                    M.Modal.getInstance(saveModal).close();
+                    saveForm.reset();
+                    auth.saveImgToCloud(canvas, imgName);
             });
+            });
+            
         });
 
         document.getElementById('download-button1').addEventListener('click', function() {

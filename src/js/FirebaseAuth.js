@@ -3,6 +3,7 @@ import DOM from './DOMLinks';
 class Authentication {
     constructor() {
         this.storageRef = '';
+        this.dbRef = '';
         this.userID = ''; 
         this.templateCount = 0;
     }
@@ -102,8 +103,8 @@ class Authentication {
     
         //Store and Auth references
         const authRef = firebase.auth();
-        const dbRef = firebase.firestore();
-        this.storageRef =  firebase.storage().ref();
+        this.dbRef = firebase.firestore();
+        this.storageRef = firebase.storage();
         console.log(`New storage ref ${this.storageRef}`);
 
 
@@ -148,12 +149,55 @@ class Authentication {
             this.uiControlVision(user);
             this.userID = user.uid;
             if (user) {
-                
+                this.getExamplesFromCloud(user);
             } else {
                 
             }
         });
     
+    }
+
+    getExamplesFromCloud(user) {
+        const stRef = this.storageRef;
+        const dataRef = this.dbRef;
+        dataRef.collection(`${user.uid}`).get().then( (snapshot) => {
+            snapshot.forEach( (doc) => {
+                const imgName = doc.data().name; 
+                const imgPath = stRef.ref().child(`users/${user.uid}/${imgName}.jpg`);
+                imgPath.getDownloadURL().then( (url) => {
+                    const dom = DOM.getHTMLElements();
+                            const card = document.createElement('div');
+                            card.className = 'slider__card';
+                            card.innerHTML = `
+                            <div class='slider__card-header'>
+                                <img class='slider__card-header-img' src='${url}'>
+                            </div>
+                            <div class='slider__card-title'>
+                                <h4 class='slider__card-title-h4'>${imgName}<h4>
+                            </div>
+                            `;
+                    dom.exampleImages.append(card);
+
+                });
+            })
+        })
+        
+
+        // const dom = DOM.getHTMLElements();
+
+        //         const card = document.createElement('div');
+        //         card.className = 'slider__card';
+        //         card.setAttribute('data-id', index);
+        //         card.innerHTML = `
+        //         <div class='slider__card-header'>
+        //             <img class='slider__card-header-img' src='${examples[index].img}'>
+        //         </div>
+        //         <div class='slider__card-title'>
+        //             <h4 class='slider__card-title-h4'>${examples[index].type}<h4>
+        //         </div>
+        //         `;
+        
+        // dom.exampleImages.append(card);
     }
 
     uiControlVision(user) {
@@ -184,10 +228,17 @@ class Authentication {
 
     }
 
-    saveImgToCloud(canvas) {
-        const stRef = this.storageRef;
+    saveImgToCloud(canvas, imgName) {
+        const stRef = this.storageRef.ref();
+        const databaseRef = this.dbRef;
         const uid = this.userID;
-        const tempCount = this.templateCount++;
+
+        databaseRef.collection(`${uid}`).add({
+            name: imgName
+        }).then( () => {
+
+        });
+
         canvas.toBlob(function(blob) {
             var image = new Image();
             image.src = blob;
@@ -196,11 +247,10 @@ class Authentication {
             };
 
         
-        stRef.child(`users/${uid}/temp${tempCount}.jpg`).
+        stRef.child(`users/${uid}/${imgName}.jpg`).
         put(blob, metadata).
         then((snapshot) => {
-            console.log("Uploaded");
-            })
+            });
         });
     }
 }

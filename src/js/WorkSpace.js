@@ -1,7 +1,7 @@
 import DOM from './DOMLinks';
 import editor from './Editor';
 import workSpaceHeader from './WorkSpaceHeader';
-import {template1, template2} from '../templates';
+import {template1, template2, template3, template4} from '../templates';
 
 /* import templates from './templates';*/
 
@@ -73,30 +73,30 @@ class WorkSpace {
                     case 'template4':
                         dom.sheetContainer.innerHTML = `${template4}`;
                         break;
-                    case 'template5':
-                        dom.sheetContainer.innerHTML = `${template5}`;
-                        break;
-                    case 'template6':
-                        dom.sheetContainer.innerHTML = `${template6}`;
-                        break;
-                    case 'template7':
-                        dom.sheetContainer.innerHTML = `${template7}`;
-                        break;
-                    case 'template8':
-                        dom.sheetContainer.innerHTML = `${template8}`;
-                        break;
-                    case 'template9':
-                        dom.sheetContainer.innerHTML = `${template9}`;
-                        break;
-                    case 'template10':
-                        dom.sheetContainer.innerHTML = `${template10}`;
-                        break;
-                    case 'template11':
-                        dom.sheetContainer.innerHTML = `${template11}`;
-                        break;
-                    case 'template12':
-                        dom.sheetContainer.innerHTML = `${template12}`;
-                        break;
+                    // case 'template5':
+                    //     dom.sheetContainer.innerHTML = `${template5}`;
+                    //     break;
+                    // case 'template6':
+                    //     dom.sheetContainer.innerHTML = `${template6}`;
+                    //     break;
+                    // case 'template7':
+                    //     dom.sheetContainer.innerHTML = `${template7}`;
+                    //     break;
+                    // case 'template8':
+                    //     dom.sheetContainer.innerHTML = `${template8}`;
+                    //     break;
+                    // case 'template9':
+                    //     dom.sheetContainer.innerHTML = `${template9}`;
+                    //     break;
+                    // case 'template10':
+                    //     dom.sheetContainer.innerHTML = `${template10}`;
+                    //     break;
+                    // case 'template11':
+                    //     dom.sheetContainer.innerHTML = `${template11}`;
+                    //     break;
+                    // case 'template12':
+                    //     dom.sheetContainer.innerHTML = `${template12}`;
+                    //     break;
             }
         } else if (element.classList.contains('element-element')) {
                 let svgInner = element.src.match(/<svg([^']*)svg>/gm).toString();

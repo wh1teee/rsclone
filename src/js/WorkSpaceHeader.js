@@ -16,6 +16,7 @@ class WorkSpaceHeader {
         dom.workSpaceHeaderRight.innerHTML = `
         <span class='material-icons' id='delete__element'>delete_outline</span>
         <span class='material-icons' id='delete__all'>delete</span>
+        <span class="material-icons" id="volume">volume_off</span>
         `;
         document.getElementById('delete__all').addEventListener('click', function() {
             dom.sheetContainer.innerHTML = '';
@@ -30,6 +31,21 @@ class WorkSpaceHeader {
             moveableItems[0].updateRect()
             dom.workSpaceHeaderLeft.innerHTML = ''
         })
+        document.getElementById('volume').addEventListener('click', (e) => {
+            if (e.target.textContent === 'volume_off') {
+                e.target.textContent = 'volume_up'
+                document.addEventListener('click', clickSound)
+                document.addEventListener('keydown', clickSound)
+            } else {
+                e.target.textContent = 'volume_off'
+                document.removeEventListener('click', clickSound)
+                document.removeEventListener('keydown', clickSound)
+            }
+        })
+
+        function clickSound() {
+            document.querySelector('audio').play()
+        }
     }
 
     createWorkSpaceHeaderLeft(){

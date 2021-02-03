@@ -24,5 +24,7 @@ export default function createConstructorDOM() {
             </div>
             <div class='workspace__field'></div>
         </section>
-    </main>`;
+    </main>
+    <audio src="./sound/mouse_click.mp3"></audio>
+`;
 }

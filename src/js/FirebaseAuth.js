@@ -105,7 +105,6 @@ class Authentication {
         const authRef = firebase.auth();
         this.dbRef = firebase.firestore();
         this.storageRef = firebase.storage();
-        console.log(`New storage ref ${this.storageRef}`);
 
 
         const signupForm = document.querySelector('#signup-form');

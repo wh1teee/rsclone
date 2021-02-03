@@ -39,6 +39,7 @@ class WorkSpaceHeader {
         <label for='head'>Color</label>
         `;
         document.querySelector('#head').addEventListener("input", (e) => {
+            if (!moveableItems[0].target) return;
         moveableItems[0].target.forEach( el => {
                 el.querySelector('path').style.fill = `${e.target.value}`
             })

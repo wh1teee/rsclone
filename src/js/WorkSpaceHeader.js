@@ -12,15 +12,24 @@ let context = canvas.getContext('2d');
 class WorkSpaceHeader {
 
     createWorkSpaceHeaderRight(){
-        const dom = DOM.getHTMLElements(); 
+        const dom = DOM.getHTMLElements();
         dom.workSpaceHeaderRight.innerHTML = `
-        <span class='material-icons' id='rubbish-bin'>delete_outline</span>
-        `; 
-        document.getElementById('rubbish-bin').addEventListener('click', function() {
+        <span class='material-icons' id='delete__element'>delete_outline</span>
+        <span class='material-icons' id='delete__all'>delete</span>
+        `;
+        document.getElementById('delete__all').addEventListener('click', function() {
             dom.sheetContainer.innerHTML = '';
             dom.sheetContainer.style.backgroundColor = 'white';
             dom.sheetContainer.style.backgroundImage = 'none';
-        });      
+        });
+        document.getElementById('delete__element').addEventListener('click', () => {
+
+            moveableItems[0].target.forEach( el => {
+                el.remove()
+            })
+            moveableItems[0].updateRect()
+            dom.workSpaceHeaderLeft.innerHTML = ''
+        })
     }
 
     createWorkSpaceHeaderLeft(){

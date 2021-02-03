@@ -186,6 +186,11 @@ export function startMovable () {
 
   selecto.on('dragStart', e => {
     const target = e.inputEvent.target;
+    const leftPanel = document.querySelector('.workspace__header-left');
+
+    if(!target.classList.contains('moveable')) {
+      leftPanel.innerHTML = ''
+   }
     if (
       moveable.isMoveableElement(target)
       || targets.some(t => t === target || t.contains(target))

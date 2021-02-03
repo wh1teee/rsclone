@@ -34,6 +34,8 @@ class Editor {
     
     }*/
 
+
+
     clear() {
             const dom = DOM.getHTMLElements(); 
             if (actionContainer != undefined) {               //если есть акт. конт. в поле
@@ -44,18 +46,24 @@ class Editor {
             return;
    
     }
-
+    
     mDouwn(event){                     //клик по рабочему полю
         const dom = DOM.getHTMLElements(); 
         if (event.which != 1) return;           //если клик правой то выходим
     
+
         if (event.target.className !== 'logo' ) {            //если попали по картинке
             if (event.target.parentNode.className != 'resize-container') {    //если картинка без контейнера
                 if (actionContainer != undefined) {                                //если есть акт. конт. в поле
                     actionContainer.savePicture(dom.sheetContainer);                          //сохраняем картину и удаляем ак.конт.
                     actionContainer = undefined;                                   //удаляем ссылку на объект
                 }
-                actionContainer = new ActionContainer(event.target, dom.sheetContainer);            //создаем новый объект - активный контейнер
+
+                if (event.target.tagName === 'line') {
+                    actionContainer = new ActionContainer(event.target.parentNode, dom.sheetContainer);            //создаем новый объект - активный контейнер
+                    } else {
+                        actionContainer = new ActionContainer(event.target, dom.sheetContainer);            //создаем новый объект - активный контейнер
+                }    
                 console.log('create newObj');
             }
     
@@ -105,9 +113,7 @@ class Editor {
     
     }
 
-
-    
-    
+        
     mMove(event){
         
         if ( !actionContainer || !actionContainer.ready) return;  // элемент не зажат

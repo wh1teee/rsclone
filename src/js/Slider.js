@@ -60,6 +60,7 @@ class Slider {
 
 
     addListenerForSlider(side) {
+        
         this.quantity = this.getCurrentQuantity();
         console.log(this.quantity);
 
@@ -69,6 +70,7 @@ class Slider {
 
         setTimeout(() => {
             this.generateCards(side, this.quantity);
+            const modals = document.querySelectorAll('#modal-no');
         }, 100);
 
         setTimeout(() => {
@@ -134,27 +136,47 @@ class Slider {
         const card = document.createElement('div');
         card.className = 'slider__card';
         card.setAttribute('data-id', index);
-        card.innerHTML = `
-        <div class='slider__card-header'>
-            <img class='slider__card-header-img' src='${examples[index].img}'>
-        </div>
-        <div class='slider__card-title'>
-            <h4 class='slider__card-title-h4'>${examples[index].type}<h4>
-        </div>
-        `;
-        
+        if (examples[index].type !== 'Resume')
+            card.innerHTML = `
+            <div href="#modal-no${index}" class='slider__card-header modal-trigger'>
+                <img class='slider__card-header-img' src='${examples[index].img}'>
+            </div>
+            <div class='slider__card-title'>
+                <h4 class='slider__card-title-h4'>${examples[index].type}<h4>
+            </div>
+            <!-- In progres MODAL NO -->
+                <div id="modal-no${index}" class="modal">
+                    <div class="modal-content">
+                        <h4 style='color:black'>This design is being creating. Please choose another one</h4><br />
+                    </div>
+                </div> 
+            `;
+        else 
+            card.innerHTML = `
+                <div href="#modal-no${index}" class='slider__card-header modal-trigger'>
+                    <img class='slider__card-header-img' src='${examples[index].img}'>
+                </div>
+                <div class='slider__card-title'>
+                    <h4 class='slider__card-title-h4'>${examples[index].type}<h4>
+                </div>
+                <!-- In progres MODAL YES -->
+                    <div id="modal-no${index}" class="modal">
+                    <div class="modal-content">
+                        <h4 style='color:black'>This design is available. Please log in</h4><br />
+                    </div>
+                </div>    
+                `;
+           
+        card.addEventListener('click', () => {
+            M.Modal.init(document.querySelector(`#modal-no${index}`));
+        });
         dom.track.append(card);
-
-    /*    card.addEventListener('click', (event) => {
-            
-        });*/
-
+        
         return card;
     }
 
   
     generateCards(side, quantity = 4) {
-    
         let cardsIndex = [0, 1, 2, 3, 4, 5, 6, 7];
         const dom = DOM.getHTMLElements();
 

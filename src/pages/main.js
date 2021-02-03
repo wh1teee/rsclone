@@ -40,10 +40,16 @@ export default function createMainDOM() {
             </div>
         </section>
 
-        <section class='examples'>
-            <div class='examples__inner'>
+        <section class='create-design'>
+            <div class='create-design__inner'>
                 <h4 class='examples__inner-title'>Examples</h4>
-                <div class='examples__inner-slider'></div>
+                <div class='create-design__inner-slider'>
+                    <div class="create-design__inner-slider__cards">
+                        <div class="create-design__inner-slider__cards-track" id="examples" >
+                        
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

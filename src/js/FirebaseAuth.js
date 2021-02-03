@@ -1,7 +1,12 @@
 import DOM from './DOMLinks';
 
 class Authentication {
-    
+    constructor() {
+        this.storageRef = '';
+        this.dbRef = '';
+        this.userID = ''; 
+        this.templateCount = 0;
+    }
     createAuthPanelMain() {
         const mainLoginPanel = document.querySelector('#auth-info');
         mainLoginPanel.innerHTML = `
@@ -89,7 +94,8 @@ class Authentication {
             apiKey: "AIzaSyBL689M3ZGwGQcBdor8l6ke3pzuB9fKq7Q",
             authDomain: "fir-firestore-16cf7.firebaseapp.com",
             projectId: "fir-firestore-16cf7",
-            appId: "1:983573501773:web:03afb58169d26c41568904"
+            appId: "1:983573501773:web:03afb58169d26c41568904",
+            storageBucket: "fir-firestore-16cf7.appspot.com"
         };
         
         // Initialize Firebase
@@ -97,7 +103,9 @@ class Authentication {
     
         //Store and Auth references
         const authRef = firebase.auth();
-        const dbRef = firebase.firestore();
+        this.dbRef = firebase.firestore();
+        this.storageRef = firebase.storage();
+
 
         const signupForm = document.querySelector('#signup-form');
         const logout = document.querySelector('#logout');
@@ -119,8 +127,10 @@ class Authentication {
         });
 
         logout.addEventListener('click', (e) => {
+            const dom = DOM.getHTMLElements();
             e.preventDefault();
             authRef.signOut();
+            dom.exampleImages.innerHTML = '';
         });
 
         loginForm.addEventListener('submit', (e) => {
@@ -139,12 +149,59 @@ class Authentication {
         authRef.onAuthStateChanged(user => {
             this.uiControlVision(user);
             if (user) {
-                
+                this.userID = user.uid;
+                this.getExamplesFromCloud(user);
             } else {
-                
+                const dom = DOM.getHTMLElements();
+                const needToLogin = document.createElement('h4');
+                needToLogin.innerHTML = 'Log in to get max experience of Canva';
+                dom.exampleImages.append(needToLogin);
             }
         });
     
+    }
+
+    getExamplesFromCloud(user) {
+        const stRef = this.storageRef;
+        const dataRef = this.dbRef;
+        dataRef.collection(`${user.uid}`).get().then( (snapshot) => {
+            snapshot.forEach( (doc) => {
+                const imgName = doc.data().name; 
+                const imgPath = stRef.ref().child(`users/${user.uid}/${imgName}.jpg`);
+                imgPath.getDownloadURL().then( (url) => {
+                    const dom = DOM.getHTMLElements();
+                            const card = document.createElement('div');
+                            card.className = 'slider__card';
+                            card.innerHTML = `
+                            <div class='slider__card-header'>
+                                <img class='slider__card-header-img' src='${url}' style="width:100%">
+                            </div>
+                            <div class='slider__card-title'>
+                                <h4 class='slider__card-title-h4'>${imgName}<h4>
+                            </div>
+                            `;
+                    dom.exampleImages.append(card);
+
+                });
+            })
+        })
+        
+
+        // const dom = DOM.getHTMLElements();
+
+        //         const card = document.createElement('div');
+        //         card.className = 'slider__card';
+        //         card.setAttribute('data-id', index);
+        //         card.innerHTML = `
+        //         <div class='slider__card-header'>
+        //             <img class='slider__card-header-img' src='${examples[index].img}'>
+        //         </div>
+        //         <div class='slider__card-title'>
+        //             <h4 class='slider__card-title-h4'>${examples[index].type}<h4>
+        //         </div>
+        //         `;
+        
+        // dom.exampleImages.append(card);
     }
 
     uiControlVision(user) {
@@ -173,6 +230,32 @@ class Authentication {
         `;
         dom.headerControls.append(constructorLoginPanel);
 
+    }
+
+    saveImgToCloud(canvas, imgName) {
+        const stRef = this.storageRef.ref();
+        const databaseRef = this.dbRef;
+        const uid = this.userID;
+
+        databaseRef.collection(`${uid}`).add({
+            name: imgName
+        }).then( () => {
+
+        });
+
+        canvas.toBlob(function(blob) {
+            var image = new Image();
+            image.src = blob;
+            var metadata = {
+                contentType: "image/jpg"
+            };
+
+        
+        stRef.child(`users/${uid}/${imgName}.jpg`).
+        put(blob, metadata).
+        then((snapshot) => {
+            });
+        });
     }
 }
 

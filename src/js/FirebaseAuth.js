@@ -1,7 +1,11 @@
 import DOM from './DOMLinks';
 
 class Authentication {
-    
+    constructor() {
+        this.storageRef = '';
+        this.userID = ''; 
+        this.templateCount = 0;
+    }
     createAuthPanelMain() {
         const mainLoginPanel = document.querySelector('#auth-info');
         mainLoginPanel.innerHTML = `
@@ -89,7 +93,8 @@ class Authentication {
             apiKey: "AIzaSyBL689M3ZGwGQcBdor8l6ke3pzuB9fKq7Q",
             authDomain: "fir-firestore-16cf7.firebaseapp.com",
             projectId: "fir-firestore-16cf7",
-            appId: "1:983573501773:web:03afb58169d26c41568904"
+            appId: "1:983573501773:web:03afb58169d26c41568904",
+            storageBucket: "fir-firestore-16cf7.appspot.com"
         };
         
         // Initialize Firebase
@@ -98,6 +103,9 @@ class Authentication {
         //Store and Auth references
         const authRef = firebase.auth();
         const dbRef = firebase.firestore();
+        this.storageRef =  firebase.storage().ref();
+        console.log(`New storage ref ${this.storageRef}`);
+
 
         const signupForm = document.querySelector('#signup-form');
         const logout = document.querySelector('#logout');
@@ -138,6 +146,7 @@ class Authentication {
         //listen for authentification status change
         authRef.onAuthStateChanged(user => {
             this.uiControlVision(user);
+            this.userID = user.uid;
             if (user) {
                 
             } else {
@@ -173,6 +182,26 @@ class Authentication {
         `;
         dom.headerControls.append(constructorLoginPanel);
 
+    }
+
+    saveImgToCloud(canvas) {
+        const stRef = this.storageRef;
+        const uid = this.userID;
+        const tempCount = this.templateCount++;
+        canvas.toBlob(function(blob) {
+            var image = new Image();
+            image.src = blob;
+            var metadata = {
+                contentType: "image/jpg"
+            };
+
+        
+        stRef.child(`users/${uid}/temp${tempCount}.jpg`).
+        put(blob, metadata).
+        then((snapshot) => {
+            console.log("Uploaded");
+            })
+        });
     }
 }
 

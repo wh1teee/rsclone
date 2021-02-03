@@ -51,16 +51,27 @@ class Header {
         
         dom.headerControls.innerHTML = `
             
+            <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button0'>Save to cloud</a></li>
             <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button1'>Save as img</a></li>
             <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button2'>Save as pdf</a></li>
         `;  
                
-       
+        document.getElementById('download-button0').addEventListener('click', function() {
+            html2canvas(document.querySelector('.sheet__container')).then(function(canvas) {
+                                   // document.body.appendChild(canvas);
+                console.log('000');
+                auth.saveImgToCloud(canvas);
+            });
+        });
+
         document.getElementById('download-button1').addEventListener('click', function() {
             html2canvas(document.querySelector('.sheet__container')).then(function(canvas) {
                                    // document.body.appendChild(canvas);
                   console.log('001');
+                  console.log(canvas);
                   Canvas2Image.saveAsJPEG(canvas);
+                  
+
             });
         });
 

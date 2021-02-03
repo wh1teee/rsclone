@@ -195,6 +195,18 @@ export function startMovable () {
   }).on('select', e => {
     targets = e.selected;
     moveable.target = targets;
+    targets.forEach( el => {
+      const leftPanel = document.querySelector('.workspace__header-left');
+      if (el.className.includes('text')) {
+        leftPanel.innerHTML = `
+<!--        <input id="font__style" type="text">-->
+        <input class="text__size" type="number" value="${parseInt(window.getComputedStyle(el).fontSize)}">
+        `;
+        document.querySelector('.text__size').addEventListener('input', (e) => {
+          el.style.fontSize = `${e.target.value}px`
+        })
+      }
+    })
   }).on('selectEnd', e => {
     if (e.isDragStart) {
       e.inputEvent.preventDefault();

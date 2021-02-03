@@ -1,7 +1,7 @@
 import DOM from './DOMLinks';
 import editor from './Editor';
 import {template1, template2} from '../templates';
-
+import {moveableItems} from '../index';
 
 let inner = template1;
 
@@ -22,19 +22,24 @@ class WorkSpaceHeader {
             dom.sheetContainer.style.backgroundImage = 'none';
         });      
     }
-    
+
     createWorkSpaceHeaderLeft(){
-        const dom = DOM.getHTMLElements(); 
+        const dom = DOM.getHTMLElements();
         dom.workSpaceHeaderLeft.innerHTML = `
         <input type='color' id='head' name='head' value='#e66465'>
         <label for='head'>Color</label>
-        `;       
+        `;
+        document.querySelector('#head').addEventListener("input", (e) => {
+        moveableItems[0].target.forEach( el => {
+                el.querySelector('path').style.fill = `${e.target.value}`
+            })
+        })
     }
 
-    
 
 
-    
+
+
 }
 
 const workSpaceHeader = new WorkSpaceHeader;

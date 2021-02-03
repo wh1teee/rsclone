@@ -143,5 +143,6 @@ document.getElementById('create-design').addEventListener('click', (event) => {
         }
 
 });*/
-});   
+});
 
+export {moveableItems}

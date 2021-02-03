@@ -3,101 +3,80 @@ import image1 from '../images/Images/temp3.jpg'
 const template3 = `<footer class="container_temp3">
                          <section class="left_section">
 
-                              <div class="moveable photo">
                                    <img src=${image1} class="moveable img_men"></img>
-                              </div>
-
-                              <div class="moveable profile_person">
-                                   <h3 class="text moveable">PERSONAL PROFILE</h3>
-                                   <p class="text moveable profile_text">
+                                   <h3 class="text moveable text1">PERSONAL PROFILE</h3>
+                                   <p class="text moveable text2">
                                         A software engineer with hands-on<br>
                                         experience in all levels of testing,<br>
                                         including performance, functional,<br>
                                         integration, system, and user<br>
                                         acceptance.
                                    </p>
-                              </div>
+                             
+                             
+                                   <h3 class="text moveable text3">AREAS OF EXPERTISE</h3>
+                                        <p class="text moveable text4">Hands-on SQL experience</p>
+                                        <p class="text moveable text5">Java, Ruby, PHP and Python
+                                            experience</p>
+                                        <p class="text moveable text6">Microsoft ASP.NET MVC, Web
+                                            API experience</p>
+                                        <p class="text moveable text7">Working knowledge of C, C++,
+                                            and C#</p>
 
-                              <div class="moveable know_person">
-                                   <h3 class="text moveable know_person_title">AREAS OF EXPERTISE</h3>
-                              <ul class="know_person_list">
-                                        <li class="text moveable">Hands-on SQL experience</li>
-                                        <li class="text moveable">Java, Ruby, PHP and Python<br>
-                                            experience</li>
-                                        <li class="text moveable">Microsoft ASP.NET MVC, Web<br>
-                                            API experience</li>
-                                        <li class="text moveable">Working knowledge of C, C++,<br>
-                                            and C#</li>
-                              </ul>
-                              </div>
-
-                              <div class="moveable skills_person">
-                                   <h3 class="text moveable skills_person_title">OTHER SKILLS</h3>
-                              <ul class="skills_person_list">
-                                   <li class="text moveable">The ability to analyze complex<br>
-                                       technical information</li>
-                                   <li class="text moveable">Can analyze, design and<br>
-                                       implement database structures</li>
-                                   <li class="text moveable">Detail oriented</li>
-                                   <li class="text moveable">Excellent problem solver</li>
-                              </ul>
-                              </div>
+                                   <h3 class="text moveable text8">OTHER SKILLS</h3>
+                                   <p class="text moveable text9">The ability to analyze complex<br>
+                                       technical information</p>
+                                   <p class="text moveable text10">Can analyze, design and<br>
+                                       implement database structures</p>
+                                   <p class="text moveable text11">Detail oriented</p>
+                                    <p class="text moveable text12">Excellent problem solver</p>
                          </section>
 
 
                           <section class="right_section">
-                              <div class="moveable header">
-                                   <h3 class="text moveable profession_person">SOFTWARE ENGINEER</h3>
-                                   <h2 class="text moveable name_person">CHAD<br>
+                             
+                                   <h3 class="text moveable text13">SOFTWARE ENGINEER</h3>
+                                   <h2 class="text moveable text14">CHAD<br>
                                                            GIBBONS</h2>
-                              </div>
+                             
 
-                              <div class="moveable contact_person">
-                              <h3 class="text moveable contact_person_title">GET IN CONTACT</h3>
-                            <a class="moveable left__link1" href="tel:+1 234 56 78 90">Number: 123-456-7890</a><br>
-                            <a class="moveable left__link2" href="mailto: hello@reallygreatsite.com">Email: hello@reallygreatsite.com</a><br>
-                            <a class="moveable left__link3" href="https://www.reallygreatsite.com/" target="_blank">Website: www.reallygreatsite.com</a><br>
-                            <a class="moveable left__link4">Address: 123 Anywhere St., Any City, State, Country 12345</a>
-                              </div>
+                             
+                              <h3 class="text moveable text15">GET IN CONTACT</h3>
+                            <p class="text moveable text15">Number: 123-456-7890</p>
+                            <p class="text moveable text16">Email: hello@reallygreatsite.com</p>
+                            <p class="text moveable text17">Website: www.reallygreatsite.com</p>
+                            <p class="text moveable text18">Address: 123 Anywhere St., Any City, State, Country 12345</p>
 
-                              <div class="moveable work_person">
-                                   <h3 class="text moveable work_person_title">WORK EXPERIENCE</h3>
-                                   <p class="text moveable profession_name">SOFTWARE ENGINEER</p>
-                                   <p class="text moveable work_person_list">Healthmade Solutions | 2015 - Present</p>
-                              <ul>
-                                   <li class="text moveable">Directs software design and development</li>
-                                   <li class="text moveable">Evaluates interface between hardware and software</li>
-                                   <li class="text moveable">Advises customers regarding maintenance of software system</li>
-                              </ul>  
-                                   <p class="text moveable profession_name">JUNIOR ENGINEER</p> 
-                                   <p class="text moveable work_person_list">RealPro Software Inc. | 2014 – 2015</p> 
-                              <ul>
-                                   <li class="text moveable">Stored, retrieved, and manipulated data</li>
-                                   <li class="text moveable">Modified existing software to correct errors and optimize efficiency</li>
-                                   <li class="text moveable">Prepared detailed reports</li>
-                              </ul>     
-                              </div>
+                             
+                                   <h3 class="text moveable text19">WORK EXPERIENCE</h3>
+                                   <p class="text moveable text20">SOFTWARE ENGINEER</p>
+                                   <p class="text moveable text21">Healthmade Solutions | 2015 - Present</p>
+                             
+                                   <p class="text moveable text22">Directs software design and development</p>
+                                   <p class="text moveable text23">Evaluates interface between hardware and software</p>
+                                   <p class="text moveable text24">Advises customers regarding maintenance of software system</p>
+                              
+                                   <p class="text moveable text25">JUNIOR ENGINEER</p> 
+                                   <p class="text moveable text26">RealPro Software Inc. | 2014 – 2015</p> 
+                                   <p class="text moveable text27">Stored, retrieved, and manipulated data</p>
+                                   <p class="text moveable text28">Modified existing software to correct errors and optimize efficiency</p>
+                                   <p class="text moveable text29">Prepared detailed reports</p>
+                             
 
-                              <div class="moveable history_person">
-                                   <h3 class="text moveable history_person_title">EDUCATION HISTORY</h3>
-                                   <p class="text moveable place__name">UNIVERSITY OF EL DORADO</p>
-                                   <p class="text moveable history_person_list">Bachelor of Software Engineering, 2014</p>
-                              <ul>
-                                   <li class="text moveable">President, Computer and Technology Organization</li>
-                                   <li class="text moveable">Vice President, Programming Club</li>
-                                   <li class="text moveable">Member, Video Game Society</li>
-                                   <li class="text moveable">Member, Student IT Helpdesk</li>
-                              </ul>
-                                   <p class="text moveable place__name">BEECHTOWN ACADEMY</p>
-                                   <p class="text moveable history_person_list">Graduated Class of 2010. Honor Roll</p>
-                              <ul>
-                                   <li class="text moveable">President and Founder, Computer Club</li>
-                                   <li class="text moveable">Student Council President</li>
-                                   <li class="text moveable">Debate Team Vice President</li>
-                                   <li class="text moveable">Member of the Math Team</li>
-                                   <li class="text moveable">Member of the Chess Team</li>
-                              </ul>
-                              </div>
+                                   <h3 class="text moveable text30">EDUCATION HISTORY</h3>
+                                   <p class="text moveable text31">UNIVERSITY OF EL DORADO</p>
+                                   <p class="text moveable text32">Bachelor of Software Engineering, 2014</p>
+                                   <p class="text moveable text33">President, Computer and Technology Organization</p>
+                                   <p class="text moveable text34">Vice President, Programming Club</p>
+                                   <p class="text moveable text35">Member, Video Game Society</p>
+                                   <p class="text moveable text36">Member, Student IT Helpdesk</p>
+                                   <p class="text moveable text37">BEECHTOWN ACADEMY</p>
+                                   <p class="text moveable text38">Graduated Class of 2010. Honor Roll</p>
+                                   <p class="text moveable text39">President and Founder, Computer Club</p>
+                                   <p class="text moveable text40">Student Council President</p>
+                                   <p class="text moveable text41">Debate Team Vice President</p>
+                                   <p class="text moveable text42">Member of the Math Team</p>
+                                   <p class="text moveable text43">Member of the Chess Team</p>
                          </section>
                     </footer>`;
 

@@ -1,6 +1,7 @@
 .container {
     display: flex;
     height: 100%;
+    width: 100%;
     background-color: lightgoldenrodyellow;
     border-bottom: 20px solid mediumblue;
     border-top: 20px solid mediumblue;
@@ -9,15 +10,17 @@
     .img-men {
         position: absolute;
         height: 300px;
-        width: 311px;
+        width: 303px;
         border: 20px solid cornflowerblue;
+        top: 620px;
+        left: 61px;
     }
 h4 {
-    color: cornflowerblue;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    border-bottom: 1px solid cornflowerblue;
-    border-top: 1px solid cornflowerblue;
+    color: #521111;
+padding-bottom: 10px;
+padding-top: 10px;
+border-bottom: 1px solid cornflowerblue;
+border-top: 1px solid cornflowerblue;
 }
 .name_persone {
     color: cornflowerblue;
@@ -95,5 +98,15 @@ a {
 .career_person_history {
     right: 18px;
     top: 421px;
+}
+.text1 {
+    position: absolute;
+    top: 948px;
+    left: 145px;
+}
+.text2 {
+    position: absolute;
+    top: 537px;
+    left: 120px;
 }
 }

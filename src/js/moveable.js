@@ -206,7 +206,8 @@ export function startMovable () {
       if (el.className.includes('text')) {
         leftPanel.innerHTML = `
 <!--        <input id="font__style" type="text">-->
-        <input class="text__size" type="number" value="${parseInt(window.getComputedStyle(el).fontSize)}">
+        <label for='fontSize'>Size</label>
+        <input class="text__size" name="fontSize" type="number" value="${parseInt(window.getComputedStyle(el).fontSize)}">
         <input type='color' id='head' name='head' value='#e66465'>
         <label for='head'>Color</label>
         `;

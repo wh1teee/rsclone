@@ -340,8 +340,19 @@ header {
   
       
     }
-           
-     
+
+    .workspace__header-left {
+        display: flex;
+        align-items: center;
+
+        label {
+            font-size: 14px;
+            padding: 0 3px;
+        }
+        .text__size {
+            margin: 0 10px;
+        }
+    }
 
 }
 

@@ -1,5 +1,4 @@
 import '../styles/slider.scss';
-
 import DOM from './DOMLinks';
 import { Keyboard, Navigation, Pagination, Swiper } from 'swiper';
 import 'swiper/swiper-bundle.css';

@@ -21,7 +21,7 @@ class Header {
         mainMenuElements.map(item => {
             const listItem = document.createElement('li');
             listItem.innerHTML = `
-            <a class="waves-effect waves-light btn">${item}
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal2">${item}
             <span class="material-icons">keyboard_arrow_down</span></a>
             `;
             dom.menuControlsList.append(listItem); 

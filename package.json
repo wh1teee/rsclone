@@ -43,11 +43,12 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "html2canvas": "^1.0.0-rc.7",
+    "jspdf-html2canvas": "^1.4.9",
     "moveable": "^0.22.3",
     "normalize.css": "^8.0.1",
     "selecto": "^1.10.2",
-    "html2canvas": "^1.0.0-rc.7",
-    "jspdf-html2canvas": "^1.4.9",
+    "swiper": "^6.4.10",
     "wd-canvas2image": "0.0.12"
   }
 }

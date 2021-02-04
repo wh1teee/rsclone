@@ -4,14 +4,13 @@ class Authentication {
     constructor() {
         this.storageRef = '';
         this.dbRef = '';
-        this.userID = ''; 
+        this.userID = '';
         this.templateCount = 0;
     }
     createAuthPanelMain() {
         const mainLoginPanel = document.querySelector('#auth-info');
         mainLoginPanel.innerHTML = `
             <!-- NAVBAR -->
-           
                     <ul id="nav-mobile" class="right ">
                         <li class="logged-in" style="display:none">
                             <a href="#modal-account" class="white-text modal-trigger flow-text waves-effect waves-light btn">Account</a>
@@ -72,17 +71,22 @@ class Authentication {
                 <div class="account-extras"></div>
               </div>
             </div>
-        `; 
-        // <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-create">Create template</a>
+        `;
         this.materializeSetup();
-        this.firebaseSetup();        
+        this.firebaseSetup();
     }
 
     materializeSetup() {
         // setup materialize components
         document.addEventListener('DOMContentLoaded', function() {
             let modals = document.querySelectorAll('.modal');
-            M.Modal.init(modals);
+            M.Modal.init(modals, {
+                inDuration: '200',
+                outDuration: '300',
+                opacity: '0.7',
+                startingTop: '25%',
+                endingTop: '40%',
+            });
         });
     }
 
@@ -95,15 +99,14 @@ class Authentication {
             appId: "1:983573501773:web:03afb58169d26c41568904",
             storageBucket: "fir-firestore-16cf7.appspot.com"
         };
-        
+
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-    
+
         //Store and Auth references
         const authRef = firebase.auth();
         this.dbRef = firebase.firestore();
         this.storageRef = firebase.storage();
-
 
         const signupForm = document.querySelector('#signup-form');
         const logout = document.querySelector('#logout');
@@ -133,7 +136,7 @@ class Authentication {
 
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             const email = loginForm['login-email'].value;
             const password = loginForm['login-password'].value;
 
@@ -156,7 +159,7 @@ class Authentication {
                 dom.exampleImages.append(needToLogin);
             }
         });
-    
+
     }
 
     getExamplesFromCloud(user) {
@@ -164,7 +167,7 @@ class Authentication {
         const dataRef = this.dbRef;
         dataRef.collection(`${user.uid}`).get().then( (snapshot) => {
             snapshot.forEach( (doc) => {
-                const imgName = doc.data().name; 
+                const imgName = doc.data().name;
                 const imgPath = stRef.ref().child(`users/${user.uid}/${imgName}.jpg`);
                 imgPath.getDownloadURL().then( (url) => {
                     const dom = DOM.getHTMLElements();
@@ -179,27 +182,9 @@ class Authentication {
                             </div>
                             `;
                     dom.exampleImages.append(card);
-
                 });
             })
         })
-        
-
-        // const dom = DOM.getHTMLElements();
-
-        //         const card = document.createElement('div');
-        //         card.className = 'slider__card';
-        //         card.setAttribute('data-id', index);
-        //         card.innerHTML = `
-        //         <div class='slider__card-header'>
-        //             <img class='slider__card-header-img' src='${examples[index].img}'>
-        //         </div>
-        //         <div class='slider__card-title'>
-        //             <h4 class='slider__card-title-h4'>${examples[index].type}<h4>
-        //         </div>
-        //         `;
-        
-        // dom.exampleImages.append(card);
     }
 
     uiControlVision(user) {
@@ -227,7 +212,6 @@ class Authentication {
             <button type='button'>Logout</button>
         `;
         dom.headerControls.append(constructorLoginPanel);
-
     }
 
     saveImgToCloud(canvas, imgName) {
@@ -248,7 +232,7 @@ class Authentication {
                 contentType: "image/jpg"
             };
 
-        
+
         stRef.child(`users/${uid}/${imgName}.jpg`).
         put(blob, metadata).
         then((snapshot) => {
@@ -260,7 +244,6 @@ class Authentication {
         const mainLoginPanel = document.querySelector('#auth-info');
         mainLoginPanel.innerHTML = `
             <!-- NAVBAR -->
-           
                     <ul id="nav-mobile" class="right ">
                         <li class="logged-in" style="display:block">
                             <a href="#modal-account2" class="white-text modal-trigger flow-text waves-effect waves-light btn">Account</a>
@@ -322,10 +305,9 @@ class Authentication {
                 <div class="account-extras"></div>
               </div>
             </div>
-        `; 
-        // <a href="#" class="grey-text modal-trigger flow-text" data-target="modal-create">Create template</a>
+        `;
         this.materializeSetup();
-        this.firebaseSetup();        
+        this.firebaseSetup();
     }
 }
 

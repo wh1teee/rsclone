@@ -41,16 +41,23 @@ const examples = [
 ];
 
 class Slider {
-  start () {
-    const swiper = new Swiper('.swiper-container', {
+  init (
+    container = '.swiper-container',
+    keyboard = false, nextEl = '.swiper-button-next.next1',
+    prevEl = '.swiper-button-prev.prev1',
+    pagination = '.swiper-pagination.pagination1',
+    loop = true,
+  ) {
+
+    const slider = new Swiper(container, {
       slidesPerView: 1,
       speed: 400,
-      centeredSlides: true,
-      centeredSlidesBounds: true,
-      loop: true,
+      // centeredSlides: true,
+      // centeredSlidesBounds: true,
+      loop: loop,
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: nextEl,
+        prevEl: prevEl,
       },
       breakpoints: {
         320: {
@@ -66,19 +73,14 @@ class Slider {
           slidesPerView: 4,
         },
       },
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true,
-      },
       keyboard: {
-        enabled: true,
+        enabled: keyboard,
         onlyInViewport: true,
       },
-    });
 
+    });
     examples.forEach((item, index) => {
-      swiper.addSlide(index, `
+      slider[0].addSlide(index, `
 <div class="swiper-slide">
     <div class="card__container modal-trigger" data-type="${examples[index].type}" href="#modal${this.getIndexOfModal(item)}">
         <div class='slider__card-header'>
@@ -92,8 +94,45 @@ class Slider {
     });
   }
 
-  getIndexOfModal(el) {
-    return el.type === 'Resume' ? 1 : 2
+  secondSlider() {
+    return new Swiper('#ffff', {
+      slidesPerView: 3,
+      speed: 400,
+      navigation: {
+        nextEl: '.swiper-button-next.next2',
+        prevEl: '.swiper-button-prev.prev2',
+      },
+      // pagination: {
+      //   el: '.swiper-pagination.pagination2',
+      //   type: 'bullets',
+      //   clickable: true,
+      // },
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+        },
+        570: {
+          slidesPerView: 2,
+        },
+        930: {
+          slidesPerView: 3,
+        },
+        1100: {
+          slidesPerView: 4,
+        },
+      },
+
+    })
+
+  }
+
+
+  addSlides (swiper, slides) {
+    swiper.appendSlide(slides);
+  }
+
+  getIndexOfModal (el) {
+    return el.type === 'Resume' ? 1 : 2;
   }
 
 }

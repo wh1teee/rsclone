@@ -40,6 +40,7 @@ class DOM {
             sliderCard: document.querySelectorAll('.slider__card'),
 
             exampleImages: document.querySelector('#examples'),
+            exampleInner: document.querySelector('#examples__inner'),
 
         };
     }

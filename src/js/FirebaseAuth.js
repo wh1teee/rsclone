@@ -92,8 +92,8 @@ class Authentication {
         opacity: '0.7',
         onOpenStart (e) {
           if (auth.login && e.id === 'modal1') {
-              createEditorPage();
-              this.close()
+            createEditorPage();
+            this.close();
           }
         },
       });
@@ -114,7 +114,6 @@ class Authentication {
     if (!ifLoggedIn) {
       firebase.initializeApp(firebaseConfig);
     }
-
 
     //Store and Auth references
     const authRef = firebase.auth();
@@ -167,9 +166,13 @@ class Authentication {
         this.getExamplesFromCloud(user);
       } else {
         const dom = DOM.getHTMLElements();
-        const needToLogin = document.createElement('h4');
-        needToLogin.innerHTML = 'Log in to get max experience of Canva';
-        dom.exampleImages.append(needToLogin);
+        dom.exampleInner.insertAdjacentHTML('beforeend', `
+        <div class="out__of__login__container">
+        <h4 class="out__of__login__title">
+        Log in to see saved images of all users and get max experience of Canva!   
+        <h4>
+        </div>
+        `);
       }
     });
 
@@ -178,8 +181,8 @@ class Authentication {
   getExamplesFromCloud (user) {
     const stRef = this.storageRef;
     const dataRef = this.dbRef;
-    const slides = []
-    const swiper = slider.secondSlider()
+    const slides = [];
+    const swiper = slider.secondSlider();
     dataRef.collection(`${user.uid}`).get().then((snapshot) => {
       snapshot.forEach((doc) => {
         const imgName = doc.data().name;
@@ -187,13 +190,13 @@ class Authentication {
         imgPath.getDownloadURL().then((url) => {
           const card = `
                           <div class="swiper-slide">
-                              <div class="card__container modal-trigger" href="#modal${imgName+1000}">
+                              <div class="card__container modal-trigger" href="#modal${imgName + 1000}">
                                   <div class='slider__card-header'>
                                        <img class='slider__card-header-img' src='${url}' style="width:100%">
                                   </div>
-                              </div>                              
-                  `
-          const modal = `<div id="modal${imgName+1000}" class="modal modal-fixed-footer">
+                              </div>
+                  `;
+          const modal = `<div id="modal${imgName + 1000}" class="modal modal-fixed-footer">
                                   <div class="modal-content">
                                     <img src="${url}" alt="you design">
                                   </div>
@@ -204,8 +207,8 @@ class Authentication {
                               </div>
                           </div>`;
 
-          document.body.insertAdjacentHTML('beforeend', modal)
-          slider.addSlides(swiper, card)
+          document.body.insertAdjacentHTML('beforeend', modal);
+          slider.addSlides(swiper, card);
           let modals = document.querySelectorAll('.modal');
           M.Modal.init(modals, {
             inDuration: '200',
@@ -217,7 +220,7 @@ class Authentication {
                 M.Modal.destroy();
               }
             },
-          })
+          });
         });
       });
     });

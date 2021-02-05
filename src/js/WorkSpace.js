@@ -3,10 +3,7 @@ import editor from './Editor';
 import workSpaceHeader from './WorkSpaceHeader';
 import {template1, template2, template3, template4} from '../templates';
 
-/* import templates from './templates';*/
-
 let inner = template1;
-
 let canvas = document.createElement('canvas');
 canvas.setAttribute('class', 'canvas');
 let context = canvas.getContext('2d');
@@ -32,18 +29,8 @@ class WorkSpace {
     }
 
   calculateScale (event) {
-    console.log(event.target.innerWidth);
-    console.log(event.target.innerWidth * 0.35);
-    console.log(document.querySelector('.sheet__container').clientWidth);
-    console.log(document.querySelector('.sheet').clientWidth);
     document.querySelector('.sheet').style.width = event.target.innerWidth * 0.48 / 10 + 'rem';
-    console.log(document.querySelector('.sheet').clientWidth);
     document.querySelector('.sheet').style.height = document.querySelector('.sheet').clientWidth * 29.7 / 21 / 10 + 'rem';
-    /*  const newScale = event.target.innerWidth * 0.7 * 0.66;
-      document.querySelector('.sheet__container').style.transform = `translateX(-50%) translateY(-50%) scale(${newScale})`;
-      document.querySelector('.sheet').style.width = document.querySelector('.sheet__container').clientWidth * 0.6 / 10 + 'rem';
-      document.querySelector('.sheet').style.height = document.querySelector('.sheet__container').clientHeight * 0.6 / 10 + 'rem';
-*/
 
         const newSize = event.target.innerWidth * 0.56 / 10;
         document.querySelector('.sheet').style.width = newScale + 'rem';
@@ -54,7 +41,6 @@ class WorkSpace {
 
     showTemplateOnScreen(element){
         const dom = DOM.getHTMLElements();
-        console.log(element);
 
         canvas.setAttribute('style', 'pointer-events: none;  position:relative;');
 
@@ -116,30 +102,6 @@ class WorkSpace {
                 dom.sheetContainer.append(imageUpload);
             }
 
-
-  //  dom.sheetContainer.append(imageUpload);
-     //   }
-
-/*
-
-        dom.sheetContainer.addEventListener('mousedown',(event) => {
-            if (!event.target.classList.contains('canvas'))
-            editor.mDouwn(event);
-        });
-        dom.sheetContainer.addEventListener('mousemove',(event) => {
-            if (!event.target.classList.contains('canvas'))
-            editor.mMove(event);
-        });
-        dom.sheetContainer.addEventListener('mouseup',(event) => {
-            if (!event.target.classList.contains('canvas'))
-            editor.mUp(event);
-        });
-        dom.sheetContainer.addEventListener('mouseleave', (event) => {
-            if (!event.target.classList.contains('canvas'))
-            editor.mLeave (event);
-        });
-        dom.workSpaceField.addEventListener('click', editor.clear);
-      */
     dom.workSpaceField.addEventListener('dblclick', (e) => { // set contenteditable attribute to target
       if (e.target.classList.contains('moveable')) { //if target can be moveable
         if (e.target.contentEditable !== 'true') {
@@ -150,9 +112,7 @@ class WorkSpace {
         }
       }
     });
-
     }
-
 
     activateCanvas() {
         const dom = DOM.getHTMLElements();
@@ -174,7 +134,6 @@ class WorkSpace {
 
 
     draw(event){
-        console.log('draw');
         const dom = DOM.getHTMLElements();
 
         context.lineCap = 'round';                                           // переменные для рисования
@@ -214,7 +173,6 @@ class WorkSpace {
     clearAllDrawing() {
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
-
 }
 
 export default WorkSpace;

@@ -2,15 +2,8 @@ class ActionContainer {
 
     constructor(elem, cont_el){                   //на входе картинка и контейнер рабочего поля
         this.picture = elem;                     //свойство хранит ссылку на дочернюю картинку
-/*
-        let Num = elem.style.transform.match(/[\-\d\.]/g); //ищем в строке все цифры и точку, получаем массив
-        console.log(Num);
-        this.transformValue = +Num.reduce(fra,'');       //переводим в число - это будет значени угла поворота
-        function fra(r,v) {
-            return r+v;
-        }*/
-        this.transformValue = 0;
 
+        this.transformValue = 0;
         /*парметры для кнопок*/
         this.rotateSpeed = 0;
         this.scaleSpeed  = 0;
@@ -33,7 +26,6 @@ class ActionContainer {
       //  this.opacityValue = +elem.style.opacity;
 
         this.cont = document.createElement('div');  //создаем контейнер для картинки
-        console.log('1');
         this.cont.className='resize-container';
         this.cont.setAttribute('style','top:'+(elem.offsetTop - 1)+'px; left:'+(elem.offsetLeft-1)+'px; height:'+(elem.offsetHeight+2)+'px; width:'+(elem.offsetWidth+2)+'px;');
         this.cont.style.transform = elem.style.transform;
@@ -58,15 +50,12 @@ class ActionContainer {
 
     }
 
-
     savePicture(){                  //куда сохранять картинку
         this.picture.setAttribute('style','position:absolute; top:'+(this.cont.offsetTop + 1)+'px;left:'+(this.cont.offsetLeft + 1)+'px; height:'+(this.cont.offsetHeight-2)+'px; Width:'+(this.cont.offsetWidth-2)+'px');
         this.picture.style.transform = this.cont.style.transform;
         this.picture.style.opacity = this.opacityValue;
         this.picture.setAttribute('effW',this.effW);
         this.picture.style.fontSize = this.cont.offsetHeight*0.8+'px';
-        console.log(this.picture);
-        console.log(this.cont);
         this.cont.parentNode.replaceChild(this.picture, this.cont);
        // cont_el.replaceChild(this.picture, this.cont);         //!!!!
         this.cont.remove();
@@ -108,26 +97,18 @@ class ActionContainer {
     }
 
     move(x,y,cont_el) {
-        console.log(this.cont.style.left, this.cont.style.top);
-        console.log(this.getElementPos(cont_el));
-        console.log(this.shiftX, this.shiftY);
-        console.log(this.deltaTop(this.transformValue, this.cont.offsetHeight,this.cont.offsetWidth));
-       
         this.cont.style.left = x - this.getElementPos(cont_el).left- this.shiftX + this.deltaTop(this.transformValue, this.cont.offsetHeight,this.cont.offsetWidth).X + 'px';
         this.cont.style.top = y - this.getElementPos(cont_el).top - this.shiftY + this.deltaTop(this.transformValue, this.cont.offsetHeight,this.cont.offsetWidth).Y + 'px';
-        console.log(this.shiftX, this.shiftY);
     }
 
     movePic(){
         let x = this.xSpeed;
         let y = this.ySpeed;
 
-
         if (x == 0 && y == 0) return;
         this.cont.style.left = this.cont.offsetLeft + x +'px';
         this.cont.style.top = this.cont.offsetTop + y +'px';
     }
-
 
     scalePic (){
         if (this.scaleSpeed == 0) return;
@@ -141,7 +122,6 @@ class ActionContainer {
         this.picture.style.fontSize = this.cont.offsetHeight*0.8+'px';
     }
 
-
     rotatePic(){
         let alfa = this.transformValue;
         if (this.rotateSpeed == 0) return;
@@ -153,19 +133,6 @@ class ActionContainer {
         this.transformValue = alfa;
         this.cont.style.transform='rotatez('+ this.transformValue +'deg)';
     }
-
-  /*  upPictOpacity() {
-        if (this.opacityValue >= 1) return
-        this.opacityValue = this.opacityValue+0.1;
-        this.picture.style.opacity = this.opacityValue;
-    }
-
-    downPictOpacity() {
-        if (this.opacityValue <= 0.5) return
-        this.opacityValue = this.opacityValue-0.1;
-        this.picture.style.opacity = this.opacityValue;
-    }*/
-
 
     opacityMobile(x1,y1,x2,y2) {
         let d1 = Math.sqrt((this.downX1-this.downX2)*(this.downX1-this.downX2) + (this.downY1-this.downY2)*(this.downY1-this.downY2));
@@ -188,7 +155,6 @@ class ActionContainer {
             width: bbox.right -  bbox.left,
             height: bbox.bottom - bbox.top
         };
-    
     }
 
     deltaTop (alfa2,h,w) {   //расчет смещений при повороте на угол
@@ -206,10 +172,6 @@ class ActionContainer {
             Y: l*(-Math.sin(alfa1) + Math.sin(c2*alfa1+c1*alfa2))
         };
     }
-    
-    
-
 }
-
 
 export default ActionContainer;

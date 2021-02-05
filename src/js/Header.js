@@ -32,15 +32,15 @@ class Header {
     menuElements.map(item => {
       const listItem = document.createElement('li');
       listItem.innerHTML = `
-            <a class="waves-effect waves-light btn white teal-text text-lighten-2">${item}</a>
+            <a class="waves-effect waves-light btn transparent no-shadow">${item}</a>
             `;
       dom.menuControlsList.append(listItem);
     });
 
     dom.headerControls.innerHTML = `
-            <li><a href="#modal-saveToCloud" class='waves-effect waves-light btn white teal-text text-lighten-2 modal-trigger' id='download-button0'>Save to cloud</a></li>
-            <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button1'>Save as img</a></li>
-            <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button2'>Save as pdf</a></li>
+            <li><a href="#modal-saveToCloud" class='waves-effect waves-light btn modal-trigger transparent no-shadow' id='download-button0'>Save to cloud</a></li>
+            <li><a class='waves-effect waves-light btn transparent no-shadow' id='download-button1'>Save as img</a></li>
+            <li><a class='waves-effect waves-light btn transparent no-shadow' id='download-button2'>Save as pdf</a></li>
             
             <!-- SIGN UP MODAL -->
              <div id="modal-saveToCloud" class="modal">

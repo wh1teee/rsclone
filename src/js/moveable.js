@@ -186,13 +186,14 @@ export function startMovable () {
     });
 
   selecto.on('dragStart', e => {
-    const target = e.inputEvent.target;
-    const leftPanel = document.querySelector('.workspace__header-left');
+    const target = e.inputEvent.target,
+      leftPanel = document.querySelector('.workspace__header-left'),
+      drawingMenuIcon = document.querySelector('#controls__icons-Drawings');
 
     if (!target.classList.contains('moveable') && !target.classList.contains('moveable-area') && target.tagName !== 'path') {
       leftPanel.innerHTML = '';
     }
-    if (
+    if (drawingMenuIcon.classList.contains('active_icon') ||
       moveable.isMoveableElement(target)
       || targets.some(t => t === target || t.contains(target))
     ) {

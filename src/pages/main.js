@@ -69,4 +69,5 @@ export default function createMainDOM () {
       <h4>This design is being creating. Please choose another one</h4>
     </div>
 </div>
-`;
+`
+}

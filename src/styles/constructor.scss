@@ -299,16 +299,25 @@ header {
         &.heading {
           font-size: 7.46667rem;
           font-weight: 800;
+          position: absolute;
+          top: 2rem;
+          left: 2rem;
         }
 
         &.subheading {
           font-size: 4.26667rem;
           font-weight: 600;
+          position: absolute;
+          top: 2rem;
+          left: 2rem;
         }
 
         &.body-text {
           font-size: 2.9333rem;
           font-weight: 400;
+          position: absolute;
+          top: 2rem;
+          left: 2rem;
         }
       }
 

@@ -189,9 +189,9 @@ export function startMovable () {
     const target = e.inputEvent.target;
     const leftPanel = document.querySelector('.workspace__header-left');
 
-    if(!target.classList.contains('moveable') && target.tagName !== 'path') {
-      leftPanel.innerHTML = ''
-   }
+    if (!target.classList.contains('moveable') && target.tagName !== 'path') {
+      leftPanel.innerHTML = '';
+    }
     if (
       moveable.isMoveableElement(target)
       || targets.some(t => t === target || t.contains(target))
@@ -201,7 +201,7 @@ export function startMovable () {
   }).on('select', e => {
     targets = e.selected;
     moveable.target = targets;
-    targets.forEach( el => {
+    targets.forEach(el => {
       const leftPanel = document.querySelector('.workspace__header-left');
       if (el.className.includes('text')) {
         leftPanel.innerHTML = `
@@ -212,15 +212,26 @@ export function startMovable () {
         <label for='head'>Color</label>
         `;
         document.querySelector('.text__size').addEventListener('input', (e) => {
-          el.style.fontSize = `${e.target.value}px`
-        })
-        document.querySelector('#head').addEventListener("input", (e) => {
-          moveableItems[0].target.forEach( el => {
+          el.style.fontSize = `${e.target.value}px`;
+        });
+        document.querySelector('#head').addEventListener('input', (e) => {
+          moveableItems[0].target.forEach(el => {
             el.style.color = `${e.target.value}`;
-          })
-        })
+          });
+        });
       }
-    })
+      if (el.className.includes('svg-element')) {
+        leftPanel.innerHTML = `
+        <input type='color' id='head' name='head' value='#e66465'>
+        <label for='head'>Color</label>
+        `;
+        document.querySelector('#head').addEventListener('input', (e) => {
+          moveableItems[0].target.forEach(el => {
+            el.querySelector('path').style.fill = `${e.target.value}`
+          });
+        });
+      }
+    });
   }).on('selectEnd', e => {
     if (e.isDragStart) {
       e.inputEvent.preventDefault();

@@ -24,7 +24,7 @@ class WorkSpaceHeader {
             dom.sheetContainer.style.backgroundImage = 'none';
         });
         document.getElementById('delete__element').addEventListener('click', () => {
-
+            if (!moveableItems[0].target) return; // if there are no selected objects
             moveableItems[0].target.forEach( el => {
                 el.remove()
             })
@@ -49,17 +49,17 @@ class WorkSpaceHeader {
     }
 
     createWorkSpaceHeaderLeft(){
-        const dom = DOM.getHTMLElements();
-        dom.workSpaceHeaderLeft.innerHTML = `
-        <input type='color' id='head' name='head' value='#e66465'>
-        <label for='head'>Color</label>
-        `;
-        document.querySelector('#head').addEventListener("input", (e) => {
-            if (!moveableItems[0].target) return;
-        moveableItems[0].target.forEach( el => {
-                el.querySelector('path').style.fill = `${e.target.value}`
-            })
-        })
+        // const dom = DOM.getHTMLElements();
+        // dom.workSpaceHeaderLeft.innerHTML = `
+        // <input type='color' id='head' name='head' value='#e66465'>
+        // <label for='head'>Color</label>
+        // `;
+        // document.querySelector('#head').addEventListener("input", (e) => {
+        //     if (!moveableItems[0].target) return;
+        // moveableItems[0].target.forEach( el => {
+        //         el.querySelector('path').style.fill = `${e.target.value}`
+        //     })
+        // })
     }
 
 

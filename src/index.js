@@ -20,39 +20,40 @@ import './style.scss';
 import { startMovable } from './js/moveable';
 
 const dom = DOM.getHTMLElements();
+const workSpace = new WorkSpace('resume');
+
 let moveableItems;
-M.AutoInit();
+function startMain(ifLoggedIn = false) {
+    M.AutoInit();
+    createMainDOM();
+    header.createMainHeader();
+    auth.createAuthPanelMain(ifLoggedIn);
+    window.removeEventListener('resize', resizeWindowListener);
+    slider.init()
+    document.getElementById('create-design').addEventListener('click', createEditorPage);
+}
 
+startMain()
 
-createMainDOM();
-header.createMainHeader();
-auth.createAuthPanelMain();
-
-slider.start()
-
-document.getElementById('create-design').addEventListener('click', (event) => {
+function createEditorPage() {
     createConstructorDOM();
     header.createHeader();
-
     controls.createControlPanel();
 
     const controlsElements = new ControlsElements('Templates');
     controlsElements.createControlElementsPanel();
-
-    const workSpace = new WorkSpace('resume');
     workSpace.createWorkSpace();
     workSpaceHeader.createWorkSpaceHeaderRight();
 
-    window.addEventListener('resize', (event) => workSpace.calculateScale(event));
-
+    window.addEventListener('resize', resizeWindowListener);
     document.querySelector('.controls__elements-list').addEventListener('click', (event) => {
-        if (moveableItems) moveableItems[1].destroy()
 
         workSpace.showTemplateOnScreen(event.target);
         moveableItems = startMovable()  //start moveable
 
     });
 
-});
-
-export {moveableItems}
+function resizeWindowListener(e){
+    workSpace.calculateScale(e)
+}
+export {moveableItems, createEditorPage, startMain}

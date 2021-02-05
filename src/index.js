@@ -51,10 +51,7 @@ function createEditorPage() {
      workSpace.showTemplateOnScreen(event.target);
 
         if (moveableItems.length > 0) {
-            console.log('destroy');
-            //     moveableItems[1].destroy()
-            // moveableItems[1].findSelectableTargets()
-            // moveableItems[0].moveable.target = document.querySelector(".moveable")
+            moveableItems[0].updateTarget()
         }
         // moveableItems[1].findSelectableTargets()
         // moveableItems = startMovable()  //start moveable

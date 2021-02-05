@@ -189,7 +189,7 @@ export function startMovable () {
     const target = e.inputEvent.target;
     const leftPanel = document.querySelector('.workspace__header-left');
 
-    if (!target.classList.contains('moveable') && target.tagName !== 'path') {
+    if (!target.classList.contains('moveable') && !target.classList.contains('moveable-area') && target.tagName !== 'path') {
       leftPanel.innerHTML = '';
     }
     if (

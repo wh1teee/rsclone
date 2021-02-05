@@ -35,14 +35,8 @@ export default function createMainDOM () {
         </section>
 
         <section class='create-design'>
-            <div class='create-design__inner'>
+            <div class='create-design__inner' id="examples__inner">
                 <h4 class='examples__inner-title'>Examples</h4>
-                <div class="swiper-container" id="ffff">
-                  <div class="swiper-wrapper" id="examples"></div>
-                  <div class="swiper-pagination pagination2"></div>
-                  <div class="swiper-button-prev prev2"></div>
-                  <div class="swiper-button-next next2"></div>
-                </div>
              </div>
         </section>
     </main>

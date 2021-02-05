@@ -4,7 +4,6 @@ import { Keyboard, Navigation, Pagination, Swiper } from 'swiper';
 import 'swiper/swiper-bundle.css';
 
 Swiper.use([Navigation, Pagination, Keyboard]);
-const dom = DOM.getHTMLElements();
 const examples = [
   {
     'type': 'Resume',
@@ -80,7 +79,7 @@ class Slider {
 
     });
     examples.forEach((item, index) => {
-      slider[0].addSlide(index, `
+      slider.addSlide(index, `
 <div class="swiper-slide">
     <div class="card__container modal-trigger" data-type="${examples[index].type}" href="#modal${this.getIndexOfModal(item)}">
         <div class='slider__card-header'>
@@ -95,6 +94,17 @@ class Slider {
   }
 
   secondSlider() {
+    const dom = DOM.getHTMLElements()
+    dom.exampleInner.innerHTML = `
+                <h4 class='examples__inner-title'>Examples</h4>
+                <div class="swiper-container" id="ffff">
+                  <div class="swiper-wrapper" id="examples"></div>
+                  <div class="swiper-pagination pagination2"></div>
+                  <div class="swiper-button-prev prev2"></div>
+                  <div class="swiper-button-next next2"></div>
+                </div>
+             </div>
+    `
     return new Swiper('#ffff', {
       slidesPerView: 3,
       speed: 400,

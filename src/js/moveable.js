@@ -212,7 +212,9 @@ export function startMovable () {
         <label for='head'>Color</label>
         `;
         document.querySelector('.text__size').addEventListener('input', (e) => {
-          el.style.fontSize = `${e.target.value}px`;
+          moveableItems[0].target.forEach( el => {
+            el.style.fontSize = `${e.target.value}px`;
+          })
         });
         document.querySelector('#head').addEventListener('input', (e) => {
           moveableItems[0].target.forEach(el => {

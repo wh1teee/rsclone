@@ -4,10 +4,13 @@ header {
   height: 5.5rem;
   display: flex;
   justify-content: space-between;
-  /*  align-items: center;
-    width: 100%;
-    justify-content: space-between;*/
-  background: #26a69a;
+  background: linear-gradient(90deg,#00c4cc,#7d2ae8);
+  a.no-shadow {
+    box-shadow: none !important;
+    &:hover {
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2) !important;
+    }
+  }
 }
 
 .menu-controls {
@@ -61,28 +64,36 @@ header {
 
 .constructor-page .controls {
   width: 30%;
-  background: rgb(253, 212, 27);
+  background: #283039;
   display: flex;
 
   .controls__icons {
     width: 25%;
     @extend %flex_column;
     flex-wrap: wrap;
-    background: rgb(250, 225, 114);
+    color: white;
+    user-select: none;
+
+    .active_icon {
+      background: #283039;
+    }
+    .after__active {
+      border-radius: 0 0 15px 0;
+    }
+    .before__active {
+      border-radius: 0 15px 0 0;
+    }
 
     li {
       list-style-type: none;
       border-radius: 5px 0 0 5px;
       text-align: center;
       font-size: 1.4rem;
-      color: white;
       cursor: pointer;
       transition-duration: 0.2s;
       padding: 1rem 0.5rem;
+      background: #0e1318;
 
-      &:first-child {
-        background: rgb(253, 212, 27);
-      }
     }
 
     span.material-icons {
@@ -239,7 +250,7 @@ header {
         span {
           margin: auto 1rem;
           text-align: center;
-          color: orange;
+          color: #2d3238;
           cursor: pointer;
         }
       }
@@ -322,6 +333,7 @@ header {
 
     .text__size {
       margin: 0 10px;
+      border-bottom: none;
     }
   }
 }

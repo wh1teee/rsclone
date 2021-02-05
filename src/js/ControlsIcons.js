@@ -6,6 +6,7 @@ const templateIcons = ['Templates', 'Uploads', 'Photos', 'Elements', 'Text', 'Dr
 const templateImages = ['table_chart', 'cloud_upload', 'photo_size_select_actual', 'art_track', 'text_fields', 'brush', 'texture', 'audiotrack', 'ondemand_video', 'folder_special', 'more_horiz'];
 const highLightColor = '#FDD41B';
 const color = '#FAE172';
+const implementedIcons = 7;
 
 const workSpace = new WorkSpace('resume');
 
@@ -15,27 +16,36 @@ class ControlsIcons {
     createControlPanel() {
         const dom = DOM.getHTMLElements();
 
+    templateIcons.map((item, index) => {
 
-        templateIcons.map((item, index) => {
-            
-            const listItem = document.createElement('li');
-            listItem.setAttribute('id', `controls__icons-${item}`);
-            const templateImage = templateImages[index];
-            listItem.innerHTML = `
-                <span class='material-icons' id='${item}'>${templateImage}</span>${item}`;
-          //  listItem.innerHTML = `<a class='icon-button' id='${item}'>
-          //      <span class="material-icons">${templateImage}</span>${item}</a>`;
-            dom.controlsIconsList.append(listItem);  
-            dom.controlsIconsList.addEventListener('click', (event) => {
-              //  console.log(item);
-                if (event.target.getAttribute('id') == `${item}` || event.target.getAttribute('id') == `controls__icons-${item}` ) { // || event.target.parentNode.parentNode.getAttribute('class') == 'controls__icons-list') {
-                    console.log(event.target);
-                    this.switchToIcon(`${item}`);
-                } else console.log('not');
-            });      
-        })
-      
-    }
+      const listItem = document.createElement('li');
+      listItem.setAttribute('id', `controls__icons-${item}`);
+      if (index === 0) {
+        listItem.classList.add('active_icon');
+      }
+      if (index === 1) {
+        listItem.classList.add('before__active');
+      }
+      if (index >= implementedIcons) {
+        listItem.classList.add('modal-trigger');
+        listItem.setAttribute('href', '#modal2');
+      }
+      const templateImage = templateImages[index];
+      listItem.innerHTML = `
+                <span class='material-icons' data-targetid='${item}'>${templateImage}</span>
+                <p data-targetId='${item}'>${item}</p>
+                `;
+      //  listItem.innerHTML = `<a class='icon-button' id='${item}'>
+      //      <span class="material-icons">${templateImage}</span>${item}</a>`;
+      dom.controlsIconsList.append(listItem);
+      dom.controlsIconsList.addEventListener('click', (event) => {
+
+        if (event.target.dataset.targetid == `${item}` || event.target.getAttribute('id') == `controls__icons-${item}`) { // || event.target.parentNode.parentNode.getAttribute('class') == 'controls__icons-list') {
+          this.switchToIcon(`${item}`);
+        }
+      });
+    });
+  }
 
     switchToIcon(icon) {
         switch(icon) {
@@ -98,21 +108,41 @@ class ControlsIcons {
 
     }
 
-    changeIcons(index) {
-        document.getElementById(`controls__icons-${templateIcons[index]}`).style.background = highLightColor;
-        if (index === 0) {
-            for (let i = 1; i < index ; i += 1) {
-                document.getElementById(`controls__icons-${templateIcons[i]}`).style.background = color;
-            }
-        } else {
-        for (let i = 0; i < index ; i += 1) {
-            document.getElementById(`controls__icons-${templateIcons[i]}`).style.background = color;
+  changeIcons (index) {
+    if (index < implementedIcons) {
+      templateIcons.forEach((item, i) => {
+        if (i < implementedIcons + 1) {
+          document.getElementById(`controls__icons-${templateIcons[i]}`).classList.remove('active_icon');
+          document.getElementById(`controls__icons-${templateIcons[i]}`).classList.remove('before__active');
+          document.getElementById(`controls__icons-${templateIcons[i]}`).classList.remove('after__active');
         }
-        }
-        for (let i = index + 1; i < templateIcons.length; i += 1) {
-            document.getElementById(`controls__icons-${templateIcons[i]}`).style.background = color;
-        }        
+      });
+      if (index !== 0 && (templateIcons.length - 1) !== index) {
+        document.getElementById(`controls__icons-${templateIcons[index]}`).classList.add('active_icon');
+        document.getElementById(`controls__icons-${templateIcons[index - 1]}`).classList.add('after__active');
+        document.getElementById(`controls__icons-${templateIcons[index + 1]}`).classList.add('before__active');
+      } else if (index === 0) {
+        document.getElementById(`controls__icons-${templateIcons[index]}`).classList.add('active_icon');
+        document.getElementById(`controls__icons-${templateIcons[index + 1]}`).classList.add('before__active');
+      } else {
+        document.getElementById(`controls__icons-${templateIcons[index]}`).classList.add('active_icon');
+        document.getElementById(`controls__icons-${templateIcons[index - 1]}`).classList.add('after__active');
+      }
     }
+
+    // if (index === 0) {
+    //     for (let i = 1; i < index ; i += 1) {
+    //         document.getElementById(`controls__icons-${templateIcons[i]}`).style.background = color;
+    //     }
+    // } else {
+    // for (let i = 0; i < index ; i += 1) {
+    //     document.getElementById(`controls__icons-${templateIcons[i]}`).style.background = color;
+    // }
+    // }
+    // for (let i = index + 1; i < templateIcons.length; i += 1) {
+    //     document.getElementById(`controls__icons-${templateIcons[i]}`).style.background = color;
+    // }
+  }
 
     changeElemets(icon) {
         console.log(icon);

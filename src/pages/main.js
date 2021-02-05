@@ -1,7 +1,5 @@
 export default function createMainDOM () {
-
-}
-document.body.innerHTML = `
+  document.body.innerHTML = `
     <header class='main-header'>
         <img src="../images/canva-logo.png">
         
@@ -27,17 +25,23 @@ document.body.innerHTML = `
         <section class='create-design'>
             <div class='create-design__inner'>
                 <h4 class='create-design__inner-title'>Create a design</h4>
+                <div class="swiper-container">
+                  <div class="swiper-wrapper"></div>
+                  <div class="swiper-pagination pagination1"></div>
+                  <div class="swiper-button-prev prev1"></div>
+                  <div class="swiper-button-next next1"></div>
+                </div>
             </div>
         </section>
 
         <section class='create-design'>
             <div class='create-design__inner'>
                 <h4 class='examples__inner-title'>Examples</h4>
-                <div class="swiper-container">
-                  <div class="swiper-wrapper"></div>
-                  <div class="swiper-pagination"></div>
-                  <div class="swiper-button-prev"></div>
-                  <div class="swiper-button-next"></div>
+                <div class="swiper-container" id="ffff">
+                  <div class="swiper-wrapper" id="examples"></div>
+                  <div class="swiper-pagination pagination2"></div>
+                  <div class="swiper-button-prev prev2"></div>
+                  <div class="swiper-button-next next2"></div>
                 </div>
              </div>
         </section>

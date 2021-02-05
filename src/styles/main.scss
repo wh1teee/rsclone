@@ -136,6 +136,15 @@ main.main {
   }
 }
 
+
+.examples__inner-title {
+  font-weight: 700;
+  font-size: 2.4rem;
+  letter-spacing: -.03rem;
+  line-height: 1.3;
+  color: #0e1318;
+}
+
 footer {
   padding: 1rem 2rem;
   font-size: 1.5rem;
@@ -166,4 +175,17 @@ footer img {
 footer img.gh {
   width: 2rem;
   margin-top: -0.2rem;
+}
+
+.modal-content {
+  img {
+    max-width: 100%;
+  }
+}
+.modal-footer {
+  display: flex ;
+  justify-content: space-around ;
+  a {
+    border-radius: 12px;
+  }
 }

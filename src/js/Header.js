@@ -6,6 +6,7 @@ import auth from './FirebaseAuth';
 import slider from './Slider';
 import '../styles/constructor.scss';
 import DOM from './DOMLinks';
+import { startMain } from '../index';
 
 const menuElements = ['< Main', 'File'];
 const mainMenuElements = ['Home', 'Features', 'Learning'];
@@ -58,7 +59,6 @@ class Header {
 
     document.getElementById('download-button0').addEventListener('click', function () {
       const saveModal = document.querySelector('#modal-saveToCloud');
-      M.Modal.init(saveModal);
 
       const saveForm = document.querySelector('#save-form');
       saveForm.addEventListener('submit', (e) => {
@@ -82,7 +82,6 @@ class Header {
     document.getElementById('download-button2').addEventListener('click', function () {
       html2canvas(document.querySelector('.sheet__container')).then(function () {
         // document.body.appendChild(canvas);
-        console.log('001');
         return html2PDF(document.querySelector('.sheet__container'), {
           jsPDF: {
             format: 'a4',
@@ -99,28 +98,8 @@ class Header {
 
     if (document.querySelector('.constructor'))
       document.querySelector('.constructor').addEventListener('click', (event) => {
-        console.log(event.target.textContent);
         if (event.target.textContent == '< Main') {
-          console.log('555');
-          createMainDOM();
-          this.createMainHeader();
-          auth.createAuthPanelMain2(JSON.parse(localStorage.getItem('user')));
-
-          auth.uiControlVision(JSON.parse(localStorage.getItem('user')));
-
-          const getCurrentQuantity = () => {
-            let quantity = 1;
-            if (document.body.clientWidth >= 1280) {
-              quantity = 7;
-            } else if (document.body.clientWidth >= 768) {
-              quantity = 5;
-            } else if (document.body.clientWidth >= 520) {
-              quantity = 3;
-            }
-            ;
-            return quantity;
-          };
-          slider.generateCards('left', slider.getCurrentQuantity());
+          startMain(true)
         }
       });
   }

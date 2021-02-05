@@ -19,6 +19,7 @@ class WorkSpaceHeader {
         <span class="material-icons" id="volume">volume_off</span>
         `;
         document.getElementById('delete__all').addEventListener('click', function() {
+            const dom = DOM.getHTMLElements();
             dom.sheetContainer.innerHTML = '';
             dom.sheetContainer.style.backgroundColor = 'white';
             dom.sheetContainer.style.backgroundImage = 'none';

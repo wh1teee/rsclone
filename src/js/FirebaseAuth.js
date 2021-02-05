@@ -1,15 +1,18 @@
 import DOM from './DOMLinks';
 
 class Authentication {
-    constructor() {
-        this.storageRef = '';
-        this.dbRef = '';
-        this.userID = '';
-        this.templateCount = 0;
-    }
-    createAuthPanelMain() {
-        const mainLoginPanel = document.querySelector('#auth-info');
-        mainLoginPanel.innerHTML = `
+  constructor () {
+    this.storageRef = '';
+    this.dbRef = '';
+    this.userID = '';
+    this.templateCount = 0;
+    this.login = false;
+  }
+
+  createAuthPanelMain (ifLoggedIn) {
+    // const mainLoginPanel = document.querySelector('#auth-info');
+    const dom = DOM.getHTMLElements();
+    dom.authInfo.innerHTML = `
             <!-- NAVBAR -->
                     <ul id="nav-mobile" class="right ">
                         <li class="logged-in" style="display:none">
@@ -72,36 +75,44 @@ class Authentication {
               </div>
             </div>
         `;
-        this.materializeSetup();
-        this.firebaseSetup();
+    this.materializeSetup();
+    this.firebaseSetup(ifLoggedIn);
+
+  }
+
+  materializeSetup () {
+    // setup materialize components
+    document.addEventListener('DOMContentLoaded', function () {
+      let modals = document.querySelectorAll('.modal');
+      M.Modal.init(modals, {
+        inDuration: '200',
+        outDuration: '300',
+        opacity: '0.7',
+        onOpenStart (e) {
+          if (auth.login && e.id === 'modal1') {
+              createEditorPage();
+              this.close()
+          }
+        },
+      });
+    });
+  }
+
+  firebaseSetup (ifLoggedIn) {
+    // Your web app's Firebase configuration
+    let firebaseConfig = {
+      apiKey: 'AIzaSyBL689M3ZGwGQcBdor8l6ke3pzuB9fKq7Q',
+      authDomain: 'fir-firestore-16cf7.firebaseapp.com',
+      projectId: 'fir-firestore-16cf7',
+      appId: '1:983573501773:web:03afb58169d26c41568904',
+      storageBucket: 'fir-firestore-16cf7.appspot.com',
+    };
+
+    // Initialize Firebase
+    if (!ifLoggedIn) {
+      firebase.initializeApp(firebaseConfig);
     }
 
-    materializeSetup() {
-        // setup materialize components
-        document.addEventListener('DOMContentLoaded', function() {
-            let modals = document.querySelectorAll('.modal');
-            M.Modal.init(modals, {
-                inDuration: '200',
-                outDuration: '300',
-                opacity: '0.7',
-                startingTop: '25%',
-                endingTop: '40%',
-            });
-        });
-    }
-
-    firebaseSetup() {
-        // Your web app's Firebase configuration
-        let firebaseConfig = {
-            apiKey: "AIzaSyBL689M3ZGwGQcBdor8l6ke3pzuB9fKq7Q",
-            authDomain: "fir-firestore-16cf7.firebaseapp.com",
-            projectId: "fir-firestore-16cf7",
-            appId: "1:983573501773:web:03afb58169d26c41568904",
-            storageBucket: "fir-firestore-16cf7.appspot.com"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
 
         //Store and Auth references
         const authRef = firebase.auth();
@@ -192,17 +203,18 @@ class Authentication {
         const loggedInLinks = document.querySelectorAll('.logged-in');
         const accountInfo = document.querySelector('.account-details');
 
-        if (user) {
-            const html = `<div class="flow-text"> Logged in as ${user.email}</div>`;
-            accountInfo.innerHTML = html;
-            loggedInLinks.forEach(item => item.style.display = 'block');
-            loggedOutLinks.forEach(item => item.style.display = 'none');
-        } else {
-            accountInfo.innerHTML = '';
-            loggedInLinks.forEach(item => item.style.display = 'none');
-            loggedOutLinks.forEach(item => item.style.display = 'block');
-        }
+    if (user) {
+      const html = `<div class="flow-text"> Logged in as ${user.email}</div>`;
+      accountInfo.innerHTML = html;
+      loggedInLinks.forEach(item => item.style.display = 'block');
+      loggedOutLinks.forEach(item => item.style.display = 'none');
+      this.login = true;
+    } else {
+      accountInfo.innerHTML = '';
+      loggedInLinks.forEach(item => item.style.display = 'none');
+      loggedOutLinks.forEach(item => item.style.display = 'block');
     }
+  }
 
     createAuth() {
         const dom = DOM.getHTMLElements();

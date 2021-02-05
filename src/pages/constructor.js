@@ -1,7 +1,7 @@
 export default function createConstructorDOM() {
 
     document.body.innerHTML = `
-    <header>
+    <header class="constructor__header">
         <menu class='menu-controls'>
             <ul class='menu-controls-list constructor'></ul>            
         </menu>

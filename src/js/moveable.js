@@ -3,7 +3,7 @@ import Selecto from 'selecto';
 import { moveableItems } from '../index';
 
 export function startMovable () {
-  const container = document.querySelector('.workspace__field')
+  const container = document.querySelector('.workspace__field');
   const frameMap = new Map();
   let targets = [];
 
@@ -212,13 +212,17 @@ export function startMovable () {
         <label for='head'>Color</label>
         `;
         document.querySelector('.text__size').addEventListener('input', (e) => {
-          moveableItems[0].target.forEach( el => {
-            el.style.fontSize = `${e.target.value}px`;
-          })
+          moveableItems[0].target.forEach(el => {
+            if (checkTypeOfElement(el) === 'text') {
+              el.style.fontSize = `${e.target.value}px`;
+            }
+          });
         });
         document.querySelector('#head').addEventListener('input', (e) => {
           moveableItems[0].target.forEach(el => {
-            el.style.color = `${e.target.value}`;
+            if (checkTypeOfElement(el) === 'text') {
+              el.style.color = `${e.target.value}`;
+            }
           });
         });
       }
@@ -229,7 +233,12 @@ export function startMovable () {
         `;
         document.querySelector('#head').addEventListener('input', (e) => {
           moveableItems[0].target.forEach(el => {
-            el.querySelector('path').style.fill = `${e.target.value}`
+            if (checkTypeOfElement(el) === 'svg') {
+              el.querySelector('path').style.fill = `${e.target.value}`;
+            }
+            if (checkTypeOfElement(el) === 'text') {
+              el.style.color = `${e.target.value}`;
+            }
           });
         });
       }
@@ -244,4 +253,10 @@ export function startMovable () {
     }
   });
   return [moveable, selecto];
+}
+
+function checkTypeOfElement (element) {
+  if (element.className.includes('svg-element')) return 'svg';
+  if (element.className.includes('text')) return 'text';
+  return 'other';
 }

@@ -39,3 +39,44 @@
 .sheet__container svg {
   overflow: visible;
 }
+
+.workspace__header-right {
+  span:hover {
+    transform: scale(1.15);
+  }
+  span:active {
+    transform: scale(1.25);
+  }
+}
+
+.controls__icons-list {
+  li {
+    span, p {
+      transition: transform 80ms ease-in-out;
+    }
+    p {
+      transition: transform 100ms ease-in-out;
+    }
+
+    &:hover {
+      span {
+        transform: scale(1.14);
+      }
+      p {
+        transform: scale(1.11);
+      }
+    }
+  }
+
+}
+
+.controls__elements-list {
+  li {
+    cursor: pointer;
+    transition: transform .25s linear;
+    &:hover {
+      transform: scale(1.07);
+    }
+  }
+
+}

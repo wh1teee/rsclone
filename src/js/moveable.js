@@ -3,13 +3,13 @@ import Selecto from 'selecto';
 import { moveableItems } from '../index';
 
 export function startMovable () {
-  const container = document.querySelector('.sheet__container');
+  const container = document.querySelector('.workspace__field')
   const frameMap = new Map();
   let targets = [];
 
   const selecto = new Selecto({
     container,
-    dragContainer: '.sheet__container',
+    dragContainer: container,
     selectableTargets: ['.sheet__container .moveable'],
     hitRate: 0,
     selectByClick: true,
@@ -28,8 +28,8 @@ export function startMovable () {
     origin: true,
   })
     .on('clickGroup', e => {
-    selecto.clickTarget(e.inputEvent, e.inputTarget);
-  })
+      selecto.clickTarget(e.inputEvent, e.inputTarget);
+    })
     .on('dragOriginStart', ({ dragStart, target }) => {
       if (!frameMap.has(target)) {
         frameMap.set(target, {
@@ -230,5 +230,5 @@ export function startMovable () {
       });
     }
   });
-  return [moveable, selecto]
+  return [moveable, selecto];
 }

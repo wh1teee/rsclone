@@ -1,10 +1,12 @@
 import DOM from './DOMLinks';
 import elements from '../data/elements';
 import WorkSpace from './WorkSpace';
+import { createEditorPage } from '../index';
+import auth from './FirebaseAuth';
 
 const templateElements = ['Templates', 'Uploads', 'Photos', 'Elements', 'Text', 'Drawings', 'Background', 'Music', 'Videos', 'Folders', 'More'];
 const templateElementsNumber = [12, 10, 13, 18, 10, 20, 20, 20, 10, 10, 10];
-
+const templatesDone = 4;
 const workSpace = new WorkSpace('resume');
 let countFiles = 0;
 let fileStyle;
@@ -43,17 +45,45 @@ class ControlsElements {
         for (let i = 1; i <= templateElementsNumber[number]; i += 1) {
             const listItem = document.createElement('li');
 
-            if (this.template === 'Elements') {
-                listItem.innerHTML = `<img src='data:image/svg+xml,${elements[1][i - 1].src}' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
-            } else if (this.template === 'Text') {
-                listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.png' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
-            } else {
-                listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.jpg' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
-            }
 
-            dom.controlsElementsList.append(listItem);
+      if (this.template === 'Templates') {
+        if (i > templatesDone) {
+          listItem.classList.add('modal-trigger');
+          listItem.setAttribute('href', '#modal2');
         }
+      }
+
+      if (this.template === 'Elements') {
+        if (i === 16) break
+         listItem.innerHTML = `<img src='data:image/svg+xml,${elements[1][i].src}' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
+      } else if (this.template === 'Text') {
+        listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.png' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
+      } else {
+        listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.jpg' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
+      }
+
+      dom.controlsElementsList.append(listItem);
     }
+    document.body.insertAdjacentHTML('beforeend', `
+    <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h4>This design is being creating. Please choose another one</h4>
+    </div>
+</div>
+    `)
+    let modals = document.querySelectorAll('.modal');
+    M.Modal.init(modals, {
+      inDuration: '200',
+      outDuration: '300',
+      opacity: '0.7',
+      preventScrolling: false,
+      onOpenStart (e) {
+        if (auth.login && e.id === 'modal1') {
+          createEditorPage();
+        }
+      },
+    })
+  }
 
     createUploadPanel() {
         const dom = DOM.getHTMLElements();

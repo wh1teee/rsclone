@@ -10,6 +10,7 @@ const templatesDone = 4;
 const workSpace = new WorkSpace('resume');
 let countFiles = 0;
 let fileStyle;
+let fileLinks = [];
 
 let canvas = document.createElement('canvas');
 let context = canvas.getContext('2d');
@@ -104,14 +105,20 @@ class ControlsElements {
       dom.controlsElements.prepend(divUpload);
 
       document.getElementById('input-upload').addEventListener('change', (event) => this.handleFiles(event));
-
+      
+      let local = JSON.parse(localStorage.getItem('filesLinks'));
+      
+      for(let i = 0; i < local.length; i += 1) {
+        let img =  `<img src=${local[i]} class="upload-image" id="upload-image${100+i}"></img>`;
+        dom.controlsElementsList.innerHTML += img;
+      }
     }
   }
 
   handleFiles (event) {
     const dom = DOM.getHTMLElements();
     let files = event.target.files;
-    const fileLinks = [];
+    
     if (!files.length) {
       dom.controlsElementsList.innerHTML = '<p>No files selected!</p>';
     } else {
@@ -123,13 +130,14 @@ class ControlsElements {
         fileLinks.push(src);
         if (!fileLinks.includes(src)) fileLinks.push(src);
         uploadImage.onload = function () {
-        };
+                 };
 
         uploadImage.classList.add('upload-image');
         uploadImage.setAttribute('id', 'upload-image' + countFiles);
         dom.controlsElementsList.append(uploadImage);
         countFiles += 1;
       }
+
       localStorage.setItem('filesLinks', JSON.stringify(fileLinks));
     }
   }

@@ -76,6 +76,11 @@ class Slider {
         enabled: keyboard,
         onlyInViewport: true,
       },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true,
+      },
 
     });
     examples.forEach((item, index) => {
@@ -112,11 +117,11 @@ class Slider {
         nextEl: '.swiper-button-next.next2',
         prevEl: '.swiper-button-prev.prev2',
       },
-      // pagination: {
-      //   el: '.swiper-pagination.pagination2',
-      //   type: 'bullets',
-      //   clickable: true,
-      // },
+      pagination: {
+        el: '.swiper-pagination.pagination2',
+        type: 'bullets',
+        clickable: true,
+      },
       breakpoints: {
         320: {
           slidesPerView: 1,

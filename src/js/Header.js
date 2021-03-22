@@ -107,12 +107,13 @@ class Header {
       });
     });
 
-    if (document.querySelector('.constructor'))
-      document.querySelector('.constructor').addEventListener('click', (event) => {
-        if (event.target.textContent == '< Main') {
-          startMain(true)
+    if (document.querySelector('.constructor__header')){
+      document.querySelector('.constructor__header').addEventListener('click', (event) => {
+        if (event.target.textContent === '< Main') {
+          createMain(true)
         }
       });
+    }
   }
 
   saveToLocalStorage (img) {

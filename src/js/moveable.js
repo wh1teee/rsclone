@@ -190,8 +190,26 @@ export function startMovable () {
       leftPanel = document.querySelector('.workspace__header-left'),
       drawingMenuIcon = document.querySelector('#controls__icons-Drawings');
 
-    if (!target.classList.contains('moveable') && !target.classList.contains('moveable-area') && target.tagName !== 'path') {
-      leftPanel.innerHTML = '';
+    if (
+      !target.classList.contains('moveable-area')
+      && !target.classList.contains('moveable-control')
+      && target.tagName !== 'path'
+    ) {
+      if (target.classList.contains('photo')) {
+        leftPanel.innerHTML = ''
+      } else {
+        leftPanel.innerHTML = `
+       <input type='color' id='head' name='head' value='${
+          parseColor(window.getComputedStyle(target).backgroundColor).hex
+        }'>
+        <label for='head' class='form-label'>Color</label>
+      `;
+      }
+    }
+    if (checkTypeOfElement(target) === 'other') {
+      document.querySelector('#head').addEventListener('input', (e) => {
+          target.style.background = `${e.target.value}`;
+      });
     }
     if (drawingMenuIcon.classList.contains('active_icon') ||
       moveable.isMoveableElement(target)
@@ -207,10 +225,10 @@ export function startMovable () {
       if (el.className.includes('text')) {
         leftPanel.innerHTML = `
 <!--        <input id="font__style" type="text">-->
-        <label for='fontSize'>Size</label>
-        <input class="text__size" name="fontSize" type="number" value="${parseInt(window.getComputedStyle(el).fontSize)}">
-        <input type='color' id='head' name='head' value='#e66465'>
-        <label for='head'>Color</label>
+        <label for='fontSize' class='form-label'>Size</label>
+        <input class="text__size form-control" name="fontSize" type="number" value="${parseInt(window.getComputedStyle(el).fontSize)}">
+        <input type='color' id='head' name='head' value='${parseColor(window.getComputedStyle(el).color).hex}'>
+        <label for='head' class='form-label'>Color</label>
         `;
         document.querySelector('.text__size').addEventListener('input', (e) => {
           moveableItems[0].target.forEach(el => {
@@ -235,7 +253,18 @@ export function startMovable () {
         document.querySelector('#head').addEventListener('input', (e) => {
           moveableItems[0].target.forEach(el => {
             if (checkTypeOfElement(el) === 'svg') {
-              el.querySelector('path').style.fill = `${e.target.value}`;
+              const pathOfEl = el.querySelector('path');
+              const lineOfEl = el.querySelector('line');
+              const gOfEl = el.querySelector('g');
+              if (pathOfEl) {
+                pathOfEl.style.fill = `${e.target.value}`;
+              }
+              if (lineOfEl) {
+                lineOfEl.style.stroke = `${e.target.value}`;
+              }
+              if (gOfEl) {
+                gOfEl.style.stroke = `${e.target.value}`;
+              }
             }
             if (checkTypeOfElement(el) === 'text') {
               el.style.color = `${e.target.value}`;
@@ -257,7 +286,34 @@ export function startMovable () {
 }
 
 function checkTypeOfElement (element) {
-  if (element.className.includes('svg-element')) return 'svg';
+
+  if (
+    element.tagName === 'path'
+    || element.tagName === 'g'
+    || element.tagName === 'line'
+    || element.tagName === 'svg'
+  ) {
+    return 'svg'
+  }
+  if (element.classList.contains('svg-element')) return 'svg';
   if (element.className.includes('text')) return 'text';
+  if (element.classList.contains('moveable-area')) return 'moveable-area';
+  if (element.classList.contains('photo')) return 'photo';
+
   return 'other';
+}
+
+function parseColor(color) {
+  const arr=[];
+  console.log(color);
+  color.replace(/[\d+\.]+/g, function(v) { arr.push(parseFloat(v)); });
+  console.log("#" + arr.slice(0, 3).map(toHex).join(""));
+  return {
+    hex: "#" + arr.slice(0, 3).map(toHex).join(""),
+    opacity: arr.length === 4 ? arr[3] : 1
+  };
+}
+function toHex(int) {
+  const hex = int.toString(16);
+  return hex.length === 1 ? "0" + hex : hex;
 }

@@ -1,20 +1,18 @@
 .live__container {
   /*  position: absolute;
     background-color: bisque;*/
-    border: 3px solid blue;
-
+  border: 3px solid blue;
 }
 
 .resize-container {
-  position:absolute;
+  position: absolute;
   border: 1px dashed lime;
   cursor: move;
-
 }
 
 .resize-container > img {
   width: 100%;
-  height:100%;
+  height: 100%;
   user-select: none;
 }
 
@@ -23,16 +21,15 @@
   display: block;
   width: 10px;
   height: 10px;
-  background:red;
-  opacity:0.8;
+  background: red;
+  opacity: 0.8;
   z-index: 1;
-  border-radius:50%;
+  border-radius: 50%;
 }
 
 .resize-container-btn {
- bottom: -5px;
- right: -5px;
-
+  bottom: -5px;
+  right: -5px;
   cursor: se-resize;
 }
 
@@ -44,6 +41,7 @@
   span:hover {
     transform: scale(1.15);
   }
+
   span:active {
     transform: scale(1.25);
   }
@@ -54,6 +52,7 @@
     span, p {
       transition: transform 80ms ease-in-out;
     }
+
     p {
       transition: transform 100ms ease-in-out;
     }
@@ -62,21 +61,20 @@
       span {
         transform: scale(1.14);
       }
+
       p {
         transform: scale(1.11);
       }
     }
   }
-
 }
 
 .controls__elements-list {
   li {
     cursor: pointer;
-    transition: transform .25s linear;
+    transition: transform .20s ease-in-out;
     &:hover {
       transform: scale(1.07);
     }
   }
-
 }

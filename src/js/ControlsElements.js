@@ -45,8 +45,8 @@ class ControlsElements {
 
       if (this.template === 'Templates') {
         if (i > templatesDone) {
-          listItem.classList.add('modal-trigger');
-          listItem.setAttribute('href', '#modal2');
+          listItem.dataset.bsToggle = 'modal';
+          listItem.dataset.bsTarget = '#developingModal';
         }
       }
 
@@ -61,25 +61,6 @@ class ControlsElements {
 
       dom.controlsElementsList.append(listItem);
     }
-    document.body.insertAdjacentHTML('beforeend', `
-    <div id="modal2" class="modal">
-    <div class="modal-content">
-      <h4>This design is being creating. Please choose another one</h4>
-    </div>
-</div>
-    `);
-    let modals = document.querySelectorAll('.modal');
-    M.Modal.init(modals, {
-      inDuration: '200',
-      outDuration: '300',
-      opacity: '0.7',
-      preventScrolling: false,
-      onOpenStart (e) {
-        if (auth.login && e.id === 'modal1') {
-          createEditorPage();
-        }
-      },
-    });
   }
 
   createUploadPanel () {

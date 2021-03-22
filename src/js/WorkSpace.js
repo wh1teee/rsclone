@@ -89,6 +89,21 @@ class WorkSpace {
     });
     }
 
+    checkClassOfChildren(element, classOfChildren) {
+      let consist = false
+      if (element.childNodes){
+        element.childNodes.forEach( el => {
+          if (!el.classList) {
+            return
+          }
+          if (el.classList.contains(classOfChildren))  {
+            consist = true
+          }
+        })
+      }
+      return consist
+    }
+
     activateCanvas() {
         const dom = DOM.getHTMLElements();
         canvas.setAttribute('style', 'position: absolute; top: 0; left: 0;');

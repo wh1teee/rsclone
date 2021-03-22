@@ -23,6 +23,7 @@ class WorkSpaceHeader {
             dom.sheetContainer.innerHTML = '';
             dom.sheetContainer.style.backgroundColor = 'white';
             dom.sheetContainer.style.backgroundImage = 'none';
+            moveableItems[0].updateRect()
         });
         document.getElementById('delete__element').addEventListener('click', () => {
             if (!moveableItems[0].target) return; // if there are no selected objects
@@ -31,6 +32,16 @@ class WorkSpaceHeader {
             })
             moveableItems[0].updateRect()
             dom.workSpaceHeaderLeft.innerHTML = ''
+        })
+        document.addEventListener('keydown', (e) => {
+            if (e.code === "Delete") {
+                if (!moveableItems[0].target) return; // if there are no selected objects
+                moveableItems[0].target.forEach( el => {
+                    el.remove()
+                })
+                moveableItems[0].updateRect()
+                dom.workSpaceHeaderLeft.innerHTML = ''
+            }
         })
         document.getElementById('volume').addEventListener('click', (e) => {
             if (e.target.textContent === 'volume_off') {

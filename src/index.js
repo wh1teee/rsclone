@@ -45,8 +45,9 @@ function createEditorPage () {
     }
   });
 
-    window.addEventListener('resize', resizeWindowListener);
-    moveableItems = startMovable();  //start moveable
+  window.addEventListener('resize', resizeWindowListener);
+  moveableItems = startMovable();  //start moveable
+  workSpace.calculateScale(window);
 }
 
 function resizeWindowListener (e) {

@@ -81,14 +81,14 @@ class Slider {
         type: 'bullets',
         clickable: true,
       },
-
     });
+
     examples.forEach((item, index) => {
       slider.addSlide(index, `
 <div class="swiper-slide">
-    <div class="card__container modal-trigger" data-type="${examples[index].type}" href="#modal${this.getIndexOfModal(item)}">
+    <div class="card__container" data-bs-toggle="modal" data-bs-target="#${this.getIndexOfModal(item)}Modal" data-type="${examples[index].type}">
         <div class='slider__card-header'>
-            <img class='slider__card-header-img' src='${examples[index].img}'>
+            <img class='slider__card-header-img' src='${examples[index].img}' alt="slider image">
         </div>
         <div class='slider__card-title'>
             <h4 class='slider__card-title-h4'>${examples[index].type}</h4>
@@ -98,8 +98,8 @@ class Slider {
     });
   }
 
-  secondSlider() {
-    const dom = DOM.getHTMLElements()
+  secondSlider () {
+    const dom = DOM.getHTMLElements();
     dom.exampleInner.innerHTML = `
                 <h4 class='examples__inner-title'>Examples</h4>
                 <div class="swiper-container" id="ffff">
@@ -109,7 +109,7 @@ class Slider {
                   <div class="swiper-button-next next2"></div>
                 </div>
              </div>
-    `
+    `;
     return new Swiper('#ffff', {
       slidesPerView: 3,
       speed: 400,
@@ -137,19 +137,16 @@ class Slider {
         },
       },
 
-    })
-
+    });
   }
-
 
   addSlides (swiper, slides) {
     swiper.appendSlide(slides);
   }
 
   getIndexOfModal (el) {
-    return el.type === 'Resume' ? 1 : 2;
+    return el.type === 'Resume' ? 'existing' : 'developing';
   }
-
 }
 
 const slider = new Slider();

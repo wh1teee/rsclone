@@ -1,6 +1,7 @@
 import DOM from './DOMLinks';
-import { createEditorPage } from '../index';
 import slider from './Slider';
+import { createEditorPage } from '../index';
+import modals from './Modals';
 
 class Authentication {
   constructor () {
@@ -12,97 +13,29 @@ class Authentication {
   }
 
   createAuthPanelMain (ifLoggedIn) {
-    // const mainLoginPanel = document.querySelector('#auth-info');
     const dom = DOM.getHTMLElements();
-    dom.authInfo.innerHTML = `
-            <!-- NAVBAR -->
-                    <ul id="nav-mobile" class="right ">
-                        <li class="logged-in" style="display:none">
-                            <a href="#modal-account" class="white-text modal-trigger flow-text waves-effect waves-light btn">Account</a>
-                        </li>    
-                        <li class="logged-in" style="display:none">
-                            <a href="#" class="white-text flow-text waves-effect waves-light btn" id='create-design'>Create a design</a>
-                        </li>
-                        <li class="logged-out" style="display:none">
-                            <a href="#modal-login" class="white-text modal-trigger flow-text waves-effect waves-light btn">Log in</a>
-                        </li>
-                        <li class="logged-out" style="display:none">
-                            <a href="#modal-signup" class="white-text modal-trigger flow-text waves-effect waves-light btn orange lighten-2">Sign up</a>
-                        </li>
-                        <li class="logged-in" style="display:none">
-                            <a href="#" class="white-text flow-text waves-effect waves-light btn" id="logout" >Log out</a>
-                        </li>
-                    </ul>
-
-             <!-- SIGN UP MODAL -->
-             <div id="modal-signup" class="modal">
-                <div class="modal-content">
-                <h4>Sign up</h4><br />
-                <form id="signup-form">
-                    <div class="input-field">
-                        <input type="email" id="signup-email" required />
-                        <label for="signup-email">Email address</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" id="signup-password" required />
-                        <label for="signup-password">Choose password</label>
-                    </div>
-                    <button class="white-text flow-text waves-effect waves-light btn orange lighten-2 z-depth-0">Sign up</button>
-                </form>
-                </div>
-            </div>
-            <!-- LOGIN MODAL -->
-            <div id="modal-login" class="modal">
-                <div class="modal-content">
-                <h4>Login</h4><br />
-                <form id="login-form">
-                    <div class="input-field">
-                        <input type="email" id="login-email" required />
-                        <label for="login-email">Email address</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" id="login-password" required />
-                        <label for="login-password">Your password</label>
-                    </div>
-                    <button class="white-text flow-text waves-effect waves-light btn orange lighten-2 z-depth-0">Log in</button>
-                </form>
-                </div>
-            </div>
-            <!-- ACCOUNT MODAL -->
-            <div id="modal-account" class="modal">
-              <div class="modal-content center-align">
-                <h4>Account details</h4><br />
-                <div class="account-details"></div>
-                <div class="account-extras"></div>
-              </div>
-            </div>
-        `;
-    this.materializeSetup();
-    this.firebaseSetup(ifLoggedIn);
-
-  }
-
-  materializeSetup () {
-    // setup materialize components
-    document.addEventListener('DOMContentLoaded', function () {
-      let modals = document.querySelectorAll('.modal');
-      M.Modal.init(modals, {
-        inDuration: '200',
-        outDuration: '300',
-        opacity: '0.7',
-        onOpenStart (e) {
-          if (auth.login && e.id === 'modal1') {
-            createEditorPage();
-            this.close();
-          }
-        },
-      });
-    });
+    if (ifLoggedIn) {
+      dom.accountInfo.innerHTML = `
+      <button type="button" class="btn account-btn btn-lg" data-bs-toggle="modal" data-bs-target="#accountModal">
+                      Account
+      </button>
+      <button type="button" class="btn account-btn btn-lg" id="create-design">
+                      create a design
+      </button>
+      
+      `;
+    } else {
+      dom.accountInfo.innerHTML = `
+      <button type="button" class="btn account-btn btn-lg" data-bs-toggle="modal" data-bs-target="#authenticationModal">
+                      Account
+      </button>
+      `;
+    }
+    // this.firebaseSetup(ifLoggedIn);
   }
 
   firebaseSetup (ifLoggedIn) {
-    // Your web app's Firebase configuration
-    let firebaseConfig = {
+    const firebaseConfig = {
       apiKey: 'AIzaSyBL689M3ZGwGQcBdor8l6ke3pzuB9fKq7Q',
       authDomain: 'fir-firestore-16cf7.firebaseapp.com',
       projectId: 'fir-firestore-16cf7',
@@ -110,7 +43,6 @@ class Authentication {
       storageBucket: 'fir-firestore-16cf7.appspot.com',
     };
 
-    // Initialize Firebase
     if (!ifLoggedIn) {
       firebase.initializeApp(firebaseConfig);
     }
@@ -120,67 +52,93 @@ class Authentication {
     this.dbRef = firebase.firestore();
     this.storageRef = firebase.storage();
 
-    const signupForm = document.querySelector('#signup-form');
-    const logout = document.querySelector('#logout');
-    const loginForm = document.querySelector('#login-form');
+    const signupForm = document.getElementById('signup-form');
+    const loginForm = document.getElementById('login-form');
+    const logoutBtn = document.getElementById('logout');
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('InputEmailLogin').value;
+      const password = document.getElementById('InputPasswordLogin').value;
+      authRef.signInWithEmailAndPassword(email, password).then((cred) => {
+
+        this.closeAuthModal();
+        loginForm.reset();
+      }).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log('err', errorCode);
+        console.log('mess', errorMessage);
+        // ..
+      });
+    });
+
+    logoutBtn.addEventListener('click', (e) => {
+      const dom = DOM.getHTMLElements();
+      e.preventDefault();
+      authRef.signOut();
+    });
 
     signupForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
       //get user info
-      const email = signupForm['signup-email'].value;
-      const password = signupForm['signup-password'].value;
+      const email = document.getElementById('InputEmailSignup').value;
+      const password = document.getElementById('InputPasswordSignup').value;
 
       //sign up user
       authRef.createUserWithEmailAndPassword(email, password).then(userCred => {
-        const modal = document.querySelector('#modal-signup');
-        M.Modal.getInstance(modal).close();
+        this.closeAuthModal();
         signupForm.reset();
       });
     });
 
-    logout.addEventListener('click', (e) => {
-      const dom = DOM.getHTMLElements();
-      e.preventDefault();
-      authRef.signOut();
-      dom.exampleImages.innerHTML = '';
-    });
-
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const email = loginForm['login-email'].value;
-      const password = loginForm['login-password'].value;
-
-      authRef.signInWithEmailAndPassword(email, password).then((cred) => {
-        const modal = document.querySelector('#modal-login');
-        M.Modal.getInstance(modal).close();
-        loginForm.reset();
-      });
-    });
-    //listen for authentification status change
     authRef.onAuthStateChanged(user => {
       this.uiControlVision(user);
       if (user) {
         this.userID = user.uid;
         this.getExamplesFromCloud(user);
+        this.createAuthPanelMain(true);
+        document.getElementById('create-design')
+          .addEventListener('click', createEditorPage);
       } else {
         const dom = DOM.getHTMLElements();
-        dom.exampleInner.insertAdjacentHTML('beforeend', `
+        dom.exampleInner.innerHTML = `
         <div class="out__of__login__container">
-        <h4 class="out__of__login__title">
-        Log in to see saved images of all users and get max experience of Canva!   
-        <h4>
-        </div>
-        `);
+            <h4 class="out__of__login__title">
+                Log in to see saved images of all users and get max experience of Canva!   
+            <h4>
+        </div>`;
+        document.getElementById('create-design')
+          .removeEventListener('click', createEditorPage);
+        this.createAuthPanelMain(false);
       }
     });
 
   }
 
+  closeAuthModal () {
+    const myModalEl = document.getElementById('authenticationModal');
+    const modal = bootstrap.Modal.getInstance(myModalEl);
+    modal.hide();
+  }
+
+  uiControlVision (user) {
+    const accountInfo = document.querySelector('.account-details');
+
+    if (user) {
+      accountInfo.innerHTML = `You email: ${user.email}`;
+      this.login = true;
+    } else {
+      accountInfo.innerHTML = '';
+      this.login = false;
+    }
+  }
+
   getExamplesFromCloud (user) {
     const stRef = this.storageRef;
     const dataRef = this.dbRef;
+    this.changeExistingSlidesDatasets();
     const slides = [];
     const swiper = slider.secondSlider();
     dataRef.collection(`${user.uid}`).get().then((snapshot) => {
@@ -190,68 +148,48 @@ class Authentication {
         imgPath.getDownloadURL().then((url) => {
           const card = `
                           <div class="swiper-slide">
-                              <div class="card__container modal-trigger" href="#modal${imgName + 1000}">
+                              <div class="card__container" data-bs-toggle="modal" data-bs-target="#idOfcard${imgName.split(' ').join('')}">
                                   <div class='slider__card-header'>
-                                       <img class='slider__card-header-img' src='${url}' style="width:100%">
+                                       <img class='slider__card-header-img' src='${url}' style="width:100%" alt="slider card">
                                   </div>
+                              </div>`;
+          const modal = `
+                          <div class="modal fade" id="idOfcard${imgName.split(' ').join('')}" tabindex="-1" aria-labelledby="idOfcard${imgName.split(' ').join('')}Label" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h3 class="modal-title" id="exampleModalLabel">The image of the user</h3>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <img src="${url}" alt="you design">
+                                </div>
+                                <div class="modal-footer">
+                                  <a href="${url}" type="button" class="btn btn-primary btn-lg" target="_blank" class="btn btn-secondary">Open in net tab</a>
+                                  <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Close</button>
+                                </div>
                               </div>
-                  `;
-          const modal = `<div id="modal${imgName + 1000}" class="modal modal-fixed-footer">
-                                  <div class="modal-content">
-                                    <img src="${url}" alt="you design">
-                                  </div>
-                                  <div class="modal-footer">
-                                    <a href="${url}" target="_blank" class="modal-close waves-effect waves-green btn">Open in net tab</a>
-                                    <a href="#!" class="modal-close waves-effect waves-green btn">Close</a>
-                                  </div>
-                              </div>
+                            </div>
                           </div>`;
 
-          document.body.insertAdjacentHTML('beforeend', modal);
+          modals.appendModals(modal)
           slider.addSlides(swiper, card);
-          let modals = document.querySelectorAll('.modal');
-          M.Modal.init(modals, {
-            inDuration: '200',
-            outDuration: '300',
-            opacity: '0.7',
-            onOpenStart (e) {
-              if (auth.login && e.id === 'modal1') {
-                createEditorPage();
-                M.Modal.destroy();
-              }
-            },
-          });
         });
       });
     });
   }
 
-  uiControlVision (user) {
-    const loggedOutLinks = document.querySelectorAll('.logged-out');
-    const loggedInLinks = document.querySelectorAll('.logged-in');
-    const accountInfo = document.querySelector('.account-details');
-
-    if (user) {
-      const html = `<div class="flow-text"> Logged in as ${user.email}</div>`;
-      accountInfo.innerHTML = html;
-      loggedInLinks.forEach(item => item.style.display = 'block');
-      loggedOutLinks.forEach(item => item.style.display = 'none');
-      this.login = true;
-    } else {
-      accountInfo.innerHTML = '';
-      loggedInLinks.forEach(item => item.style.display = 'none');
-      loggedOutLinks.forEach(item => item.style.display = 'block');
-    }
-  }
-
-  createAuth () {
-    const dom = DOM.getHTMLElements();
-    let constructorLoginPanel = document.createElement('div');
-    constructorLoginPanel.innerHTML = `
-            <button type='button'>Account</button>
-            <button type='button'>Logout</button>
-        `;
-    dom.headerControls.append(constructorLoginPanel);
+  changeExistingSlidesDatasets () {
+    const cardsContainers = document.querySelectorAll('.card__container');
+    cardsContainers.forEach(item => {
+      if (item.dataset.type === 'Resume') {
+        item.removeAttribute('data-bs-toggle');
+        item.removeAttribute('data-bs-target');
+        item.addEventListener('click', () => {
+          createEditorPage();
+        }, { once: true });
+      }
+    });
   }
 
   saveImgToCloud (canvas, imgName) {
@@ -277,76 +215,8 @@ class Authentication {
     });
   }
 
-  createAuthPanelMain2 (user) {
-    const mainLoginPanel = document.querySelector('#auth-info');
-    const dom = DOM.getHTMLElements();
-
-    dom.authInfo.innerHTML = `
-            <!-- NAVBAR -->
-                    <ul id="nav-mobile" class="right ">
-                        <li class="logged-in" style="display:block">
-                            <a href="#modal-account2" class="white-text modal-trigger flow-text waves-effect waves-light btn">Account</a>
-                        </li>    
-                        <li class="logged-in" style="display:block">
-                            <a href="#" class="white-text flow-text waves-effect waves-light btn" id='create-design'>Create a design</a>
-                        </li>
-                        <li class="logged-out" style="display:none">
-                            <a href="#modal-login2" class="white-text modal-trigger flow-text waves-effect waves-light btn">Log in</a>
-                        </li>
-                        <li class="logged-out" style="display:none">
-                            <a href="#modal-signup2" class="white-text modal-trigger flow-text waves-effect waves-light btn orange lighten-2">Sign up</a>
-                        </li>
-                        <li class="logged-in" style="display:block">
-                            <a href="#" class="white-text flow-text waves-effect waves-light btn" id="logout" >Log out</a>
-                        </li>
-                    </ul>
-         
-             <!-- SIGN UP MODAL -->
-             <div id="modal-signup2" class="modal">
-                <div class="modal-content">
-                <h4>Sign up</h4><br />
-                <form id="signup-form">
-                    <div class="input-field">
-                        <input type="email" id="signup-email" required />
-                        <label for="signup-email">Email address</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" id="signup-password" required />
-                        <label for="signup-password">Choose password</label>
-                    </div>
-                    <button class="white-text flow-text waves-effect waves-light btn orange lighten-2 z-depth-0">Sign up</button>
-                </form>
-                </div>
-            </div>
-            <!-- LOGIN MODAL -->
-            <div id="modal-login2" class="modal">
-                <div class="modal-content">
-                <h4>Login</h4><br />
-                <form id="login-form">
-                    <div class="input-field">
-                        <input type="email" id="login-email" required />
-                        <label for="login-email">Email address</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" id="login-password" required />
-                        <label for="login-password">Your password</label>
-                    </div>
-                    <button class="white-text flow-text waves-effect waves-light btn orange lighten-2 z-depth-0">Log in</button>
-                </form>
-                </div>
-            </div>
-            <!-- ACCOUNT MODAL -->
-            <div id="modal-account2" class="modal">
-              <div class="modal-content center-align">
-                <h4>Account details</h4><br />
-                
-                <div class="account-details"><div class="flow-text"> Logged in as ${user.email}</div></div>
-                <div class="account-extras"></div>
-              </div>
-            </div>
-        `;
-    this.materializeSetup();
-    this.firebaseSetup();
+  userLoggedIn () {
+    return this.login;
   }
 }
 

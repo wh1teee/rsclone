@@ -5,7 +5,7 @@ header.main-header {
   top: 0;
   z-index: 3;
   height: 6.4rem;
-  display: flex;
+  //display: flex;
 
   background: white;
   padding: 0 3.2rem;
@@ -35,7 +35,6 @@ header.main-header {
         margin-left: 1rem;
       }
     }
-
 
     button {
       &#download-button {
@@ -136,7 +135,6 @@ main.main {
   }
 }
 
-
 .examples__inner-title {
   font-weight: 700;
   font-size: 2.4rem;
@@ -182,10 +180,47 @@ footer img.gh {
     max-width: 100%;
   }
 }
+
 .modal-footer {
-  display: flex ;
-  justify-content: space-around ;
-  a {
-    border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.authentication {
+  max-width: 400px !important;
+  font-size: 17px;
+
+  button {
+    margin-top: 10px !important;
+    border-radius: 15px !important;
+  }
+
+  label {
+    margin: 8px 0;
+  }
+
+  input {
+    font-size: 16px !important;
+    border-radius: 15px !important;
+  }
+
+  .modal-body {
+    padding: 20px 15px 20px 15px !important;
+  }
+  .nav-link {
+    text-transform: uppercase;
+  }
+}
+
+.main-header {
+  .account-btn, .nav-link.btn {
+    background-color: #26a69a;
+    color: #eff9f2 !important;
+  }
+}
+
+.account-info {
+  button {
+    margin-right: 4px;
   }
 }

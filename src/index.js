@@ -10,21 +10,23 @@ import auth from './js/FirebaseAuth';
 import './styles/main.scss';
 import './style.scss';
 import { startMovable } from './js/moveable';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import modals from './js/Modals';
 
 const workSpace = new WorkSpace('resume');
 let moveableItems;
 
-function startMain (ifLoggedIn = false) {
-  M.AutoInit();
+function createMain (ifLoggedIn = false) {
   createMainDOM();
+  modals.injectModals();
   header.createMainHeader();
   auth.createAuthPanelMain(ifLoggedIn);
+  auth.firebaseSetup(ifLoggedIn);
   window.removeEventListener('resize', resizeWindowListener);
   slider.init();
-  document.getElementById('create-design').addEventListener('click', createEditorPage);
 }
 
-startMain();
+createMain();
 
 function createEditorPage () {
     const controlsElements = new ControlsElements('Templates');
@@ -51,4 +53,4 @@ function resizeWindowListener (e) {
   workSpace.calculateScale(e);
 }
 
-export { moveableItems, createEditorPage, startMain };
+export { moveableItems, createEditorPage, createMain };

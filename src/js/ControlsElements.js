@@ -48,15 +48,14 @@ class ControlsElements {
           listItem.dataset.bsToggle = 'modal';
           listItem.dataset.bsTarget = '#developingModal';
         }
-      }
-
-      if (this.template === 'Elements') {
+        listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.jpg' class='element-${fileStyle}' data-index='${i}' data-identificator='${fileStyle}${i}' id='element-${fileStyle}${i}' alt="templates">`;
+      } else if (this.template === 'Elements') {
         if (i === 16) break;
-        listItem.innerHTML = `<img src='data:image/svg+xml,${elements[1][i].src}' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
+        listItem.innerHTML = `<img src='data:image/svg+xml,${elements[1][i].src}' class='element-${fileStyle}' id='element-${fileStyle}${i}' alt="svg element">`;
       } else if (this.template === 'Text') {
-        listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.png' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
+        listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.png' class='element-${fileStyle}' id='element-${fileStyle}${i}' alt="svg element">`;
       } else {
-        listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.jpg' class='element-${fileStyle}' id='element-${fileStyle}${i}'>`;
+        listItem.innerHTML = `<img src='../images/${this.template}/${fileStyle}${i}.jpg' class='element-${fileStyle}' id='element-${fileStyle}${i}' alt="svg element">`;
       }
 
       dom.controlsElementsList.append(listItem);
@@ -211,8 +210,8 @@ class ControlsElements {
       divBackground.setAttribute('class', 'controls__elements-background-div');
 
       divBackground.innerHTML = `
-            <input type='color' id='background-color' name='background-color' value='#e66465'>
-            <label for='background-color'>Background</label>
+            <input type='color' id='background-color' name='background-color' value='#563d7c' title='Choose your color'>
+            <label for='background-color' class='form-label'>Background</label>
             `;
       dom.controlsElements.prepend(divBackground);
       document.querySelector('.controls__elements-background-div').addEventListener('input', (event) => {

@@ -4,8 +4,6 @@ import WorkSpace from './WorkSpace';
 
 const templateIcons = ['Templates', 'Uploads', 'Photos', 'Elements', 'Text', 'Drawings', 'Background', 'Music', 'Videos', 'Folders', 'More'];
 const templateImages = ['table_chart', 'cloud_upload', 'photo_size_select_actual', 'art_track', 'text_fields', 'brush', 'texture', 'audiotrack', 'ondemand_video', 'folder_special', 'more_horiz'];
-const highLightColor = '#FDD41B';
-const color = '#FAE172';
 const implementedIcons = 7;
 
 const workSpace = new WorkSpace('resume');

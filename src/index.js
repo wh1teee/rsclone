@@ -29,13 +29,14 @@ function createMain (ifLoggedIn = false) {
 createMain();
 
 function createEditorPage () {
-    const controlsElements = new ControlsElements('Templates');
-    createConstructorDOM();
-    header.createHeader();
-    workSpaceHeader.createWorkSpaceHeaderRight();
-    controls.createControlPanel();
-    controlsElements.createControlElementsPanel();
-    workSpace.createWorkSpace();
+  const controlsElements = new ControlsElements('Templates');
+  createConstructorDOM();
+  modals.injectModals();
+  header.createHeader();
+  workSpaceHeader.createWorkSpaceHeaderRight();
+  controls.createControlPanel();
+  controlsElements.createControlElementsPanel();
+  workSpace.createWorkSpace();
 
   document.querySelector('.controls__elements-list').addEventListener('click', (event) => {
 

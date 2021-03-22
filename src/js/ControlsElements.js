@@ -1,8 +1,6 @@
 import DOM from './DOMLinks';
 import elements from '../data/elements';
 import WorkSpace from './WorkSpace';
-import { createEditorPage } from '../index';
-import auth from './FirebaseAuth';
 
 const templateElements = ['Templates', 'Uploads', 'Photos', 'Elements', 'Text', 'Drawings', 'Background', 'Music', 'Videos', 'Folders', 'More'];
 const templateElementsNumber = [12, 10, 13, 18, 10, 20, 20, 20, 10, 10, 10];
@@ -85,20 +83,13 @@ class ControlsElements {
       dom.controlsElements.prepend(divUpload);
 
       document.getElementById('input-upload').addEventListener('change', (event) => this.handleFiles(event));
-      
-      let local = JSON.parse(localStorage.getItem('filesLinks'));
-      
-      for(let i = 0; i < local.length; i += 1) {
-        let img =  `<img src=${local[i]} class="upload-image" id="upload-image${100+i}"></img>`;
-        dom.controlsElementsList.innerHTML += img;
-      }
     }
   }
 
   handleFiles (event) {
     const dom = DOM.getHTMLElements();
     let files = event.target.files;
-    
+
     if (!files.length) {
       dom.controlsElementsList.innerHTML = '<p>No files selected!</p>';
     } else {
@@ -110,7 +101,7 @@ class ControlsElements {
         fileLinks.push(src);
         if (!fileLinks.includes(src)) fileLinks.push(src);
         uploadImage.onload = function () {
-                 };
+        };
 
         uploadImage.classList.add('upload-image');
         uploadImage.setAttribute('id', 'upload-image' + countFiles);
@@ -177,8 +168,8 @@ class ControlsElements {
     panel.prepend(panelButton);
 
     for (let r = 0, max = 5; r <= max; r += 1) {
-      for (var g = 0; g <= max; g += 1) {
-        for (var b = 0; b <= max; b += 1) {
+      for (let g = 0; g <= max; g += 1) {
+        for (let b = 0; b <= max; b += 1) {
           let paletteBlock = document.createElement('div');
           paletteBlock.className = 'button-draw';
           paletteBlock.addEventListener('click', ((event) => workSpace.draw(event)));

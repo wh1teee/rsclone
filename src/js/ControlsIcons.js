@@ -26,8 +26,8 @@ class ControlsIcons {
         listItem.classList.add('before__active');
       }
       if (index >= implementedIcons) {
-        listItem.classList.add('modal-trigger');
-        listItem.setAttribute('href', '#modal2');
+        listItem.dataset.bsToggle = 'modal'
+        listItem.dataset.bsTarget = '#developingModal'
       }
       const templateImage = templateImages[index];
       listItem.innerHTML = `
@@ -37,7 +37,7 @@ class ControlsIcons {
       dom.controlsIconsList.append(listItem);
       dom.controlsIconsList.addEventListener('click', (event) => {
 
-        if (event.target.dataset.targetid == `${item}` || event.target.getAttribute('id') == `controls__icons-${item}`) { // || event.target.parentNode.parentNode.getAttribute('class') == 'controls__icons-list') {
+        if (event.target.dataset.targetid === `${item}` || event.target.getAttribute('id') === `controls__icons-${item}`) { // || event.target.parentNode.parentNode.getAttribute('class') == 'controls__icons-list') {
           this.switchToIcon(`${item}`);
         }
       });

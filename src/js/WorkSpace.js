@@ -1,33 +1,27 @@
 import DOM from './DOMLinks';
-import editor from './Editor';
 import workSpaceHeader from './WorkSpaceHeader';
-import {template1, template2, template3, template4} from '../templates';
+import templates from '../templates';
+import '../styles/editor.scss';
 
-let inner = template1;
 let canvas = document.createElement('canvas');
 let context = canvas.getContext('2d');
 const availableResumeTemplates = 4
 
 canvas.setAttribute('class', 'canvas');
-let context = canvas.getContext('2d');
 
 class WorkSpace {
 
   constructor (type) {
     this.type = type;
-
   }
 
   // style - ex: templates1
   createWorkSpace () {
-    const dom = DOM.getHTMLElements();
     document.querySelector('.workspace__field').innerHTML = `
             <div class='sheet ${this.type}'>
-                <div class='sheet__container'>
-                    
+                <div class='sheet__container'>                    
                 </div>    
             </div>
-
         `;
     }
 
@@ -36,8 +30,8 @@ class WorkSpace {
     document.querySelector('.sheet').style.height = document.querySelector('.sheet').clientWidth * 29.7 / 21 / 10 + 'rem';
 
     // const newSize = event.target.innerWidth * 0.56 / 10;
-    document.querySelector('.sheet').style.width = newScale + 'rem';
-    document.querySelector('.sheet').style.height = newScale + 'rem';
+    // document.querySelector('.sheet').style.width = newScale + 'rem';
+    // document.querySelector('.sheet').style.height = newScale + 'rem';
     const newScale = document.querySelector('.sheet').clientWidth / document.querySelector('.sheet__container').clientWidth;
     document.querySelector('.sheet__container').style.transform = `translateX(-50%) translateY(-50%) scale(${newScale})`;
     }
@@ -48,7 +42,6 @@ class WorkSpace {
         canvas.setAttribute('style', 'pointer-events: none;  position:relative;');
 
         if (element.classList.contains('element-template')) {
-           const inner = element.dataset.identificator
             const innerCount = element.dataset.index
           if (innerCount <= availableResumeTemplates) {
             dom.sheetContainer.innerHTML = `${(templates[innerCount - 1])}`;
@@ -122,10 +115,7 @@ class WorkSpace {
         canvas.setAttribute('style', 'pointer-events: none;  position:relative;');
     }
 
-
     draw(event){
-        const dom = DOM.getHTMLElements();
-
         context.lineCap = 'round';                                           // переменные для рисования
         context.lineWidth = 6;
         context.strokeStyle = event.target.style.backgroundColor;
@@ -147,17 +137,6 @@ class WorkSpace {
                 context.closePath();
             }
        };
-
-    }
-
-    clear() {
-        context.globalCompositeOperation = 'destination-out'; // изменяем параметр, чтобы стиралось
-        context.fillStyle = 'rgba(255, 255, 255, 1)'; // зададим белый цвет, чтобы проверить, что не закрашивается
-        context.beginPath();
-        context.arc(120, 80, 70, 0, Math.PI*2, FALSE);
-        context.closePath();
-        context.fill();
-        context.globalCompositeOperation = 'source-over';
     }
 
     clearAllDrawing() {

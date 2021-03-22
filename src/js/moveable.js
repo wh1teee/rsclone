@@ -3,13 +3,13 @@ import Selecto from 'selecto';
 import { moveableItems } from '../index';
 
 export function startMovable () {
-  const container = document.querySelector('.sheet__container');
+  const container = document.querySelector('.workspace__field');
   const frameMap = new Map();
   let targets = [];
 
   const selecto = new Selecto({
     container,
-    dragContainer: '.sheet__container',
+    dragContainer: container,
     selectableTargets: ['.sheet__container .moveable'],
     hitRate: 0,
     selectByClick: true,
@@ -28,8 +28,8 @@ export function startMovable () {
     origin: true,
   })
     .on('clickGroup', e => {
-    selecto.clickTarget(e.inputEvent, e.inputTarget);
-  })
+      selecto.clickTarget(e.inputEvent, e.inputTarget);
+    })
     .on('dragOriginStart', ({ dragStart, target }) => {
       if (!frameMap.has(target)) {
         frameMap.set(target, {
@@ -186,13 +186,32 @@ export function startMovable () {
     });
 
   selecto.on('dragStart', e => {
-    const target = e.inputEvent.target;
-    const leftPanel = document.querySelector('.workspace__header-left');
+    const target = e.inputEvent.target,
+      leftPanel = document.querySelector('.workspace__header-left'),
+      drawingMenuIcon = document.querySelector('#controls__icons-Drawings');
 
-    if(!target.classList.contains('moveable') && target.tagName !== 'path') {
-      leftPanel.innerHTML = ''
-   }
     if (
+      !target.classList.contains('moveable-area')
+      && !target.classList.contains('moveable-control')
+      && target.tagName !== 'path'
+    ) {
+      if (target.classList.contains('photo')) {
+        leftPanel.innerHTML = ''
+      } else {
+        leftPanel.innerHTML = `
+       <input type='color' id='head' name='head' value='${
+          parseColor(window.getComputedStyle(target).backgroundColor).hex
+        }'>
+        <label for='head' class='form-label'>Color</label>
+      `;
+      }
+    }
+    if (checkTypeOfElement(target) === 'other') {
+      document.querySelector('#head').addEventListener('input', (e) => {
+          target.style.background = `${e.target.value}`;
+      });
+    }
+    if (drawingMenuIcon.classList.contains('active_icon') ||
       moveable.isMoveableElement(target)
       || targets.some(t => t === target || t.contains(target))
     ) {
@@ -201,25 +220,59 @@ export function startMovable () {
   }).on('select', e => {
     targets = e.selected;
     moveable.target = targets;
-    targets.forEach( el => {
+    targets.forEach(el => {
       const leftPanel = document.querySelector('.workspace__header-left');
       if (el.className.includes('text')) {
         leftPanel.innerHTML = `
 <!--        <input id="font__style" type="text">-->
-        <input class="text__size" type="number" value="${parseInt(window.getComputedStyle(el).fontSize)}">
+        <label for='fontSize' class='form-label'>Size</label>
+        <input class="text__size form-control" name="fontSize" type="number" value="${parseInt(window.getComputedStyle(el).fontSize)}">
+        <input type='color' id='head' name='head' value='${parseColor(window.getComputedStyle(el).color).hex}'>
+        <label for='head' class='form-label'>Color</label>
+        `;
+        document.querySelector('.text__size').addEventListener('input', (e) => {
+          moveableItems[0].target.forEach(el => {
+            if (checkTypeOfElement(el) === 'text') {
+              el.style.fontSize = `${e.target.value}px`;
+            }
+          });
+        });
+        document.querySelector('#head').addEventListener('input', (e) => {
+          moveableItems[0].target.forEach(el => {
+            if (checkTypeOfElement(el) === 'text') {
+              el.style.color = `${e.target.value}`;
+            }
+          });
+        });
+      }
+      if (el.className.includes('svg-element')) {
+        leftPanel.innerHTML = `
         <input type='color' id='head' name='head' value='#e66465'>
         <label for='head'>Color</label>
         `;
-        document.querySelector('.text__size').addEventListener('input', (e) => {
-          el.style.fontSize = `${e.target.value}px`
-        })
-        document.querySelector('#head').addEventListener("input", (e) => {
-          moveableItems[0].target.forEach( el => {
-            el.style.color = `${e.target.value}`;
-          })
-        })
+        document.querySelector('#head').addEventListener('input', (e) => {
+          moveableItems[0].target.forEach(el => {
+            if (checkTypeOfElement(el) === 'svg') {
+              const pathOfEl = el.querySelector('path');
+              const lineOfEl = el.querySelector('line');
+              const gOfEl = el.querySelector('g');
+              if (pathOfEl) {
+                pathOfEl.style.fill = `${e.target.value}`;
+              }
+              if (lineOfEl) {
+                lineOfEl.style.stroke = `${e.target.value}`;
+              }
+              if (gOfEl) {
+                gOfEl.style.stroke = `${e.target.value}`;
+              }
+            }
+            if (checkTypeOfElement(el) === 'text') {
+              el.style.color = `${e.target.value}`;
+            }
+          });
+        });
       }
-    })
+    });
   }).on('selectEnd', e => {
     if (e.isDragStart) {
       e.inputEvent.preventDefault();
@@ -229,5 +282,38 @@ export function startMovable () {
       });
     }
   });
-  return [moveable, selecto]
+  return [moveable, selecto];
+}
+
+function checkTypeOfElement (element) {
+
+  if (
+    element.tagName === 'path'
+    || element.tagName === 'g'
+    || element.tagName === 'line'
+    || element.tagName === 'svg'
+  ) {
+    return 'svg'
+  }
+  if (element.classList.contains('svg-element')) return 'svg';
+  if (element.className.includes('text')) return 'text';
+  if (element.classList.contains('moveable-area')) return 'moveable-area';
+  if (element.classList.contains('photo')) return 'photo';
+
+  return 'other';
+}
+
+function parseColor(color) {
+  const arr=[];
+  console.log(color);
+  color.replace(/[\d+\.]+/g, function(v) { arr.push(parseFloat(v)); });
+  console.log("#" + arr.slice(0, 3).map(toHex).join(""));
+  return {
+    hex: "#" + arr.slice(0, 3).map(toHex).join(""),
+    opacity: arr.length === 4 ? arr[3] : 1
+  };
+}
+function toHex(int) {
+  const hex = int.toString(16);
+  return hex.length === 1 ? "0" + hex : hex;
 }

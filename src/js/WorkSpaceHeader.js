@@ -1,16 +1,11 @@
 import DOM from './DOMLinks';
-import editor from './Editor';
 import {template1, template2} from '../templates';
 import {moveableItems} from '../index';
 
-let inner = template1;
-
 let canvas = document.createElement('canvas');
 canvas.setAttribute('class', 'canvas');
-let context = canvas.getContext('2d');
 
 class WorkSpaceHeader {
-
     createWorkSpaceHeaderRight(){
         const dom = DOM.getHTMLElements();
         dom.workSpaceHeaderRight.innerHTML = `
@@ -19,17 +14,29 @@ class WorkSpaceHeader {
         <span class="material-icons" id="volume">volume_off</span>
         `;
         document.getElementById('delete__all').addEventListener('click', function() {
+            const dom = DOM.getHTMLElements();
             dom.sheetContainer.innerHTML = '';
             dom.sheetContainer.style.backgroundColor = 'white';
             dom.sheetContainer.style.backgroundImage = 'none';
+            moveableItems[0].updateRect()
         });
         document.getElementById('delete__element').addEventListener('click', () => {
-
+            if (!moveableItems[0].target) return; // if there are no selected objects
             moveableItems[0].target.forEach( el => {
                 el.remove()
             })
             moveableItems[0].updateRect()
             dom.workSpaceHeaderLeft.innerHTML = ''
+        })
+        document.addEventListener('keydown', (e) => {
+            if (e.code === "Delete") {
+                if (!moveableItems[0].target) return; // if there are no selected objects
+                moveableItems[0].target.forEach( el => {
+                    el.remove()
+                })
+                moveableItems[0].updateRect()
+                dom.workSpaceHeaderLeft.innerHTML = ''
+            }
         })
         document.getElementById('volume').addEventListener('click', (e) => {
             if (e.target.textContent === 'volume_off') {
@@ -49,23 +56,7 @@ class WorkSpaceHeader {
     }
 
     createWorkSpaceHeaderLeft(){
-        const dom = DOM.getHTMLElements();
-        dom.workSpaceHeaderLeft.innerHTML = `
-        <input type='color' id='head' name='head' value='#e66465'>
-        <label for='head'>Color</label>
-        `;
-        document.querySelector('#head').addEventListener("input", (e) => {
-            if (!moveableItems[0].target) return;
-        moveableItems[0].target.forEach( el => {
-                el.querySelector('path').style.fill = `${e.target.value}`
-            })
-        })
     }
-
-
-
-
-
 }
 
 const workSpaceHeader = new WorkSpaceHeader;

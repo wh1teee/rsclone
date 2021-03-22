@@ -26,39 +26,27 @@
         //margin: 0 auto;//0 -45px
         display: flex;
         justify-content: space-around;
-    
+
         //position: absolute;
         transition: all 0.2s ease-out;
     }
 }
 
-.slider__card {
 
-    margin: 0 4.5rem;
-    //margin: 0 auto;
+.card__container {
     border-radius: 9px;
-    background-color: white;
-    transition: box-shadow 0.14s linear, background-color 0.14s linear;
+    transition: background-color .2s linear;
+    cursor: pointer;
+    text-align: center;
 
-    &:hover {
-        background-color: rgb(25, 185, 177);
-      //  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
-        color: white;
-    }
-
-    &-header {
+    .slider__card-header {
         width: 20rem;
         height: 15rem;
         overflow: hidden;
+        border: solid 1px white;
         border-radius: 8px;
-
-        &:hover {
-            border: solid 1px rgb(25, 185, 177);
-        }
-
     }
-
-    &-title-h4 {
+    .slider__card-title-h4 {
         font-family: Open Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
         font-weight: 600;
         font-size: 1.7rem;
@@ -66,5 +54,32 @@
         line-height: 1.6;
         padding: 1rem 0 1rem 0.5rem;
     }
+    &:hover {
+        background-color: #26a69a;
+        .slider__card-header {
+            border: solid 1px #26a69a;
+        }
+    }
 }
 
+.open {
+border-radius: 30px;
+}
+
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.swiper-pagination {
+    bottom: 0 !important;
+}
+
+.out__of__login__container {
+    text-align: center;
+}
+.out__of__login__title {
+    margin: 20px 0 10px;
+    font-size: 3rem;
+}

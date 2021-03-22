@@ -1,214 +1,153 @@
 import '../styles/slider.scss';
-
 import DOM from './DOMLinks';
+import { Keyboard, Navigation, Pagination, Swiper } from 'swiper';
+import 'swiper/swiper-bundle.css';
 
-const dom = DOM.getHTMLElements(); 
-
+Swiper.use([Navigation, Pagination, Keyboard]);
 const examples = [
-    {
-        'type':'Resume',
-        'img':'../images/Types/resume.jpg'
-    },
-    {
-        'type':'Letter',
-        'img':'../images/Types/letter.jpg'
-    },
-    {
-        'type':'Report',
-        'img':'../images/Types/report.jpg'
-    },    
-    {
-        'type':'Card',
-        'img':'../images/Types/card.jpg'
-    },    
-    {
-        'type':'Business card',
-        'img':'../images/Types/business-card.jpg'
-    },
-    {
-        'type':'Certificate',
-        'img':'../images/Types/certificate.jpg'
-    },
-    {
-        'type':'Facebook post',
-        'img':'../images/Types/facebook-post.jpg'
-    },
-    {
-        'type':'Instagram post',
-        'img':'../images/Types/instagram-post.jpg'
-    }
+  {
+    'type': 'Resume',
+    'img': '../images/Types/resume.jpg',
+  },
+  {
+    'type': 'Letter',
+    'img': '../images/Types/letter.jpg',
+  },
+  {
+    'type': 'Report',
+    'img': '../images/Types/report.jpg',
+  },
+  {
+    'type': 'Card',
+    'img': '../images/Types/card.jpg',
+  },
+  {
+    'type': 'Business card',
+    'img': '../images/Types/business-card.jpg',
+  },
+  {
+    'type': 'Certificate',
+    'img': '../images/Types/certificate.jpg',
+  },
+  {
+    'type': 'Facebook post',
+    'img': '../images/Types/facebook-post.jpg',
+  },
+  {
+    'type': 'Instagram post',
+    'img': '../images/Types/instagram-post.jpg',
+  },
 ];
 
-
-
 class Slider {
-    constructor() {
-        this.quantity = 4;
-    }
+  init (
+    container = '.swiper-container',
+    keyboard = false, nextEl = '.swiper-button-next.next1',
+    prevEl = '.swiper-button-prev.prev1',
+    pagination = '.swiper-pagination.pagination1',
+    loop = true,
+  ) {
 
-    getCurrentQuantity() {
-        let quantity = 1;
-        if (document.body.clientWidth >= 1280) { 
-            quantity = 4;
-          } else if (document.body.clientWidth >= 768) {
-              quantity = 3;
-            } else if (document.body.clientWidth >= 520) {
-                quantity = 2;
-              };
-        return quantity;
-    }
+    const slider = new Swiper(container, {
+      slidesPerView: 1,
+      speed: 400,
+      // centeredSlides: true,
+      // centeredSlidesBounds: true,
+      loop: loop,
+      navigation: {
+        nextEl: nextEl,
+        prevEl: prevEl,
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+        },
+        570: {
+          slidesPerView: 2,
+        },
+        930: {
+          slidesPerView: 3,
+        },
+        1100: {
+          slidesPerView: 4,
+        },
+      },
+      keyboard: {
+        enabled: keyboard,
+        onlyInViewport: true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true,
+      },
+    });
 
+    examples.forEach((item, index) => {
+      slider.addSlide(index, `
+<div class="swiper-slide">
+    <div class="card__container" data-bs-toggle="modal" data-bs-target="#${this.getIndexOfModal(item)}Modal" data-type="${examples[index].type}">
+        <div class='slider__card-header'>
+            <img class='slider__card-header-img' src='${examples[index].img}' alt="slider image">
+        </div>
+        <div class='slider__card-title'>
+            <h4 class='slider__card-title-h4'>${examples[index].type}</h4>
+        </div>
+    </div>
+</div>`);
+    });
+  }
 
-    addListenerForSlider(side) {
-        
-        this.quantity = this.getCurrentQuantity();
-        console.log(this.quantity);
-
-        setTimeout(() => {
-            this.prepareTrack(side);
-        }, 0);
-
-        setTimeout(() => {
-            this.generateCards(side, this.quantity);
-            const modals = document.querySelectorAll('#modal-no');
-        }, 100);
-
-        setTimeout(() => {
-            this.finishScroll(side);
-            this.removeCards(side, this.quantity);
-        }, 400);
-
-        setTimeout(() => {
-            this.clearScroll();
-        }, 410);
-    }
-
-    changeSlider(event) {
-        let newQuantity = this.getCurrentQuantity();
-
-        if (newQuantity !== this.quantity) {
-            this.removeCards('left', this.quantity);
-            this.generateCards('left', newQuantity);
-            this.quantity = newQuantity;
-        }
-    }
-
-    prepareTrack(side) {
-        const dom = DOM.getHTMLElements(); 
-
-        if (side === 'left') {
-            dom.track.style.right = '0';
-        } else {
-            dom.track.style.left = '0';
-        }
-
-        dom.arrows.forEach((arrow) => {
-            arrow.setAttribute('disabled', '');
-        })
-    }
-
-    finishScroll(side) {
-        const dom = DOM.getHTMLElements(); 
-
-        if (side === 'left') {
-            dom.track.style.left = '0';
-            dom.track.style.right = 'auto';
-        } else {
-            dom.track.style.left = 'auto';
-            dom.track.style.right = '0';
-        }
-    }
-
-    clearScroll() {
-        const dom = DOM.getHTMLElements(); 
-
-        dom.track.style.left = '';
-        dom.track.style.right = '';
-
-        dom.arrows.forEach((arrow) => {
-            arrow.removeAttribute('disabled');
-        })
-    }
-
-    createCard(index) {
-        const dom = DOM.getHTMLElements();
-
-        const card = document.createElement('div');
-        card.className = 'slider__card';
-        card.setAttribute('data-id', index);
-        if (examples[index].type !== 'Resume')
-            card.innerHTML = `
-            <div href="#modal-no${index}" class='slider__card-header modal-trigger'>
-                <img class='slider__card-header-img' src='${examples[index].img}'>
-            </div>
-            <div class='slider__card-title'>
-                <h4 class='slider__card-title-h4'>${examples[index].type}<h4>
-            </div>
-            <!-- In progres MODAL NO -->
-                <div id="modal-no${index}" class="modal">
-                    <div class="modal-content">
-                        <h4 style='color:black'>This design is being creating. Please choose another one</h4><br />
-                    </div>
-                </div> 
-            `;
-        else 
-            card.innerHTML = `
-                <div href="#modal-no${index}" class='slider__card-header modal-trigger'>
-                    <img class='slider__card-header-img' src='${examples[index].img}'>
+  secondSlider () {
+    const dom = DOM.getHTMLElements();
+    dom.exampleInner.innerHTML = `
+                <h4 class='examples__inner-title'>Examples</h4>
+                <div class="swiper-container" id="ffff">
+                  <div class="swiper-wrapper" id="examples"></div>
+                  <div class="swiper-pagination pagination2"></div>
+                  <div class="swiper-button-prev prev2"></div>
+                  <div class="swiper-button-next next2"></div>
                 </div>
-                <div class='slider__card-title'>
-                    <h4 class='slider__card-title-h4'>${examples[index].type}<h4>
-                </div>
-                <!-- In progres MODAL YES -->
-                    <div id="modal-no${index}" class="modal">
-                    <div class="modal-content">
-                        <h4 style='color:black'>This design is available. Please log in</h4><br />
-                    </div>
-                </div>    
-                `;
-           
-        card.addEventListener('click', () => {
-            M.Modal.init(document.querySelector(`#modal-no${index}`));
-        });
-        dom.track.append(card);
-        
-        return card;
-    }
+             </div>
+    `;
+    return new Swiper('#ffff', {
+      slidesPerView: 3,
+      speed: 400,
+      navigation: {
+        nextEl: '.swiper-button-next.next2',
+        prevEl: '.swiper-button-prev.prev2',
+      },
+      pagination: {
+        el: '.swiper-pagination.pagination2',
+        type: 'bullets',
+        clickable: true,
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+        },
+        570: {
+          slidesPerView: 2,
+        },
+        930: {
+          slidesPerView: 3,
+        },
+        1100: {
+          slidesPerView: 4,
+        },
+      },
 
-  
-    generateCards(side, quantity = 4) {
-        let cardsIndex = [0, 1, 2, 3, 4, 5, 6, 7];
-        const dom = DOM.getHTMLElements();
+    });
+  }
 
-        dom.track.childNodes.forEach((card) => {
-            cardsIndex = cardsIndex.filter((item) => item != card.dataset.id);
-        })
+  addSlides (swiper, slides) {
+    swiper.appendSlide(slides);
+  }
 
-        const currentCardsIndex = cardsIndex.sort(() => Math.random() - 0.5).slice(0, quantity);
-        console.log(quantity);
-
-        for (let i = 0; i < quantity;  i += 1) {
-            const card = this.createCard(currentCardsIndex[i]);
-
-            if (side === 'left') {
-                dom.track.prepend(card);
-            } else {
-                dom.track.append(card);
-            }
-        }
-    }
-
-    removeCards(side, quantity = 4) {
-        const dom = DOM.getHTMLElements(); 
-
-        for (let i = 0; i < quantity; i++) {
-            const card = side === 'left' ? dom.track.lastChild : dom.track.firstChild;
-            dom.track.removeChild(card);
-        }
-    }
-
+  getIndexOfModal (el) {
+    return el.type === 'Resume' ? 'existing' : 'developing';
+  }
 }
 
 const slider = new Slider();
-
 export default slider;

@@ -1,174 +1,129 @@
-import createMainDOM from '../pages/main';
 import html2canvas from 'html2canvas';
 import Canvas2Image from 'wd-canvas2image';
 import html2PDF from 'jspdf-html2canvas';
 import auth from './FirebaseAuth';
-import slider from './Slider';
-
 import '../styles/constructor.scss';
-
 import DOM from './DOMLinks';
+import { createMain } from '../index';
 
 const menuElements = ['< Main', 'File'];
 const mainMenuElements = ['Home', 'Features', 'Learning'];
 
-
 class Header {
 
-    createMainHeader() {
-        const dom = DOM.getHTMLElements();
+  createMainHeader () {
+    const dom = DOM.getHTMLElements();
 
-        mainMenuElements.map(item => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `
-            <a class="waves-effect waves-light btn">${item}
+    mainMenuElements.map((item, i) => {
+      console.log(11);
+      const listItem = document.createElement('li');
+      listItem.classList.add('nav-item');
+      listItem.innerHTML = `
+            <a 
+            class="nav-link btn btn-lg ${i === 0 ? 'active' : ''}" 
+            type="button" 
+            data-bs-toggle="modal" 
+            data-bs-target="#developingModal">${item}
             <span class="material-icons">keyboard_arrow_down</span></a>
             `;
-            dom.menuControlsList.append(listItem); 
-        });      
-    }
-      
-    createHeader() {
-        const dom = DOM.getHTMLElements();
 
-        menuElements.map(item => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `
-            <a class="waves-effect waves-light btn white teal-text text-lighten-2">${item}</a>
+      dom.menuControlsList.append(listItem);
+    });
+  }
+
+  createHeader () {
+    const dom = DOM.getHTMLElements();
+
+    menuElements.map(item => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `
+            <a class="btn btn-lg no-shadow">${item}</a>
             `;
-            dom.menuControlsList.append(listItem);        
-        })
+      dom.menuControlsList.append(listItem);
+    });
 
-        
-
-
-     /*   dom.menuControlsList.addEventListener('click', (event) => {
-            console.log(event.target.textContent);
-            if (event.target.textContent == '< Main') {
-                console.log(event.target.textContent); //!!!
-            }
-        });*/
-        
-        dom.headerControls.innerHTML = `
-            
-            <li><a href="#modal-saveToCloud" class='waves-effect waves-light btn white teal-text text-lighten-2 modal-trigger' id='download-button0'>Save to cloud</a></li>
-            <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button1'>Save as img</a></li>
-            <li><a class='waves-effect waves-light btn white teal-text text-lighten-2' id='download-button2'>Save as pdf</a></li>
-            
-            <!-- SIGN UP MODAL -->
-             <div id="modal-saveToCloud" class="modal">
+    dom.headerControls.innerHTML = `
+            <li><a class='btn no-shadow' id='download-button0' type="button" data-bs-toggle="modal" data-bs-target="#saveToCloudModal">Save to cloud</a></li>
+            <li><a class='btn no-shadow' id='download-button1'>Save as img</a></li>
+            <li><a class='btn no-shadow' id='download-button2'>Save as pdf</a></li>            
+            <div class="modal fade" id="saveToCloudModal" tabindex="-1" aria-labelledby="saveToCloudModal" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                <h4>Input image name</h4><br />
-                <form id="save-form">
-                    <div class="input-field">
-                        <input type="text" id="save-name" required />
-                        <label for="save-name">Image name</label>
-                    </div>
-                    <button class="white-text flow-text waves-effect waves-light btn orange lighten-2 z-depth-0">Submit</button>
-                </form>
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Save image to cloud</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="save-form">
+                        <label for="save-name"></label>
+                        <input type="text" class="form-control" id="save-name" placeholder="Image name" required>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-lg btn-primary" form="save-form">Save</button>
+                  </div>
                 </div>
+              </div>
             </div>
-        `;  
-               
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     let modals = document.querySelectorAll('.modal');
-        //     M.Modal.init(modals);
-        // });
+        `;
 
-        document.getElementById('download-button0').addEventListener('click', function() {
-            const saveModal = document.querySelector('#modal-saveToCloud');
-            M.Modal.init(saveModal);
+    document.getElementById('download-button0').addEventListener('click', function () {
 
-            const saveForm = document.querySelector('#save-form');
-            saveForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const imgName = saveForm['save-name'].value;
-                
-                html2canvas(document.querySelector('.sheet__container')).then(function(canvas) {
-                    // document.body.appendChild(canvas);
-                    // const modal = document.querySelector('#modal-saveToCloud');
-                    M.Modal.getInstance(saveModal).close();
-                    saveForm.reset();
-                    auth.saveImgToCloud(canvas, imgName);
-            });
-            });
-            
+      const saveForm = document.querySelector('#save-form');
+      saveForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const imgName = saveForm['save-name'].value;
+
+        html2canvas(document.querySelector('.sheet__container')).then(function (canvas) {
+          const myModalEl = document.getElementById('saveToCloudModal');
+          bootstrap.Modal.getInstance(myModalEl).hide();
+          saveForm.reset();
+          auth.saveImgToCloud(canvas, imgName);
         });
+      });
+    });
 
-        document.getElementById('download-button1').addEventListener('click', function() {
-            html2canvas(document.querySelector('.sheet__container')).then(function(canvas) {
-                                   // document.body.appendChild(canvas);
-                  console.log('001');
-                  console.log(canvas);
-                  Canvas2Image.saveAsJPEG(canvas);
-                  
+    document.getElementById('download-button1').addEventListener('click', function () {
+      html2canvas(document.querySelector('.sheet__container')).then(function (canvas) {
+        Canvas2Image.saveAsJPEG(canvas);
+      });
+    });
 
-            });
+    document.getElementById('download-button2').addEventListener('click', function () {
+      html2canvas(document.querySelector('.sheet__container')).then(function () {
+        // document.body.appendChild(canvas);
+        return html2PDF(document.querySelector('.sheet__container'), {
+          jsPDF: {
+            format: 'a4',
+          },
+          html2canvas: {
+            scrollX: -window.scrollX,
+            scrollY: -window.scrollY,
+          },
+          imageType: 'image/jpeg',
+          output: './pdf/generate.pdf',
         });
+      });
+    });
 
-        document.getElementById('download-button2').addEventListener('click', function() {
-            html2canvas(document.querySelector('.sheet__container')).then(function() {
-                                   // document.body.appendChild(canvas);
-                  console.log('001');
-                  return html2PDF(document.querySelector('.sheet__container'), {
-                    jsPDF: {
-                        format: 'a4',
-                      },
-                    html2canvas: {
-                        scrollX: -window.scrollX,
-                        scrollY: -window.scrollY,
-                    },
-                    imageType: 'image/jpeg',
-                    output: './pdf/generate.pdf'
-                  });
-            });
-        });
-
-
-
-        if (document.querySelector('.constructor'))
-        document.querySelector('.constructor').addEventListener('click', (event) => {
-            console.log(event.target.textContent);
-            if (event.target.textContent == '< Main') {
-                console.log('555');
-                createMainDOM();
-                this.createMainHeader();
-                auth.createAuthPanelMain2(JSON.parse(localStorage.getItem('user')));
-                
-                auth. uiControlVision(JSON.parse(localStorage.getItem('user')));
-               
-
-                const getCurrentQuantity = () => {
-                    let quantity = 1;
-                    if (document.body.clientWidth >= 1280) { 
-                        quantity = 7;
-                        } else if (document.body.clientWidth >= 768) {
-                            quantity = 5;
-                        } else if (document.body.clientWidth >= 520) {
-                            quantity = 3;
-                            };
-                    return quantity;
-                }
-                slider.generateCards('left', slider.getCurrentQuantity());
-            }
-        });
-        
-
-    }    
-    
-    
-        
-   
-    
-    saveToLocalStorage(img) {
-        let showImg = JSON.parse(localStorage.getItem('showImg') || "[]");
-        let newImg = {
-          image: img
-        };
-        showImg.push(newImg);
-        localStorage.setItem('showImg', JSON.stringify(showImg));
+    if (document.querySelector('.constructor__header')){
+      document.querySelector('.constructor__header').addEventListener('click', (event) => {
+        if (event.target.textContent === '< Main') {
+          createMain(true)
+        }
+      });
     }
+  }
 
+  saveToLocalStorage (img) {
+    let showImg = JSON.parse(localStorage.getItem('showImg') || '[]');
+    let newImg = {
+      image: img,
+    };
+    showImg.push(newImg);
+    localStorage.setItem('showImg', JSON.stringify(showImg));
+  }
 }
 
 const header = new Header();

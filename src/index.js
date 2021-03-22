@@ -1,4 +1,3 @@
-import DOM from './js/DOMLinks';
 import createMainDOM from './pages/main';
 import createConstructorDOM from './pages/constructor';
 import header from './js/Header';
@@ -6,143 +5,54 @@ import WorkSpace from './js/WorkSpace';
 import workSpaceHeader from './js/WorkSpaceHeader';
 import controls from './js/ControlsIcons';
 import ControlsElements from './js/ControlsElements';
-import editor from './js/Editor';
 import slider from './js/Slider';
 import auth from './js/FirebaseAuth';
-
-
-import {template1, template2} from './templates';
-
 import './styles/main.scss';
-//import './styles/constructor.scss';
-//import './styles/editor.scss';
 import './style.scss';
 import { startMovable } from './js/moveable';
-
-const dom = DOM.getHTMLElements();
-let moveableItems;
-M.AutoInit();
-
-
-createMainDOM();
-header.createMainHeader();
-auth.createAuthPanelMain();
-
-const getCurrentQuantity = () => {
-    let quantity = 1;
-    if (document.body.clientWidth >= 1280) {
-        quantity = 7;
-        } else if (document.body.clientWidth >= 768) {
-            quantity = 5;
-        } else if (document.body.clientWidth >= 520) {
-            quantity = 3;
-            };
-    return quantity;
-}
-
-slider.generateCards('left', slider.getCurrentQuantity());
-
-
-
-/*
-// для вывода страницы конструктор раскомментируй эти строки и закомментируй начиная со стр.22
-createConstructorDOM();
-
-header.createHeader();
-
-
-controls.createControlPanel();
-
-const controlsElements = new ControlsElements('Templates');
-controlsElements.createControlElementsPanel();
+import 'bootstrap/dist/css/bootstrap.min.css';
+import modals from './js/Modals';
 
 const workSpace = new WorkSpace('resume');
-workSpace.createWorkSpace();
-workSpaceHeader.createWorkSpaceHeaderRight();
+let moveableItems;
 
-window.addEventListener('resize', (event) => workSpace.calculateScale(event));
+function createMain (ifLoggedIn = false) {
+  createMainDOM();
+  modals.injectModals();
+  header.createMainHeader();
+  auth.createAuthPanelMain(ifLoggedIn);
+  auth.firebaseSetup(ifLoggedIn);
+  window.removeEventListener('resize', resizeWindowListener);
+  slider.init();
+}
 
+createMain();
 
-document.querySelector('.controls__elements-list').addEventListener('click', (event) => {
-        console.log(event);
-        console.log(event.target);
-    //    console.log(event.target.getAttribute('id'));
-    //    console.log(event.target.getAttribute('class'));
-    //    console.log(event.target.getAttribute('id').match(/([^\-]+$)/gm).toString());
-    //    const element = event.target.getAttribute('id').match(/([^\-]+$)/gm).toString();
-});
+function createEditorPage () {
+  const controlsElements = new ControlsElements('Templates');
+  createConstructorDOM();
+  modals.injectModals();
+  header.createHeader();
+  workSpaceHeader.createWorkSpaceHeaderRight();
+  controls.createControlPanel();
+  controlsElements.createControlElementsPanel();
+  workSpace.createWorkSpace();
 
-*/
+  document.querySelector('.controls__elements-list').addEventListener('click', (event) => {
 
-document.getElementById('next').addEventListener('click', (event) => {
-    slider.addListenerForSlider('right');
-    console.log('right');
-});
+    workSpace.showTemplateOnScreen(event.target);
+    if (moveableItems.length > 0) {
+      moveableItems[0].updateTarget();
+    }
+  });
 
-document.getElementById('prev').addEventListener('click', (event) => {
-    slider.addListenerForSlider('left');
-    console.log('left');
-});
+  window.addEventListener('resize', resizeWindowListener);
+  moveableItems = startMovable();  //start moveable
+  workSpace.calculateScale(window);
+}
 
-window.addEventListener('resize', (event) => {
+function resizeWindowListener (e) {
+  workSpace.calculateScale(e);
+}
 
-    slider.changeSlider(event);
-});
-
-document.getElementById('create-design').addEventListener('click', (event) => {
-    createConstructorDOM();
-    header.createHeader();
-
-    controls.createControlPanel();
-
-    const controlsElements = new ControlsElements('Templates');
-    controlsElements.createControlElementsPanel();
-
-    const workSpace = new WorkSpace('resume');
-    workSpace.createWorkSpace();
-    workSpaceHeader.createWorkSpaceHeaderRight();
-
-    window.addEventListener('resize', (event) => workSpace.calculateScale(event));
-
-    document.querySelector('.controls__elements-list').addEventListener('click', (event) => {
-        console.log(event);
-        console.log(event.target);
-        //    console.log(event.target.getAttribute('id'));
-        //    console.log(event.target.getAttribute('class'));
-        //    console.log(event.target.getAttribute('id').match(/([^\-]+$)/gm).toString());
-        //    const element = event.target.getAttribute('id').match(/([^\-]+$)/gm).toString();
-
-        if (moveableItems) moveableItems[1].destroy()
-
-        workSpace.showTemplateOnScreen(event.target);
-        moveableItems = startMovable()  //start moveable
-
-    });
-/*
-    if (document.querySelector('.constructor'))
-    document.querySelector('.constructor').addEventListener('click', (event) => {
-        console.log(event.target.textContent);
-        if (event.target.textContent == '< Main') {
-            console.log('555');
-            createMainDOM();
-            header.createMainHeader();
-            auth.createAuthPanelMain();
-
-            const getCurrentQuantity = () => {
-                let quantity = 1;
-                if (document.body.clientWidth >= 1280) {
-                    quantity = 7;
-                    } else if (document.body.clientWidth >= 768) {
-                        quantity = 5;
-                    } else if (document.body.clientWidth >= 520) {
-                        quantity = 3;
-                        };
-                return quantity;
-            }
-            slider.generateCards('left', slider.getCurrentQuantity());
-        }
-
-});*/
-});
-
-export {moveableItems}
+export { moveableItems, createEditorPage, createMain };

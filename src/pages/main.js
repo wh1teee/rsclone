@@ -1,19 +1,28 @@
 export default function createMainDOM () {
   document.body.innerHTML = `
-    <header class='main-header'>
-        <img src="../images/canva-logo.png">
-        
-        <menu class='menu-controls'>
-            <ul class='menu-controls-list'></ul>            
-        </menu>
-        <h1>Canva</h1>
-        <div id='auth-info'></div>
-    </header>
+<header class='main-header'>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../images/canva-logo.png" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu-controls-list"></ul>
+                <div class="account-info navbar-nav mb-2 mb-lg-0 menu-controls-list"></div>
+            </div>
+        </div>
+    </nav>
+</header>
  
     <main class='main'>
         <section class='main-choice'>
             <div class='main-choice__inner'>
-                <img class='main-img' src='../images/main-img.webp'>
+                <img class='main-img' src='../images/main-img.webp' alt="main img">
                 <div class='main-div'>
                     <h3 class='main-choice__inner-title'>Design anything.</h3>
                     <input class='main-choice__inner-input' type='text' placeholder='What would you like to design?' aria-label='What would you like to design?' value=''>
@@ -42,14 +51,14 @@ export default function createMainDOM () {
     </main>
 
     <footer>
-        <img src="../images/rs_school_js.svg">
+        <img src="../images/rs_school_js.svg" alt="RSSchool">
         <a href="https://rs.school/js/">JavaScript</a>
         <span>2021</span>
         <div>
-            <img class="gh" src="../images/github_PNG.png"><a href="https://github.com/mariariazanova">Maria Riazanova</a>
-            <img class="gh" src="../images/github_PNG.png"><a href="https://github.com/wh1teee">Kanstantsin Piatrouski</a>
-            <img class="gh" src="../images/github_PNG.png"><a href="https://github.com/Rombas">Raman Bashkirau</a>
-            <img class="gh" src="../images/github_PNG.png"><a href="https://github.com/kohan123">Danila Kokhan</a>
+            <img class="gh" src="../images/github_PNG.png" alt="github logo"><a href="https://github.com/mariariazanova">Maria Riazanova</a>
+            <img class="gh" src="../images/github_PNG.png" alt="github logo"><a href="https://github.com/wh1teee">Kanstantsin Piatrouski</a>
+            <img class="gh" src="../images/github_PNG.png" alt="github logo"><a href="https://github.com/Rombas">Raman Bashkirau</a>
+            <img class="gh" src="../images/github_PNG.png" alt="github logo"><a href="https://github.com/kohan123">Danila Kokhan</a>
         </div>
     </footer>
     
@@ -58,10 +67,5 @@ export default function createMainDOM () {
       <h4>This design is available. Please log in</h4>
     </div>
 </div>
-<div id="modal2" class="modal">
-    <div class="modal-content">
-      <h4>This design is being creating. Please choose another one</h4>
-    </div>
-</div>
-`
+`;
 }

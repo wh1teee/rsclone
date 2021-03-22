@@ -18,6 +18,7 @@
 
 .menu-controls {
   // width: 50%;
+  color: white;
   padding: 0;
   @extend %flex_center;
   justify-content: start;
@@ -49,6 +50,7 @@
 }
 
 #header-controls {
+  color: white;
   width: 50%;
   @extend %flex_center;
   justify-content: flex-end;
@@ -66,9 +68,11 @@
 
 
 .constructor-page .controls {
+  color: white;
   width: 30%;
   background: #283039;
   display: flex;
+  padding-top: 10px;
 
   .controls__icons {
     width: 25%;
@@ -76,13 +80,19 @@
     flex-wrap: wrap;
     color: white;
     user-select: none;
+    height: 93vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    //background: #0e1318;
 
     .active_icon {
       background: #283039;
     }
+
     .after__active {
       border-radius: 0 0 15px 0;
     }
+
     .before__active {
       border-radius: 0 15px 0 0;
     }
@@ -105,7 +115,10 @@
   }
 
   .controls__elements {
+    color: white;
     width: 75%;
+    height: 93vh;
+    overflow-y: scroll;
 
     &-upload-div {
       @extend %flex_center;
@@ -229,7 +242,13 @@
 
       label {
         border: none;
-        cursor: auto;
+        display: inline;
+        cursor: pointer;
+        transition: opacity .2s linear;
+
+        &:hover {
+          opacity: .8;
+        }
       }
     }
   }
@@ -237,7 +256,7 @@
 
 .constructor-page .workspace {
   width: 75%;
-  overflow: overlay;
+  overflow: paged-y;
 
   &__header {
     height: 4rem;
@@ -267,8 +286,9 @@
 
   &__field {
     width: 100%;
-    height: 100%;
+    //height: 100%;
     background: #e3eef3;
+    padding-bottom: 20px;
   }
 
   .resume {
@@ -278,8 +298,8 @@
 
     position: relative;
     left: 50%;
-    transform: translateX(-50%); /* translateY(-50%);*/
-    top: 2rem;
+    transform: translateX(-50%);
+    top: 1rem;
 
     .sheet__container {
       width: 79.3rem;
@@ -288,7 +308,7 @@
       background-color: white;
       position: relative;
       left: 50%;
-      transform: translateX(-50%) translateY(-50%) scale(0.8);
+      transform: translateX(-50%) translateY(-50%) scale(0.73);
       top: 50%;
 
       .uploaded-image {
@@ -350,6 +370,3 @@
     }
   }
 }
-
-
-

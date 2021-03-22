@@ -5,6 +5,9 @@ import {template1, template2, template3, template4} from '../templates';
 
 let inner = template1;
 let canvas = document.createElement('canvas');
+let context = canvas.getContext('2d');
+const availableResumeTemplates = 4
+
 canvas.setAttribute('class', 'canvas');
 let context = canvas.getContext('2d');
 
@@ -45,47 +48,19 @@ class WorkSpace {
         canvas.setAttribute('style', 'pointer-events: none;  position:relative;');
 
         if (element.classList.contains('element-template')) {
-            inner = element.getAttribute('id').match(/([^\-]+$)/gm).toString();
-            switch(inner) {
-                    case 'template1':
-                        dom.sheetContainer.innerHTML = `${template1}`;
-                        break;
-                    case 'template2':
-                        dom.sheetContainer.innerHTML = `${template2}`;
-                        break;
-                    case 'template3':
-                        dom.sheetContainer.innerHTML = `${template3}`;
-                        break;
-                    case 'template4':
-                        dom.sheetContainer.innerHTML = `${template4}`;
-                        break;
-                    // case 'template5':
-                    //     dom.sheetContainer.innerHTML = `${template5}`;
-                    //     break;
-                    // case 'template6':
-                    //     dom.sheetContainer.innerHTML = `${template6}`;
-                    //     break;
-                    // case 'template7':
-                    //     dom.sheetContainer.innerHTML = `${template7}`;
-                    //     break;
-                    // case 'template8':
-                    //     dom.sheetContainer.innerHTML = `${template8}`;
-                    //     break;
-                    // case 'template9':
-                    //     dom.sheetContainer.innerHTML = `${template9}`;
-                    //     break;
-                    // case 'template10':
-                    //     dom.sheetContainer.innerHTML = `${template10}`;
-                    //     break;
-                    // case 'template11':
-                    //     dom.sheetContainer.innerHTML = `${template11}`;
-                    //     break;
-                    // case 'template12':
-                    //     dom.sheetContainer.innerHTML = `${template12}`;
-                    //     break;
-            }
-        } else if (element.classList.contains('element-element')) {
-                let svgInner = element.src.match(/<svg([^']*)svg>/gm).toString();
+           const inner = element.dataset.identificator
+            const innerCount = element.dataset.index
+          if (innerCount <= availableResumeTemplates) {
+            dom.sheetContainer.innerHTML = `${(templates[innerCount - 1])}`;
+          }
+
+        } else if (element.classList.contains('element-element') || this.checkClassOfChildren(element, 'element-element')) {
+          let svgInner;
+                if (element.src) {
+                  svgInner = element.src.match(/<svg([^']*)svg>/gm).toString();
+                 } else {
+                  svgInner = element.childNodes[0].src.match(/<svg([^']*)svg>/gm).toString();
+                }
                 dom.sheetContainer.insertAdjacentHTML('beforeend', `<div class='svg-element moveable'>${svgInner}</div>`);
                 workSpaceHeader.createWorkSpaceHeaderLeft();
             } else if (element.parentNode.classList.contains('controls__elements-text-div') || element.classList.contains('controls__elements-text-div')) {

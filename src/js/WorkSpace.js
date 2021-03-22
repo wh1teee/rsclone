@@ -78,12 +78,12 @@ class WorkSpace {
             }
 
     dom.workSpaceField.addEventListener('dblclick', (e) => { // set contenteditable attribute to target
-      if (e.target.classList.contains('moveable')) { //if target can be moveable
+      if (e.target.classList.contains('moveable') && e.target.className.includes('text')) { //if target can be moveable
         if (e.target.contentEditable !== 'true') {
           e.target.contentEditable = 'true';
           e.target.focus();
         } else {
-          e.target.contentEditable = 'false';
+          e.target.focus();
         }
       }
     });

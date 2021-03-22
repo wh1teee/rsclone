@@ -1,16 +1,11 @@
 import DOM from './DOMLinks';
-import editor from './Editor';
 import {template1, template2} from '../templates';
 import {moveableItems} from '../index';
 
-let inner = template1;
-
 let canvas = document.createElement('canvas');
 canvas.setAttribute('class', 'canvas');
-let context = canvas.getContext('2d');
 
 class WorkSpaceHeader {
-
     createWorkSpaceHeaderRight(){
         const dom = DOM.getHTMLElements();
         dom.workSpaceHeaderRight.innerHTML = `
@@ -61,23 +56,7 @@ class WorkSpaceHeader {
     }
 
     createWorkSpaceHeaderLeft(){
-        // const dom = DOM.getHTMLElements();
-        // dom.workSpaceHeaderLeft.innerHTML = `
-        // <input type='color' id='head' name='head' value='#e66465'>
-        // <label for='head'>Color</label>
-        // `;
-        // document.querySelector('#head').addEventListener("input", (e) => {
-        //     if (!moveableItems[0].target) return;
-        // moveableItems[0].target.forEach( el => {
-        //         el.querySelector('path').style.fill = `${e.target.value}`
-        //     })
-        // })
     }
-
-
-
-
-
 }
 
 const workSpaceHeader = new WorkSpaceHeader;

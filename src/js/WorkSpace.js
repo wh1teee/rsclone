@@ -32,14 +32,14 @@ class WorkSpace {
     }
 
   calculateScale (event) {
-    document.querySelector('.sheet').style.width = event.target.innerWidth * 0.48 / 10 + 'rem';
+    document.querySelector('.sheet').style.width = (event === window ? event.innerWidth : event.target.innerWidth) * 0.48 / 10 + 'rem';
     document.querySelector('.sheet').style.height = document.querySelector('.sheet').clientWidth * 29.7 / 21 / 10 + 'rem';
 
-        const newSize = event.target.innerWidth * 0.56 / 10;
-        document.querySelector('.sheet').style.width = newScale + 'rem';
-        document.querySelector('.sheet').style.height = newScale + 'rem';
-        const newScale = document.querySelector('.sheet').clientWidth / document.querySelector('.sheet__container').clientWidth;
-        document.querySelector('.sheet__container').style.transform = `translateX(-50%) translateY(-50%) scale(${newScale})`;
+    // const newSize = event.target.innerWidth * 0.56 / 10;
+    document.querySelector('.sheet').style.width = newScale + 'rem';
+    document.querySelector('.sheet').style.height = newScale + 'rem';
+    const newScale = document.querySelector('.sheet').clientWidth / document.querySelector('.sheet__container').clientWidth;
+    document.querySelector('.sheet__container').style.transform = `translateX(-50%) translateY(-50%) scale(${newScale})`;
     }
 
     showTemplateOnScreen(element){

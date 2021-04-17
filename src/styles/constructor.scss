@@ -2,9 +2,13 @@
 
 .constructor__header {
   height: 5.5rem;
-  //display: flex;
-  //justify-content: space-between;
   background: linear-gradient(90deg, #00c4cc, #7d2ae8);
+
+  .navbar {
+    background: linear-gradient(90deg, #00c4cc, #7d2ae8);
+    text-align: center;
+    z-index: 10;
+  }
 
   a.no-shadow {
     font-size: 16px;
@@ -17,7 +21,6 @@
 }
 
 .menu-controls {
-  // width: 50%;
   color: white;
   padding: 0;
   @extend %flex_center;
@@ -50,11 +53,6 @@
 }
 
 #header-controls {
-  color: white;
-  width: 50%;
-  @extend %flex_center;
-  justify-content: flex-end;
-  padding-right: 1rem;
 
   input {
     @extend %button_layout;

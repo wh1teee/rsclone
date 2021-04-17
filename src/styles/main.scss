@@ -23,17 +23,17 @@ header.main-header {
     color: #3FBFBD;
   }
 
+  .nav-item {
+    margin: .2rem 1em .2em 0;
+  }
+
   #auth-info {
     @extend %flex_center;
     justify-content: flex-end;
-    padding-right: 1rem;
 
     #nav-mobile {
       display: flex;
 
-      li {
-        margin-left: 1rem;
-      }
     }
 
     button {
@@ -221,6 +221,6 @@ footer img.gh {
 
 .account-info {
   button {
-    margin-right: 4px;
+    margin: .2rem 1em .2em 0;
   }
 }

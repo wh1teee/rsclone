@@ -1,6 +1,4 @@
 .live__container {
-  /*  position: absolute;
-    background-color: bisque;*/
   border: 3px solid blue;
 }
 
@@ -59,11 +57,11 @@
 
     &:hover {
       span {
-        transform: scale(1.14);
+        transform: scale(1.04);
       }
 
       p {
-        transform: scale(1.11);
+        transform: scale(1.02);
       }
     }
   }
@@ -73,6 +71,7 @@
   li {
     cursor: pointer;
     transition: transform .20s ease-in-out;
+
     &:hover {
       transform: scale(1.07);
     }

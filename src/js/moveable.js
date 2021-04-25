@@ -305,9 +305,7 @@ function checkTypeOfElement (element) {
 
 function parseColor(color) {
   const arr=[];
-  console.log(color);
   color.replace(/[\d+\.]+/g, function(v) { arr.push(parseFloat(v)); });
-  console.log("#" + arr.slice(0, 3).map(toHex).join(""));
   return {
     hex: "#" + arr.slice(0, 3).map(toHex).join(""),
     opacity: arr.length === 4 ? arr[3] : 1

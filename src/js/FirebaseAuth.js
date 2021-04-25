@@ -2,11 +2,12 @@ import DOM from './DOMLinks';
 import slider from './Slider';
 import { createEditorPage } from '../index';
 import modals from './Modals';
-import firebase from "firebase/app";
-import "firebase/analytics";
-import "firebase/auth";
-import "firebase/storage";
-import "firebase/firestore";
+import firebase from 'firebase/app';
+import 'firebase/analytics';
+import 'firebase/auth';
+import 'firebase/storage';
+import 'firebase/firestore';
+
 class Authentication {
   constructor () {
     this.storageRef = '';
@@ -34,18 +35,17 @@ class Authentication {
       </button>
       `;
     }
-    // this.firebaseSetup(ifLoggedIn);
   }
 
   firebaseSetup (ifLoggedIn) {
     const firebaseConfig = {
-      apiKey: "AIzaSyDN0wezpiBV4GkLNgFxjngQikBCIyGrGBg",
-      authDomain: "canva-clone-wh1teee.firebaseapp.com",
-      projectId: "canva-clone-wh1teee",
-      storageBucket: "canva-clone-wh1teee.appspot.com",
-      messagingSenderId: "717173726400",
-      appId: "1:717173726400:web:2f622211618c00214b2125",
-      measurementId: "G-BHPEHCRLFY"
+      apiKey: 'AIzaSyDN0wezpiBV4GkLNgFxjngQikBCIyGrGBg',
+      authDomain: 'canva-clone-wh1teee.firebaseapp.com',
+      projectId: 'canva-clone-wh1teee',
+      storageBucket: 'canva-clone-wh1teee.appspot.com',
+      messagingSenderId: '717173726400',
+      appId: '1:717173726400:web:2f622211618c00214b2125',
+      measurementId: 'G-BHPEHCRLFY',
     };
 
     if (!ifLoggedIn) {
@@ -110,11 +110,9 @@ class Authentication {
         dom.exampleInner.innerHTML = `
         <div class="out__of__login__container">
             <h4 class="out__of__login__title">
-                Log in to see saved images of all users and get max experience of Canva!   
+                Log in to see saved images of all users and get max experience of Canva!
             <h4>
         </div>`;
-        document.getElementById('create-design')
-          .removeEventListener('click', createEditorPage);
         this.createAuthPanelMain(false);
       }
     });
@@ -176,7 +174,7 @@ class Authentication {
                             </div>
                           </div>`;
 
-          modals.appendModals(modal)
+          modals.appendModals(modal);
           slider.addSlides(swiper, card);
         });
       });

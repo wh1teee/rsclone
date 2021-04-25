@@ -2,13 +2,16 @@ import DOM from './DOMLinks';
 import slider from './Slider';
 import { createEditorPage } from '../index';
 import modals from './Modals';
-
+import firebase from "firebase/app";
+import "firebase/analytics";
+import "firebase/auth";
+import "firebase/storage";
+import "firebase/firestore";
 class Authentication {
   constructor () {
     this.storageRef = '';
     this.dbRef = '';
     this.userID = '';
-    this.templateCount = 0;
     this.login = false;
   }
 
@@ -36,15 +39,18 @@ class Authentication {
 
   firebaseSetup (ifLoggedIn) {
     const firebaseConfig = {
-      apiKey: 'AIzaSyBL689M3ZGwGQcBdor8l6ke3pzuB9fKq7Q',
-      authDomain: 'fir-firestore-16cf7.firebaseapp.com',
-      projectId: 'fir-firestore-16cf7',
-      appId: '1:983573501773:web:03afb58169d26c41568904',
-      storageBucket: 'fir-firestore-16cf7.appspot.com',
+      apiKey: "AIzaSyDN0wezpiBV4GkLNgFxjngQikBCIyGrGBg",
+      authDomain: "canva-clone-wh1teee.firebaseapp.com",
+      projectId: "canva-clone-wh1teee",
+      storageBucket: "canva-clone-wh1teee.appspot.com",
+      messagingSenderId: "717173726400",
+      appId: "1:717173726400:web:2f622211618c00214b2125",
+      measurementId: "G-BHPEHCRLFY"
     };
 
     if (!ifLoggedIn) {
       firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
     }
 
     //Store and Auth references
@@ -65,16 +71,14 @@ class Authentication {
         this.closeAuthModal();
         loginForm.reset();
       }).catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        const errorCode = error.code;
+        const errorMessage = error.message;
         console.log('err', errorCode);
         console.log('mess', errorMessage);
-        // ..
       });
     });
 
     logoutBtn.addEventListener('click', (e) => {
-      const dom = DOM.getHTMLElements();
       e.preventDefault();
       authRef.signOut();
     });

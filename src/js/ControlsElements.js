@@ -175,17 +175,17 @@ class ControlsElements {
     dom.controlsElements.prepend(panel);
 
     const panelButton = document.createElement('div');
-    panelButton.setAttribute('class', 'controls__elements-panel-div_button');
+    panelButton.classList.add('controls__elements-panel-div_button');
     panelButton.innerHTML = 'Clear drawings';
-    panelButton.addEventListener('click', (() => workSpace.clearAllDrawing()));
+    panelButton.addEventListener('click', workSpace.clearAllDrawing);
     panel.prepend(panelButton);
 
     for (let r = 0, max = 5; r <= max; r += 1) {
       for (let g = 0; g <= max; g += 1) {
         for (let b = 0; b <= max; b += 1) {
-          let paletteBlock = document.createElement('div');
+          const paletteBlock = document.createElement('div');
           paletteBlock.className = 'button-draw';
-          paletteBlock.addEventListener('click', ((event) => workSpace.draw(event)));
+          paletteBlock.addEventListener('click', workSpace.draw);
 
           paletteBlock.style.backgroundColor = (
             'rgb(' + Math.round(r * 255 / max) + ', '
@@ -211,14 +211,14 @@ class ControlsElements {
     if (!document.querySelector('.controls__elements-background-div')) {
 
       const divBackground = document.createElement('div');
-      divBackground.setAttribute('class', 'controls__elements-background-div');
+      divBackground.classList.add('controls__elements-background-div');
 
       divBackground.innerHTML = `
             <input type='color' id='background-color' name='background-color' value='#563d7c' title='Choose your color'>
             <label for='background-color' class='form-label'>Background</label>
             `;
       dom.controlsElements.prepend(divBackground);
-      document.querySelector('.controls__elements-background-div').addEventListener('input', (event) => {
+      divBackground.addEventListener('input', (event) => {
         dom.sheetContainer.style.backgroundColor = event.target.value;
         dom.sheetContainer.style.backgroundImage = 'none';
       });

@@ -1,11 +1,10 @@
-import './temp4.scss'
-import image2 from '../images/Images/templates4/men.jpg'
-const template4 = `<footer class="container">
-                <section class="left_section">
-                        <img src=${image2} class="moveable img-men"></img></div>
-                        <h2 class="text moveable text1">Aaron Loeb</h2>
-                        <h4 class="text moveable text2">PRESCHOOL TEACHER</h4>
+import './temp4.scss';
+import image2 from '../images/Images/templates4/men.jpg';
 
+const template4 = `<div class="container">
+                <section class="left_section">
+                        <img src=${image2} class="moveable img-men" alt="photo">
+                        <h2 class="text moveable text1">Aaron Loeb</h2>
                    
                         <h4 class="text moveable text3">
                         CAREER GOALS
@@ -82,6 +81,6 @@ const template4 = `<footer class="container">
             <p class="text moveable">Best Math Teacher(2017)</p>
             <p class="text moveable">Best Faculty Member(2016)</p>
     </section>
-</footer>
+</div>
 `;
 export default template4;

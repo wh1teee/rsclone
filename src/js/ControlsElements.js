@@ -19,15 +19,21 @@ class ControlsElements {
   createControlElementsPanel () {
     const dom = DOM.getHTMLElements();
     const number = templateElements.indexOf(this.template);
+
     dom.controlsElementsList.innerHTML = '';
-    if (dom.controlsElementsUploadDiv)
+
+    if (dom.controlsElementsUploadDiv) {
       dom.controlsElements.removeChild(dom.controlsElementsUploadDiv);
-    if (dom.controlsElementsTextDiv && this.template !== 'Text')
+    }
+    if (dom.controlsElementsTextDiv && this.template !== 'Text') {
       dom.controlsElements.removeChild(dom.controlsElementsTextDiv);
-    if (dom.controlsElementsPanelDiv)
+    }
+    if (dom.controlsElementsPanelDiv) {
       dom.controlsElements.removeChild(dom.controlsElementsPanelDiv);
-    if (dom.controlsElementsBackgroundDiv && this.template !== 'Background')
+    }
+    if (dom.controlsElementsBackgroundDiv && this.template !== 'Background') {
       dom.controlsElements.removeChild(dom.controlsElementsBackgroundDiv);
+    }
 
     dom.workSpaceHeaderLeft.innerHTML = '';
 
@@ -62,7 +68,7 @@ class ControlsElements {
     hideControlPanelButton.addEventListener('click', () => {
       dom.controlsElements.classList.add('hide');
       hideControlPanelButton.classList.add('hide');
-      controls.classList.remove('show__controls')
+      controls.classList.remove('show__controls');
       listItems.forEach(listItem => listItem.classList.remove('active_icon', 'after__active', 'before__active'));
     });
   }

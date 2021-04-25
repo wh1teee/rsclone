@@ -1,6 +1,6 @@
-export default function createConstructorDOM() {
+export default function createConstructorDOM () {
 
-    document.body.innerHTML = `
+  document.body.innerHTML = `
     <header class="constructor__header">
    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">

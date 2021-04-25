@@ -5,6 +5,7 @@ import auth from './FirebaseAuth';
 import '../styles/constructor.scss';
 import DOM from './DOMLinks';
 import { createMain } from '../index';
+import modals from './Modals';
 
 const menuElements = ['< Main', 'File'];
 const mainMenuElements = ['Home', 'Features', 'Learning'];
@@ -15,7 +16,6 @@ class Header {
     const dom = DOM.getHTMLElements();
 
     mainMenuElements.map((item, i) => {
-      console.log(11);
       const listItem = document.createElement('li');
       listItem.classList.add('nav-item');
       listItem.innerHTML = `
@@ -46,30 +46,33 @@ class Header {
             <li><a class='btn no-shadow' id='download-button0' type="button" data-bs-toggle="modal" data-bs-target="#saveToCloudModal">Save to cloud</a></li>
             <li><a class='btn no-shadow' id='download-button1'>Save as img</a></li>
             <li><a class='btn no-shadow' id='download-button2'>Save as pdf</a></li>            
-            <div class="modal fade" id="saveToCloudModal" tabindex="-1" aria-labelledby="saveToCloudModal" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Save image to cloud</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <form id="save-form">
-                        <label for="save-name"></label>
-                        <input type="text" class="form-control" id="save-name" placeholder="Image name" required>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-lg btn-primary" form="save-form">Save</button>
-                  </div>
-                </div>
-              </div>
-            </div>
         `;
 
-    document.getElementById('download-button0').addEventListener('click', function () {
+    const modal = `
+<div class="modal fade" id="saveToCloudModal" tabindex="-1" aria-labelledby="saveToCloudModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Save image to cloud</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="save-form">
+            <label for="save-name"></label>
+            <input type="text" class="form-control" id="save-name" placeholder="Image name" required>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lg btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-lg btn-primary" form="save-form">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+    modals.appendModals(modal);
 
+    document.getElementById('download-button0').addEventListener('click', function () {
       const saveForm = document.querySelector('#save-form');
       saveForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -107,10 +110,10 @@ class Header {
       });
     });
 
-    if (document.querySelector('.constructor__header')){
+    if (document.querySelector('.constructor__header')) {
       document.querySelector('.constructor__header').addEventListener('click', (event) => {
         if (event.target.textContent === '< Main') {
-          createMain(true)
+          createMain(true);
         }
       });
     }

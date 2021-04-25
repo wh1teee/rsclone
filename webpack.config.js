@@ -35,6 +35,7 @@ const plugins = [
 
 if (isDev) {
   plugins.push(new webpack.HotModuleReplacementPlugin());
+  plugins.push(new webpack.SourceMapDevToolPlugin({}))
 }
 
 module.exports = {
@@ -71,6 +72,11 @@ module.exports = {
             plugins: ['@babel/plugin-proposal-class-properties'],
           },
         },
+      },
+      {
+        test: /\.js$/,
+        enforce: "pre",
+        use: ["source-map-loader"],
       },
     ],
   },

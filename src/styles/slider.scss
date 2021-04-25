@@ -1,85 +1,86 @@
 @import "../shared/templates";
 
 .create-design__inner-slider {
-    @extend %flex_center;
-    justify-content: center;
+  @extend %flex_center;
+  justify-content: center;
 }
 
 .create-design__inner-slider__arrow {
-    @extend %slider_button;
-    margin-right: 0.5rem;
+  @extend %slider_button;
+  margin-right: 0.5rem;
 }
 
 .create-design__inner-slider__arrow#next {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .create-design__inner-slider__cards {
-    margin: 0 5.3rem;
-    width: 110rem;
-   // height: 20rem;
+  margin: 0 5.3rem;
+  width: 110rem;
 
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 
-    &-track {
-        //margin: 0 auto;//0 -45px
-        display: flex;
-        justify-content: space-around;
+  &-track {
+    display: flex;
+    justify-content: space-around;
 
-        //position: absolute;
-        transition: all 0.2s ease-out;
-    }
+    transition: all 0.2s ease-out;
+  }
 }
 
 
 .card__container {
-    border-radius: 9px;
-    transition: background-color .2s linear;
-    cursor: pointer;
-    text-align: center;
+  border-radius: 9px;
+  transition: background-color .2s linear;
+  cursor: pointer;
+  text-align: center;
+
+  .slider__card-header {
+    width: 20rem;
+    height: 15rem;
+    overflow: hidden;
+    border: solid 1px white;
+    border-radius: 8px;
+  }
+
+  .slider__card-title-h4 {
+    font-family: Open Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1.7rem;
+    color: #0e1318;
+    line-height: 1.6;
+    padding: 1rem 0 1rem 0.5rem;
+  }
+
+  &:hover {
+    background-color: #26a69a;
 
     .slider__card-header {
-        width: 20rem;
-        height: 15rem;
-        overflow: hidden;
-        border: solid 1px white;
-        border-radius: 8px;
+      border: solid 1px #26a69a;
     }
-    .slider__card-title-h4 {
-        font-family: Open Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
-        font-weight: 600;
-        font-size: 1.7rem;
-        color: #0e1318;
-        line-height: 1.6;
-        padding: 1rem 0 1rem 0.5rem;
-    }
-    &:hover {
-        background-color: #26a69a;
-        .slider__card-header {
-            border: solid 1px #26a69a;
-        }
-    }
+  }
 }
 
 .open {
-border-radius: 30px;
+  border-radius: 30px;
 }
 
 .swiper-slide {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .swiper-pagination {
-    bottom: 0 !important;
+  bottom: 0 !important;
 }
 
 .out__of__login__container {
-    text-align: center;
+  text-align: center;
 }
+
 .out__of__login__title {
-    margin: 20px 0 10px;
-    font-size: 3rem;
+  margin: 20px 0 10px;
+  font-size: 3rem;
 }

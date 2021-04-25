@@ -8,6 +8,8 @@ class WorkSpaceHeader {
   createWorkSpaceHeaderRight () {
     const dom = DOM.getHTMLElements();
     dom.workSpaceHeaderRight.innerHTML = `
+        <span class='material-icons' id='zoom__out'>zoom_out</span>
+        <span class='material-icons' id='zoom__in'>zoom_in</span>
         <span class='material-icons' id='delete__element'>delete_outline</span>
         <span class='material-icons' id='delete__all'>delete</span>
         <span class="material-icons" id="volume">volume_off</span>
@@ -26,16 +28,18 @@ class WorkSpaceHeader {
     });
 
     function workSpaceHeaderRightListeners (e) {
-      const idOfElement = e.target.getAttribute('id') || null;
+      const idOfElement = e.target.getAttribute('id');
 
       if (idOfElement === 'delete__all') {
         deleteAll();
-      }
-      if (idOfElement === 'delete__element') {
+      } else if (idOfElement === 'delete__element') {
         deleteElement();
-      }
-      if (idOfElement === 'volume') {
+      } else if (idOfElement === 'volume') {
         changeSoundOfClicks(e);
+      } else if (idOfElement === 'zoom__in') {
+        zoomIn();
+      } else if (idOfElement === 'zoom__out') {
+        zoomOut();
       }
     }
 
@@ -47,7 +51,7 @@ class WorkSpaceHeader {
       moveableItems[0].updateRect();
     }
 
-   function deleteElement () {
+    function deleteElement () {
       if (!moveableItems[0].target) return; // if there are no selected objects
       moveableItems[0].target.forEach(el => {
         el.remove();
@@ -56,7 +60,7 @@ class WorkSpaceHeader {
       dom.workSpaceHeaderLeft.innerHTML = '';
     }
 
-   function changeSoundOfClicks (e){
+    function changeSoundOfClicks (e) {
       if (e.target.textContent === 'volume_off') {
         e.target.textContent = 'volume_up';
         document.addEventListener('click', clickSound);
@@ -66,6 +70,27 @@ class WorkSpaceHeader {
         document.removeEventListener('click', clickSound);
         document.removeEventListener('keydown', clickSound);
       }
+    }
+
+    function zoomIn () {
+      changeScale(1.05);
+    }
+
+    function zoomOut () {
+      changeScale(0.95);
+    }
+
+    function changeScale (multiplierForNewScale) {
+      const container = document.querySelector('.sheet__container');
+      const containerTransformProperty = container.style.transform;
+      const currentScale = containerTransformProperty.split(' ').filter(property => property.includes('scale'))
+        .join('').match(/\d/g).join('');
+
+      const currentScaleInNumber = Number(`${currentScale.slice(0, 1)}.${currentScale.slice(1)}`);
+      const newScale = currentScaleInNumber * multiplierForNewScale;
+      const newTransformProperty = containerTransformProperty.split(' ').filter(property => !property.includes('scale')).join('')
+        + `scale(${newScale})`;
+      container.style.transform = newTransformProperty;
     }
 
     function clickSound () {

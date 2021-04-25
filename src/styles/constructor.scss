@@ -69,8 +69,8 @@
   overflow: hidden;
 
   ::-webkit-scrollbar-button {
-    width:6px;
-    height:0;
+    width: 6px;
+    height: 0;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -78,20 +78,23 @@
     border-radius: 5px;
   }
 
-  ::-webkit-resizer{
-    width:7px;
-    height:0;
+  ::-webkit-resizer {
+    width: 7px;
+    height: 0;
   }
 
-  ::-webkit-scrollbar{
+  ::-webkit-scrollbar {
     width: 8px;
+  }
+
+  .show__controls {
+    width: 30%;
   }
 
   .controls {
     position: relative;
     color: white;
-    width: 30%;
-    background: #283039;
+    background: #2a3039;
     display: flex;
 
     .hide__panel__container {
@@ -122,15 +125,11 @@
 
 
     ::-webkit-scrollbar-track {
-      background-color:#283039;
+      background-color: #2a3039;
     }
 
     ::-webkit-scrollbar-thumb {
-      background-color:#0e1318;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: #000;
+      background-color: #5f646b;
     }
 
     .controls__icons {
@@ -146,7 +145,7 @@
       overflow-x: hidden;
 
       .active_icon {
-        background: #283039;
+        background: #2a3039;
       }
 
       .after__active {

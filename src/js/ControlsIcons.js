@@ -17,6 +17,7 @@ class ControlsIcons {
 
       const listItem = document.createElement('li');
       listItem.setAttribute('id', `controls__icons-${item}`);
+      listItem.classList.add('list__icon');
       if (index === 0) {
         listItem.classList.add('active_icon');
       }
@@ -109,6 +110,14 @@ class ControlsIcons {
       } else {
         document.getElementById(`controls__icons-${templateIcons[index]}`).classList.add('active_icon');
         document.getElementById(`controls__icons-${templateIcons[index - 1]}`).classList.add('after__active');
+      }
+
+      const controlsElements = document.querySelector('.controls__elements');
+      const controls = document.querySelector('.controls');
+      if (controlsElements.classList.contains('hide')) {
+        controlsElements.classList.remove('hide');
+        controls.classList.add('show__controls');
+        document.querySelector('.hide__panel__container').classList.remove('hide');
       }
     }
   }

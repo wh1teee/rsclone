@@ -21,7 +21,7 @@ export default function createConstructorDOM() {
     </header>
  
     <main class='constructor-page'>
-        <section class='controls'>
+        <section class='controls show__controls'>
             <div class='controls__icons'>
                 <ul class='controls__icons-list'></ul>
             </div>            

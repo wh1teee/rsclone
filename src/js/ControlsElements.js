@@ -55,6 +55,16 @@ class ControlsElements {
 
       dom.controlsElementsList.append(listItem);
     }
+
+    const hideControlPanelButton = document.querySelector('.hide__panel__container');
+    const controls = document.querySelector('.controls');
+    const listItems = document.querySelectorAll('.list__icon');
+    hideControlPanelButton.addEventListener('click', () => {
+      dom.controlsElements.classList.add('hide');
+      hideControlPanelButton.classList.add('hide');
+      controls.classList.remove('show__controls')
+      listItems.forEach(listItem => listItem.classList.remove('active_icon', 'after__active', 'before__active'));
+    });
   }
 
   createUploadPanel () {

@@ -54,7 +54,7 @@ class Modals {
                                               </div>
                                               <div class="form-group">
                                                   <label for="InputPasswordSignup">Password</label>
-                                                  <input type="password" class="form-control" id="InputPasswordSignup">
+                                                  <input type="password" class="form-control" id="InputPasswordSignup" minlength="6" maxlength="16">
                                               </div>
                                               <div class="form-group d-grid gap-1">
                                                   <button type="submit" class="btn btn-outline-primary btn-lg" value="Submit">

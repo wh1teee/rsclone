@@ -73,6 +73,14 @@ class Authentication {
       }).catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+
+        if (errorCode === 'auth/user-not-found') {
+          console.log('Invalid user name, please try again');
+        }
+        if (errorCode === 'auth/wrong-password') {
+          console.log('Invalid password, please try again');
+        }
+
         console.log('err', errorCode);
         console.log('mess', errorMessage);
       });

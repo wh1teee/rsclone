@@ -1,0 +1,137 @@
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: lightgoldenrodyellow;
+  border-bottom: 20px solid mediumblue;
+  border-top: 20px solid mediumblue;
+
+
+  .img-men {
+    position: absolute;
+    height: 300px;
+    width: 303px;
+    border: 20px solid cornflowerblue;
+    top: 620px;
+    left: 11px;
+  }
+
+  h4 {
+    color: #521111;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid cornflowerblue;
+    border-top: 1px solid cornflowerblue;
+  }
+
+  .name_persone {
+    color: cornflowerblue;
+  }
+
+  .contact_person {
+    top: 900px;
+  }
+
+  .profession {
+    color: black;
+    border: none;
+  }
+
+  .right_section {
+    padding-left: 35px;
+    margin-top: 5px;
+  }
+
+  div {
+    position: absolute;
+    padding-top: 50px;
+  }
+
+  .header {
+    padding-top: 0px;
+    top: 347px;
+  }
+
+  ul {
+    font-size: 13px;
+  }
+
+  a {
+    font-size: 13px;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+
+  .photo {
+    padding-top: 0px;
+  }
+
+  .place__name {
+    font-weight: bold;
+    padding-top: 40px;
+  }
+
+  .profession_name {
+    font-weight: bold;
+    padding-top: 40px;
+  }
+
+  .left_section {
+    margin-left: 35px;
+    margin-top: 27px;
+  }
+
+  .history_person_list {
+    font-style: oblique;
+  }
+
+  .history_person {
+    right: 42px;
+  }
+
+  .career_person_history_list {
+    font-style: oblique;
+  }
+
+  .career_text {
+    padding-top: 40px;
+  }
+
+  .interests_person_list {
+    padding-top: 40px;
+  }
+
+  .achievements_list {
+    padding-top: 40px;
+  }
+
+  .achievements_person {
+    right: 180px;
+    top: 847px;
+  }
+
+  .interests_person {
+    top: 650px;
+  }
+
+  .career_person {
+    top: 420px;
+  }
+
+  .career_person_history {
+    right: 18px;
+    top: 421px;
+  }
+
+  .text1 {
+    position: absolute;
+    top: 948px;
+    left: 145px;
+  }
+
+  .text2 {
+    position: absolute;
+    top: 537px;
+    left: 120px;
+  }
+}

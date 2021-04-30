@@ -1,0 +1,308 @@
+@import "variables/temp2_variables";
+
+.template2__wrapper {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  height: 100%;
+
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  color: $wrapper_text_color;
+  background-color: $wrapper_background_color;
+
+  h1, h2, h3, h4, h5, p{
+    position: absolute;
+  }
+
+  .left__section {
+    & .container {
+      height: 100%;
+    }
+
+    height: 100%;
+    width: 35%;
+    min-width: 200px;
+    background-color: $left_background_color;
+    color: $left_text_color;
+  }
+
+  .text1 {
+    top: 55px;
+    left: 40px;
+    font-size: 3.5rem;
+  }
+  .text2 {
+    top: 144px;
+    left: 40px;
+    font-size: 2rem;
+  }
+  .text3 {
+    bottom: 105px;
+    left: 86px;
+    font-size: 2rem;
+  }
+  .text4 {
+    bottom: 77px;
+    left: 35px;
+    font-size: 1.5rem;
+  }
+  .text5 {
+    bottom: 56px;
+    left: 35px;
+    font-size: 1.5rem;
+  }
+  .text6 {
+    bottom: 36px;
+    left: 35px;
+    font-size: 1.5rem;
+  }
+
+  /*Main section
+  ========*/
+  .text7 {
+    top: 50px;
+    left: 320px;
+    font-size: 3rem;
+  }
+  .text8 {
+    top: 90px;
+    left: 320px;
+    font-size: 1.7rem;
+  }
+  .text9 {
+    top: 190px;
+    left: 320px;
+    font-size: 3rem;
+  }
+  .text10 {
+    top: 235px;
+    left: 320px;
+    font-size: 1.8rem;
+  }
+  .text11 {
+    top: 255px;
+    left: 320px;
+    font-size: 1.5rem;
+  }
+  .text12 {
+    top: 300px;
+    left: 320px;
+    font-size: 1.7rem;
+  }
+  .text13 {
+    top: 320px;
+    left: 320px;
+    font-size: 1.5rem;
+  }
+  .text14 {
+    top: 370px;
+    left: 360px;
+    font-size: 3rem;
+  }
+  .text15 {
+    top: 430px;
+    left: 320px;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  .text16 {
+    top: 430px;
+    left: 370px;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  .text17 {
+    top: 450px;
+    left: 370px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .text18 {
+    top: 470px;
+    left: 375px;
+    font-size: 1.2rem;
+  }
+  .text19 {
+    top: 485px;
+    left: 375px;
+    font-size: 1.2rem;
+  }
+  .text20 {
+    top: 500px;
+    left: 375px;
+    font-size: 1.2rem;
+  }
+  .text21 {
+    top: 530px;
+    left: 320px;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  .text22 {
+    top: 530px;
+    left: 370px;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  .text23 {
+    top: 550px;
+    left: 370px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .text24 {
+    top: 575px;
+    left: 375px;
+    font-size: 1.2rem;
+  }
+  .text25 {
+    top: 590px;
+    left: 375px;
+    font-size: 1.2rem;
+  }
+
+  .text26 {
+    top: 605px;
+    left: 375px;
+    font-size: 1.2rem;
+  }
+  .text27 {
+    top: 635px;
+    left: 320px;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  .text28 {
+    top: 635px;
+    left: 370px;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  .text29 {
+    top: 656px;
+    left: 370px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .text30 {
+    top: 680px;
+    left: 375px;
+    font-size: 1.2rem;
+  }
+  .text31 {
+    top: 695px;
+    left: 375px;
+    font-size: 1.2rem;
+  }
+  .text32 {
+    top: 840px;
+    left: 360px;
+    font-size: 3rem;
+  }
+  .text33 {
+    top: 890px;
+    left: 360px;
+    font-size: 1.4rem;
+  }
+  .text34 {
+    top: 910px;
+    left: 360px;
+    font-size: 1.4rem;
+  }
+  .text35 {
+    top: 930px;
+    left: 360px;
+    font-size: 1.4rem;
+  }
+  .text36 {
+    top: 950px;
+    left: 360px;
+    font-size: 1.4rem;
+  }
+  .text37 {
+    top: 970px;
+    left: 360px;
+    font-size: 1.4rem;
+  }
+  .text38 {
+    top: 990px;
+    left: 360px;
+    font-size: 1.4rem;
+  }
+  .text39 {
+    top: 890px;
+    left: 500px;
+    font-size: 1.4rem;
+  }
+  .text40 {
+    top: 910px;
+    left: 500px;
+    font-size: 1.4rem;
+  }
+  .text41 {
+    top: 930px;
+    left: 500px;
+    font-size: 1.4rem;
+  }
+  .text42 {
+    top: 950px;
+    left: 500px;
+    font-size: 1.4rem;
+  }
+  .text43 {
+    top: 970px;
+    left: 500px;
+    font-size: 1.4rem;
+  }
+  .text44 {
+    top: 990px;
+    left: 500px;
+    font-size: 1.4rem;
+  }
+  /*Skills
+  ======*/
+  //.skills__progressions {
+  //  margin-left: 15px;
+  //  width: 80%;
+  //}
+  //
+  //.bar {
+  //  width: 100%;
+  //  background-color: #e0e0e0;
+  //  padding: 0;
+  //  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);
+  //
+  //  span {
+  //    display: block;
+  //    height: 11px;
+  //    background-color: #131313;
+  //    margin-bottom: 8px;
+  //  }
+  //}
+  //
+  //.bar1 {
+  //  margin-top: 4px;
+  //  width: 100%;
+  //}
+  //
+  //.bar2 {
+  //  width: 80%;
+  //}
+  //
+  //.bar3 {
+  //  width: 100%;
+  //}
+  //
+  //.bar4 {
+  //  width: 40%;
+  //}
+  //
+  //.bar5 {
+  //  width: 80%;
+  //}
+  //
+  //.bar6 {
+  //  width: 40%;
+  //}
+}

@@ -1,0 +1,260 @@
+.template2__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  height: 100%;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  color: #191a1c;
+  background-color: #fff;
+  /*Main section
+  ========*/
+  /*Skills
+  ======*/
+}
+
+.template2__wrapper .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 30px 15px;
+}
+
+.template2__wrapper .left__section {
+  background-color: #131313;
+  color: #eff9f2;
+}
+
+.template2__wrapper .left__section .container {
+  height: 100%;
+}
+
+.template2__wrapper .header {
+  margin-top: 50px;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  text-align: right;
+}
+
+.template2__wrapper .contacts a {
+  display: block;
+  text-decoration: none;
+  color: #eff9f2;
+  -webkit-transition: color .25s linear;
+  transition: color .25s linear;
+}
+
+.template2__wrapper .contacts a:hover {
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+.template2__wrapper .person__information {
+  margin-bottom: 20px;
+}
+
+.template2__wrapper .about__me {
+  margin-bottom: 50px;
+  font-size: 1.7rem;
+}
+
+.template2__wrapper .information__title {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.template2__wrapper .information__subtitle {
+  font-size: 1.1rem;
+}
+
+.template2__wrapper .education__title {
+  margin-bottom: 20px;
+  font-size: 1.7rem;
+}
+
+.template2__wrapper .education__place:first-of-type {
+  margin-bottom: 20px;
+}
+
+.template2__wrapper .place__name {
+  margin-bottom: 8px;
+}
+
+.template2__wrapper .experience__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.template2__wrapper .year {
+  font-weight: bold;
+}
+
+.template2__wrapper .information__title {
+  font-size: 1.7rem;
+}
+
+.template2__wrapper .working__place {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.template2__wrapper .description {
+  margin-left: 20px;
+}
+
+.template2__wrapper .description h4 {
+  margin-bottom: 3px;
+}
+
+.template2__wrapper .description ul {
+  margin-left: 17px;
+  margin-bottom: 10px;
+}
+
+.template2__wrapper .description ul li {
+  margin-bottom: 2px;
+}
+
+.template2__wrapper .position {
+  margin-bottom: 8px;
+}
+
+.template2__wrapper .skills {
+  margin-top: 15px;
+}
+
+.template2__wrapper .skills__title {
+  margin-bottom: 20px;
+  font-size: 1.7rem;
+}
+
+.template2__wrapper .skills__block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.template2__wrapper .skills__names p {
+  margin-bottom: 3px;
+}
+
+.template2__wrapper .skills__names p:last-of-type {
+  margin-bottom: 0;
+}
+
+.template2__wrapper .skills__progressions {
+  margin-left: 15px;
+  width: 35vw;
+}
+
+.template2__wrapper .bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  padding: 0;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.template2__wrapper .bar span {
+  display: block;
+  height: 11px;
+  background-color: #131313;
+  margin-bottom: 8px;
+}
+
+.template2__wrapper .bar1 {
+  margin-top: 4px;
+  width: 100%;
+}
+
+.template2__wrapper .bar2 {
+  width: 80%;
+}
+
+.template2__wrapper .bar3 {
+  width: 100%;
+}
+
+.template2__wrapper .bar4 {
+  width: 40%;
+}
+
+.template2__wrapper .bar5 {
+  width: 80%;
+}
+
+.template2__wrapper .bar6 {
+  width: 40%;
+}
+
+@media (max-width: 550px) {
+  .template2__wrapper .contacts__title {
+    font-size: 1.2rem;
+  }
+  .template2__wrapper .about__me {
+    margin-bottom: 25px;
+  }
+  .template2__wrapper .education__title {
+    font-size: 1.2rem;
+  }
+  .template2__wrapper .information__title {
+    font-size: 1.2rem;
+  }
+  .template2__wrapper .skills__title {
+    font-size: 1.2rem;
+  }
+  .template2__wrapper .skills__progressions {
+    margin-left: 10px;
+    max-width: 30vw;
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .template2__wrapper .container {
+    padding: 25px 8px;
+  }
+  .template2__wrapper .left__section {
+    width: 30%;
+  }
+  .template2__wrapper .header {
+    margin-top: 30px;
+  }
+  .template2__wrapper .name {
+    font-size: 20px;
+  }
+  .template2__wrapper .profession {
+    font-size: 12px;
+  }
+  .template2__wrapper .contacts__title {
+    font-size: 1.1rem;
+  }
+  .template2__wrapper .contact__block {
+    font-size: .9rem;
+  }
+  .template2__wrapper .contact__block a {
+    font-size: .7rem;
+    word-wrap: break-word;
+  }
+  .template2__wrapper .skills__progressions {
+    margin-left: 10px;
+    max-width: 30vw;
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=temp2.css.map */

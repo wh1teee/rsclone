@@ -1,0 +1,53 @@
+%vertical_flex_alignment {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+%flex_column {
+  display: flex;
+  flex-direction: column;
+}
+
+%flex_center {
+  display: flex;
+  align-items: center;
+}
+
+%button_layout {
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+%slider_button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  box-shadow: inset 0 0 0 3px #ffb74d;
+  border-radius: 100%;
+  padding: 1.1875rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.14s linear;
+
+    &:hover{
+      box-shadow: none;
+      background-color: #ffb74d;
+    }
+    
+    &:disabled {
+      border-color: red;
+      cursor: default;
+
+      &:hover {
+          background-color: transparent;
+      }
+  }
+}

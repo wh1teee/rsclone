@@ -1,0 +1,30 @@
+@import "~normalize.css";
+
+h1, h2, h3, h4, h5, h6, p, body {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0 !important;
+  width: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+main {
+  margin: 0;
+  display: flex;
+}
+
+footer {
+  padding: 0 3.2rem;
+}

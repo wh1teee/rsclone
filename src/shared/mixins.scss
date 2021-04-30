@@ -1,0 +1,7 @@
+@mixin flexible-centered($direction: row, $justify_content: center) {
+  display: flex;
+  justify-content: $justify_content;
+  flex-direction: $direction;
+};
+
+

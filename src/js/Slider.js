@@ -6,10 +6,6 @@ import 'swiper/swiper-bundle.css';
 Swiper.use([Navigation, Pagination, Keyboard]);
 const examples = [
   {
-    'type': 'Resume',
-    'img': '../images/Types/resume.jpg',
-  },
-  {
     'type': 'Letter',
     'img': '../images/Types/letter.jpg',
   },
@@ -24,6 +20,10 @@ const examples = [
   {
     'type': 'Business card',
     'img': '../images/Types/business-card.jpg',
+  },
+  {
+    'type': 'Resume',
+    'img': '../images/Types/resume.jpg',
   },
   {
     'type': 'Certificate',

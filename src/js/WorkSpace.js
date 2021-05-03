@@ -24,13 +24,19 @@ class WorkSpace {
         `;
   }
 
-  calculateScale (event) {
+  calculateScale () {
     const sheet = document.querySelector('.sheet');
-    sheet.style.width = (event === window ? event.innerWidth : event.target.innerWidth) * 0.48 / 10 + 'rem';
+    const sheetContainer = document.querySelector('.sheet__container');
+    const headerHeight = document.querySelector('.constructor__header').getBoundingClientRect().height;
+    const widthOfSheet = document.querySelector('.controls').getBoundingClientRect().width;
+    const constructorPage = document.querySelector('.constructor-page');
+    const newWidth = window.innerWidth - widthOfSheet + 'px';
+    const newHeight = window.innerHeight - headerHeight + 'px';
+    sheet.style.width = newWidth;
+    constructorPage.style.height = newHeight;
 
-    const newScale = sheet.clientWidth / document.querySelector('.sheet__container').clientWidth * 0.65;
-    document.querySelector('.sheet__container').style.transform = `translateX(-50%) translateY(-50%) scale(${newScale})`;
-    sheet.style.width = 'auto';
+    const newScale = sheet.clientWidth / document.querySelector('.sheet__container').clientWidth * 0.40;
+    sheetContainer.style.transform = `translateX(-50%) translateY(-50%) scale(${newScale})`;
   }
 
   showTemplateOnScreen (element) {

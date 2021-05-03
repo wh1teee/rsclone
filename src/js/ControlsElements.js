@@ -69,6 +69,7 @@ class ControlsElements {
       hideControlPanelButton.classList.add('hide');
       controls.classList.remove('show__controls');
       listItems.forEach(listItem => listItem.classList.remove('active_icon', 'after__active', 'before__active'));
+      workSpace.calculateScale();
     });
   }
 

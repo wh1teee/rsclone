@@ -116,6 +116,7 @@ class ControlsIcons {
         controlsElements.classList.remove('hide');
         controls.classList.add('show__controls');
         document.querySelector('.hide__panel__container').classList.remove('hide');
+        workSpace.calculateScale();
       }
     }
   }

@@ -1,7 +1,7 @@
 import createMainDOM from './pages/main';
 import createConstructorDOM from './pages/constructor';
 import header from './js/Header';
-import WorkSpace from './js/WorkSpace';
+import workSpace from './js/WorkSpace';
 import workSpaceHeader from './js/WorkSpaceHeader';
 import controls from './js/ControlsIcons';
 import ControlsElements from './js/ControlsElements';
@@ -13,7 +13,6 @@ import { startMovable } from './js/moveable';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import modals from './js/Modals';
 
-const workSpace = new WorkSpace('resume');
 const controlsElements = new ControlsElements('Templates');
 let moveableItems;
 

@@ -1,11 +1,10 @@
 import DOM from './DOMLinks';
 import elements from '../data/elements';
-import WorkSpace from './WorkSpace';
+import workSpace from './WorkSpace';
 
 const templateElements = ['Templates', 'Uploads', 'Photos', 'Elements', 'Text', 'Drawings', 'Background', 'Music'];
 const templateElementsNumber = [12, 10, 13, 18, 10, 20, 20, 20, 10, 10, 10];
 const templatesDone = 4;
-const workSpace = new WorkSpace('resume');
 let countFiles = 0;
 let fileStyle;
 let fileLinks = [];

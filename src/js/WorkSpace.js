@@ -139,4 +139,6 @@ class WorkSpace {
   }
 }
 
-export default WorkSpace;
+const workSpace = new WorkSpace('resume');
+
+export default workSpace;

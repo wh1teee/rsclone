@@ -1,12 +1,10 @@
 import DOM from './DOMLinks';
 import ControlsElements from './ControlsElements';
-import WorkSpace from './WorkSpace';
+import workSpace from './WorkSpace';
 
 const templateIcons = ['Templates', 'Uploads', 'Photos', 'Elements', 'Text', 'Drawings', 'Background', 'Music'];
 const templateImages = ['table_chart', 'cloud_upload', 'photo_size_select_actual', 'art_track', 'text_fields', 'brush', 'texture', 'audiotrack', 'ondemand_video', 'folder_special', 'more_horiz'];
 const implementedIcons = 7;
-
-const workSpace = new WorkSpace('resume');
 
 class ControlsIcons {
 

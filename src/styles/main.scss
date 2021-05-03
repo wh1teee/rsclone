@@ -157,22 +157,29 @@ footer a {
   text-decoration: none;
   text-align: center;
   color: rgba(17, 23, 29, 1);
+  margin-left: 2rem;
 }
 
 footer div {
   display: flex;
   justify-content: center;
   margin: 1rem auto;
+  flex-wrap: wrap;
 }
 
-footer img {
+.rsschool__logo {
   width: 8rem;
   margin-left: 2rem;
+  filter: invert(1);
 }
 
-footer img.gh {
-  width: 2rem;
-  margin-top: -0.2rem;
+.gh {
+  background-image: url('../images/github_PNG.png');
+  padding-left: 45px;
+  background-size: 35px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 45px;
 }
 
 .modal-content {
@@ -207,6 +214,7 @@ footer img.gh {
   .modal-body {
     padding: 20px 15px 20px 15px !important;
   }
+
   .nav-link {
     text-transform: uppercase;
   }
@@ -224,3 +232,4 @@ footer img.gh {
     margin: .2rem 1em .2em 0;
   }
 }
+
